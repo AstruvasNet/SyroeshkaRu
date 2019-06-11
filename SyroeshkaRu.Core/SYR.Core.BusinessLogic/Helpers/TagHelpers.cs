@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using SYR.Core.DomainModel;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -13,7 +12,6 @@ using System.Threading.Tasks;
 namespace SYR.Core.BusinessLogic.Helpers
 {
 	[HtmlTargetElement(Attributes = "isAuth")]
-	// ReSharper disable once UnusedMember.Global
 	public class IsAuthTagHelpers : TagHelper
 	{
 		private readonly IHttpContextAccessor _user;
@@ -63,10 +61,6 @@ namespace SYR.Core.BusinessLogic.Helpers
 					output.TagName = null;
 					output.Content.SetContent(null);
 				}
-				else
-				{
-					output.Attributes.Add("class", "Ok");
-				}
 			}).Wait();
 		}
 	}
@@ -105,13 +99,12 @@ namespace SYR.Core.BusinessLogic.Helpers
 			var attr = Elements.Split(",").ToList();
 			var collection = Model.GetType().GetProperties()
 				.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
-			ICollection<PropertyInfo> outputs;
 
 			if (!string.IsNullOrEmpty(nameof(Elements)))
 			{
 				for (var i = attr.Count - 1; i >= 0; i--)
 				{
-					outputs = collection.Where(item => item.Name.Contains(attr[i])).ToList();
+					ICollection<PropertyInfo> outputs = collection.Where(item => item.Name.Contains(attr[i])).ToList();
 					foreach (var item in outputs)
 					{
 						list +=
@@ -167,27 +160,21 @@ namespace SYR.Core.BusinessLogic.Helpers
 			output.TagName = "input";
 			output.Attributes.Add("type", "checkbox");
 
-			if (Model != null)
+			if (Model == null) return;
+			var collection = Model.GetType().GetProperties()
+				.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
+			foreach (var item in collection.Where(item => item.Name.Contains(Element)))
 			{
-				var collection = Model.GetType().GetProperties()
-					.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
-				foreach (var item in collection.Where(item => item.Name.Contains(Element)))
-				{
-					if (Convert.ToBoolean(item.GetValue(Model, null)))
-					{
-						Disabled = false;
-						output.Attributes.Add("checked", "checked");
-						output.Attributes.Add("disabled", "disabled");
-					}
-				}
-
-				if (Disabled)
-				{
-					output.Attributes.Add("disabled", "disabled");
-				}
+				if (!Convert.ToBoolean(item.GetValue(Model, null))) continue;
+				Disabled = false;
+				output.Attributes.Add("checked", "checked");
+				output.Attributes.Add("disabled", "disabled");
 			}
 
-			//output.Content.SetHtmlContent();
+			if (Disabled)
+			{
+				output.Attributes.Add("disabled", "disabled");
+			}
 		}
 	}
 }
