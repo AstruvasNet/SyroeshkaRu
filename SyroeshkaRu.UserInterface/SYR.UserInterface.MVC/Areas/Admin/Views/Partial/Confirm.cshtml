@@ -2,7 +2,7 @@
 
 <form asp-controller="Api" asp-action="DeleteStorages" asp-antiforgery="true">
 	<div modal-role="modal-content">
-		<form-hidden model="Model.Data"></form-hidden>
+		<form-hidden model="Model.Data" elements="Id,Title,Description"></form-hidden>
 		<input asp-for="Header" type="hidden"/>
 		<p>@Model.Content</p>
 	</div>

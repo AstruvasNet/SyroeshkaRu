@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using SYR.Core.DomainModel;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -75,14 +77,24 @@ namespace SYR.Core.BusinessLogic.Helpers
 
 		public FormHiddenTagHelpers()
 		{
-			Items = "";
+			Elements = "";
 		}
 
-		[HtmlAttributeName("items")]
-		public string Items { get; set; }
-
+		/// <summary>
+		/// Модель.
+		/// <example>
+		///	model="Model"
+		/// </example>
+		/// </summary>
 		[HtmlAttributeName("model")]
 		public object Model { get; set; }
+
+		/// <summary>
+		/// Перечисление свойств модели.
+		/// elements="Id,Name,Title"
+		/// </summary>
+		[HtmlAttributeName("elements")]
+		public string Elements { get; set; }
 
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
@@ -90,12 +102,12 @@ namespace SYR.Core.BusinessLogic.Helpers
 			output.Attributes.SetAttribute("class", "form-hidden-elements");
 
 			var list = "";
-			var attr = Items.Split(",").ToList();
+			var attr = Elements.Split(",").ToList();
 			var collection = Model.GetType().GetProperties()
 				.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
 			ICollection<PropertyInfo> outputs;
 
-			if (!string.IsNullOrEmpty(nameof(Items)))
+			if (!string.IsNullOrEmpty(nameof(Elements)))
 			{
 				for (var i = attr.Count - 1; i >= 0; i--)
 				{
@@ -109,8 +121,7 @@ namespace SYR.Core.BusinessLogic.Helpers
 			}
 			else
 			{
-				outputs = collection;
-				foreach (var item in outputs)
+				foreach (var item in collection)
 				{
 					list +=
 						$"<input type=\"hidden\" id=\"{item.Name}\" name=\"{item.Name}\" value=\"{item.GetValue(Model, null)}\"/>";
@@ -119,6 +130,64 @@ namespace SYR.Core.BusinessLogic.Helpers
 
 			output.Content.SetHtmlContent(list);
 
+		}
+	}
+
+	[HtmlTargetElement("form-checkbox", Attributes = "model, element")]
+	public class FormCheckboxTagHelpers : TagHelper
+	{
+		public FormCheckboxTagHelpers()
+		{
+			Disabled = false;
+		}
+
+		/// <summary>
+		/// Модель.
+		/// <example>
+		///	model="Model"
+		/// </example>
+		/// </summary>
+		[HtmlAttributeName("model")]
+		public object Model { get; set; }
+
+		/// <summary>
+		/// Свойство модели.
+		/// <example>
+		///	element="IsBool"
+		/// </example>
+		/// </summary>
+		[HtmlAttributeName("element")]
+		public string Element { get; set; }
+
+		[HtmlAttributeName("disabled")]
+		public bool Disabled { get; set; }
+
+		public override void Process(TagHelperContext context, TagHelperOutput output)
+		{
+			output.TagName = "input";
+			output.Attributes.Add("type", "checkbox");
+
+			if (Model != null)
+			{
+				var collection = Model.GetType().GetProperties()
+					.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
+				foreach (var item in collection.Where(item => item.Name.Contains(Element)))
+				{
+					if (Convert.ToBoolean(item.GetValue(Model, null)))
+					{
+						Disabled = false;
+						output.Attributes.Add("checked", "checked");
+						output.Attributes.Add("disabled", "disabled");
+					}
+				}
+
+				if (Disabled)
+				{
+					output.Attributes.Add("disabled", "disabled");
+				}
+			}
+
+			//output.Content.SetHtmlContent();
 		}
 	}
 }

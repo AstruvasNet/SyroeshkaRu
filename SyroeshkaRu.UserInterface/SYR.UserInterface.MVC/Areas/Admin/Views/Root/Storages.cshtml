@@ -25,7 +25,7 @@
 				<td>@storage.Title</td>
 				<td>@storage.Description</td>
 				<td>
-					<input asp-for="@storage.IsDefault" type="checkbox" disabled="disabled" />
+					<form-checkbox model="storage" element="IsDefault" disabled="true"></form-checkbox>
 				</td>
 				<td>
 					<a href="#">@storage.Categories.Count</a>

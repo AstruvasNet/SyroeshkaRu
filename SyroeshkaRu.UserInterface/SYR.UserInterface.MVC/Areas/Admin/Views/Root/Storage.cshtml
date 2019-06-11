@@ -37,14 +37,7 @@
 					</div>
 					<div class="col-lg-1"></div>
 					<div class="form-group col-lg-4 checkbox">
-						@if (Model != null && Model.IsDefault)
-						{
-							<input asp-for="IsDefault" disabled="disabled"/>
-						}
-						else
-						{
-							<input asp-for="IsDefault"/>
-						}
+						<form-checkbox model="Model" element="IsDefault"></form-checkbox>
 						<label asp-for="IsDefault"></label>
 					</div>
 				</div>
