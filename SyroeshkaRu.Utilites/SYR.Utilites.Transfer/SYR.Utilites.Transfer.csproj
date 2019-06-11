@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SyroeshkaRu.Core\SYR.Core.BusinessLogic\SYR.Core.BusinessLogic.csproj" />
+    <ProjectReference Include="..\SYR.Utilites.Core\SYR.Utilites.Core.csproj" />
+  </ItemGroup>
+
+</Project>

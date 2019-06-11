@@ -1,0 +1,57 @@
+﻿@model StoragesViewModel
+
+@{
+	if (Model != null)
+	{
+		ViewData["Title"] = $"Склад {Model.Title}";
+	}
+	ViewData["Title"] = "Новый склад";
+}
+
+<div class="page-header">
+	<h4>@ViewData["Title"]</h4>
+</div>
+
+<form asp-controller="Api" asp-action="EditStorages" asp-antiforgery="true">
+	<div asp-validation-summary="All"></div>
+	<input asp-for="Id" type="hidden"/>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="form-group">
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-lg-1">
+							<label asp-for="Title"></label>
+						</div>
+						<div class="col-lg-4">
+							<input asp-for="Title" class="form-control form-control-sm"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-1">
+							<label asp-for="Description"></label>
+						</div>
+						<div class="col-lg-4">
+							<input asp-for="Description" class="form-control form-control-sm"/>
+						</div>
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="form-group col-lg-4 checkbox">
+						@if (Model != null && Model.IsDefault)
+						{
+							<input asp-for="IsDefault" disabled="disabled"/>
+						}
+						else
+						{
+							<input asp-for="IsDefault"/>
+						}
+						<label asp-for="IsDefault"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<input type="submit" class="btn btn-xs btn-success" value="Сохранить"/>
+		</div>
+	</div>
+</form>

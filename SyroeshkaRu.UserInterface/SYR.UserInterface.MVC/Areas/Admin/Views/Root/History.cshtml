@@ -1,0 +1,13 @@
+﻿@model ICollection<HistoryViewModel>
+@{
+	ViewData["Title"] = "История";
+}
+
+<div class="page-header">
+	<h4>@ViewData["Title"]</h4>
+</div>
+
+@foreach (var i in Model)
+{
+	<div>@i.Id - @i.Item - @i.DateTimeIn</div>
+}

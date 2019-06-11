@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SyroeshkaRu", "SyroeshkaRu\SyroeshkaRu.shproj", "{CB6791C2-F192-40E8-A309-AB007554661B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyroeshkaRu.Core", "SyroeshkaRu.Core", "{8017B6BB-3648-4165-93B0-58A28460A7A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyroeshkaRu.UserInterface", "SyroeshkaRu.UserInterface", "{4D3CF7C3-5FFC-4606-AD6B-6C01E4E68045}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYR.Core.DomainModel", "SyroeshkaRu.Core\SYR.Core.DomainModel\SYR.Core.DomainModel.csproj", "{99CA0915-57C3-4E78-95C3-86C30F21D002}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyroeshkaRu.Utilites", "SyroeshkaRu.Utilites", "{2C55EDC6-53CD-46D6-B053-6769D1609BC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYR.UserInterface.MVC", "SyroeshkaRu.UserInterface\SYR.UserInterface.MVC\SYR.UserInterface.MVC.csproj", "{4049215A-B499-45A3-902C-15C72A1DF866}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyroeshkaRu.Tests", "SyroeshkaRu.Tests", "{173CF2F2-AE6D-4602-A003-001ED8D9F9E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYR.Tests.ModelContext", "SyroeshkaRu.Tests\SYR.Tests.ModelContext\SYR.Tests.ModelContext.csproj", "{8FDE5958-7C97-4177-913E-753F491955A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYR.Core.BusinessLogic", "SyroeshkaRu.Core\SYR.Core.BusinessLogic\SYR.Core.BusinessLogic.csproj", "{E03B4438-12BA-4987-917D-3312116A5420}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYR.Utilites.Transfer", "SyroeshkaRu.Utilites\SYR.Utilites.Transfer\SYR.Utilites.Transfer.csproj", "{ED233CF9-DE05-4910-BFA0-64B0EE7DE447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYR.Utilites.Core", "SyroeshkaRu.Utilites\SYR.Utilites.Core\SYR.Utilites.Core.csproj", "{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SyroeshkaRu\SyroeshkaRu.projitems*{cb6791c2-f192-40e8-a309-ab007554661b}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99CA0915-57C3-4E78-95C3-86C30F21D002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99CA0915-57C3-4E78-95C3-86C30F21D002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99CA0915-57C3-4E78-95C3-86C30F21D002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99CA0915-57C3-4E78-95C3-86C30F21D002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4049215A-B499-45A3-902C-15C72A1DF866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4049215A-B499-45A3-902C-15C72A1DF866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4049215A-B499-45A3-902C-15C72A1DF866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4049215A-B499-45A3-902C-15C72A1DF866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FDE5958-7C97-4177-913E-753F491955A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FDE5958-7C97-4177-913E-753F491955A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FDE5958-7C97-4177-913E-753F491955A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FDE5958-7C97-4177-913E-753F491955A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E03B4438-12BA-4987-917D-3312116A5420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03B4438-12BA-4987-917D-3312116A5420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E03B4438-12BA-4987-917D-3312116A5420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E03B4438-12BA-4987-917D-3312116A5420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED233CF9-DE05-4910-BFA0-64B0EE7DE447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED233CF9-DE05-4910-BFA0-64B0EE7DE447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED233CF9-DE05-4910-BFA0-64B0EE7DE447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED233CF9-DE05-4910-BFA0-64B0EE7DE447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{99CA0915-57C3-4E78-95C3-86C30F21D002} = {8017B6BB-3648-4165-93B0-58A28460A7A7}
+		{4049215A-B499-45A3-902C-15C72A1DF866} = {4D3CF7C3-5FFC-4606-AD6B-6C01E4E68045}
+		{8FDE5958-7C97-4177-913E-753F491955A2} = {173CF2F2-AE6D-4602-A003-001ED8D9F9E3}
+		{E03B4438-12BA-4987-917D-3312116A5420} = {8017B6BB-3648-4165-93B0-58A28460A7A7}
+		{ED233CF9-DE05-4910-BFA0-64B0EE7DE447} = {2C55EDC6-53CD-46D6-B053-6769D1609BC9}
+		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8} = {2C55EDC6-53CD-46D6-B053-6769D1609BC9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {835ACD51-7EA8-418C-9877-AE0A37CB4EBE}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,52 @@
+﻿@model ICollection<StoragesViewModel>
+@{
+	ViewData["Title"] = "Склады";
+}
+
+<div class="page-header">
+	<h4>@ViewData["Title"]</h4>
+</div>
+
+<table class="table table-sm table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Название</th>
+			<th>Описание</th>
+			<th>Основной</th>
+			<th>Категории</th>
+			<th>Продукты</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var storage in Model)
+		{
+			<tr>
+				<td>@storage.Title</td>
+				<td>@storage.Description</td>
+				<td>
+					<input asp-for="@storage.IsDefault" type="checkbox" disabled="disabled" />
+				</td>
+				<td>
+					<a href="#">@storage.Categories.Count</a>
+				</td>
+				<td>
+					<a href="#">@storage.Products.Count</a>
+				</td>
+				<td class="control-icons">
+					<a asp-controller="Root" asp-action="Storages" asp-route-id="@storage.Id"
+					   class="fa fa-pencil-square-o text-success"></a>
+					<a asp-controller="Partial" asp-action="Confirm" asp-route-type="0" asp-route-id="@storage.Id"
+					   class="fa fa-times-circle-o text-danger" ui-role="remove" title="Удаление склада"></a>
+				</td>
+			</tr>
+		}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="6">
+				<a asp-controller="Root" asp-action="Storages" asp-route-id="@Guid.Empty" class="btn btn-success btn-xs">Добавить</a>
+			</td>
+		</tr>
+	</tfoot>
+</table>

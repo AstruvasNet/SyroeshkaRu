@@ -1,0 +1,10 @@
+﻿@model ICollection<MenuViewModel>
+
+@foreach (var resource in Model)
+{
+	<li isAuth="@DisplayHelpers.SequrityProfileName(resource.SequrityId)" class="list-group-item">
+		<a asp-controller="@(resource.ParentId != null ? DisplayValues.GetMenuController(resource.ParentId) : resource.Name)"
+		   asp-action="@(resource.ParentId == null | resource.Level == 0 ? "index" : resource.Name)"
+		   asp-area="admin">@resource.Title</a>
+	</li>
+}
