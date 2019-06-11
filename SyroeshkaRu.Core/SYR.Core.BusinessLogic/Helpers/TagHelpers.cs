@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace SYR.Core.BusinessLogic.Helpers
 {
@@ -129,11 +130,6 @@ namespace SYR.Core.BusinessLogic.Helpers
 	[HtmlTargetElement("form-checkbox", Attributes = "model, element")]
 	public class FormCheckboxTagHelpers : TagHelper
 	{
-		public FormCheckboxTagHelpers()
-		{
-			Disabled = false;
-		}
-
 		/// <summary>
 		/// Модель.
 		/// <example>
@@ -152,28 +148,42 @@ namespace SYR.Core.BusinessLogic.Helpers
 		[HtmlAttributeName("element")]
 		public string Element { get; set; }
 
-		[HtmlAttributeName("disabled")]
-		public bool Disabled { get; set; }
-
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
 			output.TagName = "input";
 			output.Attributes.Add("type", "checkbox");
 
-			if (Model == null) return;
-			var collection = Model.GetType().GetProperties()
-				.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
-			foreach (var item in collection.Where(item => item.Name.Contains(Element)))
+			if (Model == null)
 			{
-				if (!Convert.ToBoolean(item.GetValue(Model, null))) continue;
-				Disabled = false;
-				output.Attributes.Add("checked", "checked");
-				output.Attributes.Add("disabled", "disabled");
+				output.Attributes.Add("name", Element);
+				return;
 			}
 
-			if (Disabled)
+			//if (context.AllAttributes.FirstOrDefault(i => i.Name == Element)?.Value.ToString() == "on")
+			//{
+
+			//}
+
+			var collection = Model.GetType().GetProperties()
+				.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
+
+			foreach (var item in collection.Where(i => i.Name.Contains(Element)))
 			{
-				output.Attributes.Add("disabled", "disabled");
+				output.Attributes.Add("id", item.Name);
+				output.Attributes.Add("name", item.Name);
+			}
+
+			foreach (var item in collection.Where(item => item.Name.Contains(Element)))
+			{
+				if (!Convert.ToBoolean(item.GetValue(Model, null)))
+				{
+					output.Attributes.RemoveAll("checked");
+				}
+				else
+				{
+					output.Attributes.Add("checked", "checked");
+					output.Attributes.Add("disabled", "disabled");
+				}
 			}
 		}
 	}

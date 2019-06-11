@@ -1,4 +1,15 @@
-﻿$(function () {
+﻿$(function() {
+	//$("[type=\"checkbox\"]").on("change", function()
+	//{
+	//	if($(this).is(':checked')) {
+	//		$(this).attr("checked", "checked");
+	//	} else {
+	//		$(this).attr("checked", "checked");
+	//	}
+	//});
+	if ($("[type=\"checkbox\"]").val() === "on") {
+		$("[type=\"checkbox\"]").val(true);
+	}
 	if (sessionStorage.getItem("message"))
 		Alert(sessionStorage.getItem("message"), sessionStorage.getItem("type"));
 
@@ -79,7 +90,8 @@
 	$("form").on("submit",
 		function(e) {
 			e.preventDefault();
-			HttpPut($(this).attr("action"), $(this).serialize());
+			//console.log($(this).serializeArray())
+			HttpPut($(this).attr("action"), $(this).serializeArray());
 		});
 	$("[ui-role=\"remove\"]").on("click",
 		function(e) {

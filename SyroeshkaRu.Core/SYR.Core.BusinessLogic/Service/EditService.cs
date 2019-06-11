@@ -95,7 +95,7 @@ namespace SYR.Core.BusinessLogic.Service
 				new SqlParameter("@id", SqlDbType.UniqueIdentifier, 37, model.Id.ToString()),
 				new SqlParameter("@title", SqlDbType.NVarChar, Int32.MaxValue, model.Title),
 				new SqlParameter("@description", SqlDbType.NVarChar, 50, model.Description),
-				new SqlParameter("@isDefault", SqlDbType.Bit, 1, model.IsDefault.ToString()),
+				new SqlParameter("@isDefault", SqlDbType.Bit, 1, Convert.ToBoolean(model.IsDefault).ToString()),
 				new SqlParameter("@dateTime", SqlDbType.Int, 10, DisplayValues.ConvertToTimestamp(DateTime.Now).ToString()),
 				new SqlParameter("@userId", SqlDbType.UniqueIdentifier, 37, _userManager.GetUserId(_user.HttpContext.User))
 			};
