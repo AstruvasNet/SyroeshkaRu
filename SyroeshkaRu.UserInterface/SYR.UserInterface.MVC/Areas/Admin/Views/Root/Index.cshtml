@@ -1,4 +1,4 @@
-﻿@model UserManager<Users>
+﻿@model IndexViewModel
 @{
 	ViewData["Title"] = "Пользователи";
 }
@@ -7,36 +7,40 @@
 	<h4>@ViewData["Title"]</h4>
 </div>
 
-<table class="table table-bordered table-striped">
-	<thead>
-		<tr>
-			<th>E-mail</th>
-			<th>Логин</th>
-			<th>Роли</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var user in Model.Users)
-		{
+<div class="page-content">
+	<table class="table table-bordered table-striped">
+		<thead>
 			<tr>
-				<td>@user.Email</td>
-				<td>@user.UserName</td>
-				<td>
-					@foreach (var roles in DisplayHelpers.RolesCollection())
-					{
-						if (DisplayHelpers.RoleId(user.Id).Contains(roles.Value))
-						{
-							<div class="label label-default">@roles.Text</div>
-						}
-					}
-				</td>
-				<td>
-					<a asp-controller="root" asp-action="index" asp-route-id="@user.Id"
-					   class="fa fa-pencil-square-o text-success"></a>
-					<a class="fa fa-times-circle-o text-danger"></a>
-				</td>
+				<th>E-mail</th>
+				<th>Логин</th>
+				<th>Роли</th>
+				<th></th>
 			</tr>
-		}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			@foreach (var user in (ICollection<UsersViewModel>)Model.ModelObject)
+			{
+				<tr>
+					<td>@user.Email</td>
+					<td>@user.UserName</td>
+					<td>
+						@foreach (var roles in DisplayHelpers.RolesCollection())
+						{
+							if (DisplayHelpers.RoleId(user.Id).Contains(roles.Value))
+							{
+								<div class="label label-default">@roles.Text</div>
+							}
+						}
+					</td>
+					<td>
+						<a asp-controller="root" asp-action="index" asp-route-id="@user.Id"
+						   class="fa fa-pencil-square-o text-success"></a>
+						<a class="fa fa-times-circle-o text-danger"></a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+<page-link page-model="Model.PageViewModel" page-action="Index"></page-link>

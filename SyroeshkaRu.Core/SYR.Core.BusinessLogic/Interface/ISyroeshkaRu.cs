@@ -8,7 +8,6 @@ namespace SYR.Core.BusinessLogic.Interface
 	{
 		object GetComplete();
 		object GetUsers(ClaimsPrincipal user);
-		object GetStorages(Guid? storageId = null);
 		object GetCategories(Guid storageId);
 		object GetProducts(Guid? productId);
 		object GetProducts(Guid categoryId);

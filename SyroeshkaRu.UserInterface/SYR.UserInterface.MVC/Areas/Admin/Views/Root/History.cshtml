@@ -1,4 +1,4 @@
-﻿@model ICollection<HistoryViewModel>
+﻿@model IndexViewModel
 @{
 	ViewData["Title"] = "История";
 }
@@ -7,7 +7,30 @@
 	<h4>@ViewData["Title"]</h4>
 </div>
 
-@foreach (var i in Model)
-{
-	<div>@i.Id - @i.Item - @i.DateTimeIn</div>
-}
+<div class="page-content">
+	<table class="table table-bordered table-striped">
+		<thead>
+		<tr>
+			<th>Id</th>
+			<th>Тип операции</th>
+			<th>Элемент</th>
+			<th>Дата</th>
+			<th>Пользователь</th>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach (var history in (ICollection<HistoryViewModel>) Model.ModelObject)
+		{
+			<tr>
+				<td>@history.Id</td>
+				<td>@history.OperationType</td>
+				<td>@history.Item</td>
+				<td>@history.DateTimeIn</td>
+				<td>@history.User</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
+
+<page-link page-model="Model.PageViewModel" page-action="History"></page-link>

@@ -14,18 +14,11 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 	[Area("Admin")]
 	public class PartialController : Controller
 	{
-		private readonly ISyroeshkaRu _db;
+		private readonly IAdmin _db;
 
-		public PartialController(ISyroeshkaRu db)
+		public PartialController(IAdmin db)
 		{
 			_db = db;
-		}
-
-		[HttpPost("/partial/menu")]
-		public IActionResult Menu()
-		{
-			var test = _db.GetMainMenu();
-			return PartialView(test as ICollection<MenuViewModel>);
 		}
 
 		[HttpGet("/[controller]/[action]")]

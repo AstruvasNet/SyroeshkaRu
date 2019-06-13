@@ -44,11 +44,35 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		public Guid Id { get; set; }
 		public int DateIn { get; set; }
 		public string Item { get; set; }
+		public string OperationType { get; set; }
+		public string User { get; set; }
 
 		public DateTime DateTimeIn
 		{
 			get => DisplayValues.ConvertFromTimestamp(DateIn);
 			set => value = DateTimeIn;
 		}
+	}
+
+	public class PageViewModel
+	{
+		public int PageNumber { get; }
+		public int? TotalPages { get; }
+
+		public PageViewModel(int count, int pageNumber, int pageSize)
+		{
+			PageNumber = pageNumber;
+			TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+		}
+
+		public bool HasPreviousPage => (PageNumber > 1);
+
+		public bool HasNextPage => (PageNumber < TotalPages);
+	}
+
+	public class IndexViewModel
+	{
+		public object ModelObject { get; set; }
+		public PageViewModel PageViewModel { get; set; }
 	}
 }

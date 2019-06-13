@@ -86,24 +86,6 @@ namespace SYR.Core.BusinessLogic.Service
 
 		#endregion
 
-		#region Склады
-
-		public object GetStorages(Guid? storageId)
-		{
-			if (!string.IsNullOrEmpty(storageId.ToString()))
-			{
-				return _mapper.Map<Storages, StoragesViewModel>(_db.Storages.Find(storageId));
-			}
-
-			return _mapper.Map<ICollection<Storages>, ICollection<StoragesViewModel>>(_db.Storages
-				.Include(i => i.Products)
-				.ThenInclude(i => i.Product)
-				.Include(i => i.Categories)
-				.ToList());
-		}
-
-		#endregion
-
 		#region Категории
 
 		public object GetCategories(Guid storageId)

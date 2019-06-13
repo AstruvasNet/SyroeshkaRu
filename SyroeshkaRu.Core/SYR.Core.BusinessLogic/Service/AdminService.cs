@@ -9,6 +9,7 @@ using SYR.Core.DomainModel.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SYR.Core.DomainModel.Client;
 
 namespace SYR.Core.BusinessLogic.Service
 {
@@ -24,7 +25,9 @@ namespace SYR.Core.BusinessLogic.Service
 			_mapper = new Configure().Configuration().CreateMapper();
 		}
 
-		public object GetUsers(string id)
+		#region Users
+
+		public object GetUsers(string id = null)
 		{
 			if (string.IsNullOrEmpty(id))
 			{
@@ -33,6 +36,26 @@ namespace SYR.Core.BusinessLogic.Service
 
 			return _mapper.Map<Users, UsersViewModel>(_db.Users.Find(id));
 		}
+
+		#endregion
+
+		#region Склады
+
+		public object GetStorages(Guid? storageId = null)
+		{
+			if (!string.IsNullOrEmpty(storageId.ToString()))
+			{
+				return _mapper.Map<Storages, StoragesViewModel>(_db.Storages.Find(storageId));
+			}
+
+			return _mapper.Map<ICollection<Storages>, ICollection<StoragesViewModel>>(_db.Storages
+				.Include(i => i.Products)
+				.ThenInclude(i => i.Product)
+				.Include(i => i.Categories)
+				.ToList());
+		}
+
+		#endregion
 
 		public object GetSequrityProfiles(Guid? id)
 		{
@@ -55,17 +78,40 @@ namespace SYR.Core.BusinessLogic.Service
 			return _db.UserRoles.Where(i => i.UserId == id).Select(i => i.RoleId).ToList();
 		}
 
-		public object GetHistory()
+		#region Paginations
+
+		public object GetUsers(int page, int pageSize)
 		{
+			return new IndexViewModel
+			{
+				PageViewModel = new PageViewModel(((ICollection<UsersViewModel>)GetUsers()).Count, page, pageSize),
+				ModelObject = ((ICollection<UsersViewModel>)GetUsers()).Skip((page - 1) * pageSize).Take(pageSize).ToList()
+			};
+		}
+
+		public object GetStorages(int page, int pageSize)
+		{
+			return new IndexViewModel
+			{
+				PageViewModel = new PageViewModel(((ICollection<StoragesViewModel>)GetStorages()).Count, page, pageSize),
+				ModelObject = ((ICollection<StoragesViewModel>)GetStorages()).Skip((page - 1) * pageSize).Take(pageSize).ToList()
+			};
+		}
+
+		public object GetHistory(int page, int pageSize)
+		{
+			var model = _mapper.Map<ICollection<History>, ICollection<HistoryViewModel>>(_db.History.ToList());
 			return (from h in _db.History
 				join s in _db.Storages on h.ItemId equals s.Id into g
 				from history in g.DefaultIfEmpty()
-				select new HistoryViewModel
+				select new IndexViewModel
 				{
-					Id = h.Id,
-					Item = history.Title ?? "Удалено",
-					DateIn = h.DateIn
-				}).ToList();
+					PageViewModel = new PageViewModel(model.Count, page, pageSize),
+					ModelObject = model.Skip((page - 1) * pageSize).Take(pageSize).ToList()
+				}).FirstOrDefault();
 		}
+
+		#endregion
+
 	}
 }

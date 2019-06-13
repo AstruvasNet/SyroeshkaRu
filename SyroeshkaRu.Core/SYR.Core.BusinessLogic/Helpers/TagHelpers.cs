@@ -2,16 +2,17 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
+using SYR.Core.BusinessLogic.ViewModel;
 using SYR.Core.DomainModel;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using SYR.Core.BusinessLogic.ViewModel;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace SYR.Core.BusinessLogic.Helpers
 {
@@ -186,10 +187,10 @@ namespace SYR.Core.BusinessLogic.Helpers
 		}
 	}
 
-	[HtmlTargetElement("ul-collection", Attributes = "model")]
-	public class UlCollectionTagHelpers : TagHelper
+	[HtmlTargetElement("ul-menu", Attributes = "model")]
+	public class UlMenuTagHelpers : TagHelper
 	{
-		public UlCollectionTagHelpers()
+		public UlMenuTagHelpers()
 		{
 			Value = null;
 			AHref = null;
@@ -216,8 +217,14 @@ namespace SYR.Core.BusinessLogic.Helpers
 		[HtmlAttributeName("second")]
 		public string Second { get; set; }
 
+		[ViewContext]
+		[HtmlAttributeNotBound]
+		public ViewContext ViewContext { get; set; }
+
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
+			var controller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+			var action = ViewContext.RouteData.Values["action"].ToString().ToLower();
 			output.TagName = "ul";
 			output.Attributes.Add("class", UlClass);
 
@@ -227,13 +234,18 @@ namespace SYR.Core.BusinessLogic.Helpers
 				{
 					var li = new TagBuilder("li");
 					var a = new TagBuilder("a");
+					li.AddCssClass(LiClass);
 
 					a.InnerHtml.Append(item.Title);
-					a.Attributes.Add("class", "nav-link");
+					a.AddCssClass("nav-link");
+
+					if (item.Name.Contains(controller))
+					{
+						li.AddCssClass("active");
+					}
 					li.InnerHtml.AppendHtml(a);
 					a.MergeAttribute("href",
 						$"/cp/{(item.ParentId != null ? DisplayValues.GetMenuController(item.ParentId) : item.Name)}/{(Model.Count(i => i.ParentId.ToString().Contains(item.Id.ToString())) != 0 ? Model.Where(i => i.ParentId == item.Id).FirstOrDefault(i => i.Level == 1)?.Name : item.Name)}");
-					li.Attributes.Add("class", LiClass);
 					output.Content.AppendHtml(li);
 				}
 			}
@@ -245,15 +257,83 @@ namespace SYR.Core.BusinessLogic.Helpers
 					var li = new TagBuilder("li");
 					var a = new TagBuilder("a");
 
+					if (action == "index")
+						action = item.Name;
+
+					li.AddCssClass(LiClass);
+					if (item.Name.Contains(action))
+					{
+						li.AddCssClass("active");
+					}
 					a.InnerHtml.Append(item.Title);
-					a.Attributes.Add("class", "nav-link");
+					a.AddCssClass("nav-link");
 					li.InnerHtml.AppendHtml(a);
 					a.MergeAttribute("href",
 						$"/cp/{(item.ParentId != null ? DisplayValues.GetMenuController(item.ParentId) : item.Name)}/{(Model.Count(i => i.ParentId.ToString().Contains(item.Id.ToString())) != 0 ? Model.Where(i => i.ParentId == item.Id).FirstOrDefault(i => i.Level == 1)?.Name : item.Name)}");
-					li.Attributes.Add("class", LiClass);
 					output.Content.AppendHtml(li);
 				}
 			}
+		}
+	}
+
+	public class PageLinkTagHelper : TagHelper
+	{
+		private readonly IUrlHelperFactory _urlHelperFactory;
+		public PageLinkTagHelper(IUrlHelperFactory helperFactory)
+		{
+			_urlHelperFactory = helperFactory;
+		}
+		[ViewContext]
+		[HtmlAttributeNotBound]
+		public ViewContext ViewContext { get; set; }
+		public PageViewModel PageModel { get; set; }
+		public string PageAction { get; set; }
+
+		[HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
+		public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
+
+		public override void Process(TagHelperContext context, TagHelperOutput output)
+		{
+			IUrlHelper urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
+			output.TagName = "div";
+
+			TagBuilder tag = new TagBuilder("ul");
+			tag.AddCssClass("pagination");
+
+			TagBuilder currentItem = CreateTag(PageModel.PageNumber, urlHelper);
+
+			if (PageModel.HasPreviousPage)
+			{
+				TagBuilder prevItem = CreateTag(PageModel.PageNumber - 1, urlHelper);
+				tag.InnerHtml.AppendHtml(prevItem);
+			}
+
+			tag.InnerHtml.AppendHtml(currentItem);
+
+			if (PageModel.HasNextPage)
+			{
+				TagBuilder nextItem = CreateTag(PageModel.PageNumber + 1, urlHelper);
+				tag.InnerHtml.AppendHtml(nextItem);
+			}
+			output.Content.AppendHtml(tag);
+		}
+
+		TagBuilder CreateTag(int pageNumber, IUrlHelper urlHelper)
+		{
+			TagBuilder item = new TagBuilder("li");
+			TagBuilder link = new TagBuilder("a");
+			if (pageNumber == PageModel.PageNumber)
+			{
+				item.AddCssClass("active");
+			}
+			else
+			{
+				PageUrlValues["page"] = pageNumber;
+				link.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
+			}
+			link.InnerHtml.Append(pageNumber.ToString());
+			item.InnerHtml.AppendHtml(link);
+			return item;
 		}
 	}
 }

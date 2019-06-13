@@ -7,50 +7,53 @@
 	<h4>@ViewData["Title"]</h4>
 </div>
 
-<ul class="nav nav-tabs">
-	<li class="active"><a data-toggle="tab" href="#home">Профили</a></li>
-	<li><a data-toggle="tab" href="#resources">Ресурсы</a></li>
-	<li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-</ul>
+<div class="page-content">
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#home">Профили</a></li>
+		<li><a data-toggle="tab" href="#resources">Ресурсы</a></li>
+		<li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+	</ul>
 
-<div class="tab-content">
-	<div id="home" class="tab-pane fade in active">
-		<table class="table table-bordered table-striped">
-			<thead>
-			<tr>
-				<th>Название</th>
-				<th>Описание</th>
-				<th>Роли</th>
-				<th></th>
-			</tr>
-			</thead>
-			<tbody>
-			@foreach (var profile in Model)
-			{
+	<div class="tab-content">
+		<div id="home" class="tab-pane fade in active">
+			<table class="table table-bordered table-striped">
+				<thead>
 				<tr>
-					<td>@profile.Name</td>
-					<td>@profile.Title</td>
-					<td>
-						@foreach (var role in profile.SequrityRoles)
-						{
-							<div class="label label-default">@role.Roles.Name</div>
-						}
-					</td>
-					<td>
-						<a asp-controller="Root" asp-action="Sequrity" asp-route-id="@profile.Id" class="fa fa-pencil-square-o text-success"></a>
-						<a class="fa fa-times-circle-o text-danger"></a>
-					</td>
+					<th>Название</th>
+					<th>Описание</th>
+					<th>Роли</th>
+					<th></th>
 				</tr>
-			}
-			</tbody>
-		</table>
-	</div>
-	<div id="resources" class="tab-pane fade">
-		<h3>Menu 1</h3>
-		<p>Some content in menu 1.</p>
-	</div>
-	<div id="menu2" class="tab-pane fade">
-		<h3>Menu 2</h3>
-		<p>Some content in menu 2.</p>
+				</thead>
+				<tbody>
+				@foreach (var profile in Model)
+				{
+					<tr>
+						<td>@profile.Name</td>
+						<td>@profile.Title</td>
+						<td>
+							@foreach (var role in profile.SequrityRoles)
+							{
+								<div class="label label-default">@role.Roles.Name</div>
+							}
+						</td>
+						<td>
+							<a asp-controller="Root" asp-action="Sequrity" asp-route-id="@profile.Id" class="fa fa-pencil-square-o text-success"></a>
+							<a class="fa fa-times-circle-o text-danger"></a>
+						</td>
+					</tr>
+				}
+				</tbody>
+			</table>
+		</div>
+		<div id="resources" class="tab-pane fade">
+			<h3>Menu 1</h3>
+			<p>Some content in menu 1.</p>
+		</div>
+		<div id="menu2" class="tab-pane fade">
+			<h3>Menu 2</h3>
+			<p>Some content in menu 2.</p>
+		</div>
 	</div>
 </div>
+<div class="br"></div>

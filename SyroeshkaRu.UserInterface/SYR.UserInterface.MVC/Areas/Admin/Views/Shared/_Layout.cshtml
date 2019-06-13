@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - SYR.UserInterface.Store</title>
+	<title>@ViewData["Title"] - SyroeshkaRu Панель управления</title>
 
 	<environment include="Development">
 		<link rel="stylesheet" href="~/lib/bootstrap3/css/bootstrap.css" asp-append-version="true" />
@@ -33,14 +33,14 @@
 					<a asp-route="admin" asp-route-action="index"><img src="~/images/home/logotip.png" alt="" /></a><br />
 					<small class="text-danger">Панель управления</small>
 				</div>
-				<ul-collection model="@(db.GetMenu() as ICollection<MenuViewModel>)"
-							   ul-class="list-group" li-class="list-group-item" a-href="Name" value="Title" second="@ViewContext.RouteData.Values["controller"]"></ul-collection>
+				<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"
+						 ul-class="list-group" li-class="list-group-item" a-href="Name" value="Title" second="@ViewContext.RouteData.Values["controller"]"></ul-menu>
 			</div>
 			<div class="col-sm-10 right-menu">
 				<div class="header_top">
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul-collection model="@(db.GetMenu() as ICollection<MenuViewModel>)"
-									   ul-class="nav navbar-nav" li-class="nav-item" a-href="Name" value="Title"></ul-collection>
+						<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"
+								 ul-class="nav navbar-nav" li-class="nav-item" a-href="Name" value="Title"></ul-menu>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -70,208 +70,16 @@
 		</div>
 	</section>
 
-	@*<div class="header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-9 col-sm-12">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a asp-route="system" asp-route-action="index" class="active">Главная</a></li>
-								<li class="dropdown">
-									<a href="#">Клиентам<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="shop.html">Доставка</a></li>
-										<li><a href="product-details.html">Оплата</a></li>
-									</ul>
-								</li>
-								<li class="dropdown">
-									<a href="#">Блог<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="blog.html">Новости</a></li>
-										<li><a href="blog-single.html">Акции</a></li>
-									</ul>
-								</li>
-								<li><a href="contact-us.html">Контакты</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-sm-12">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Поиск" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>*@
-
 	<footer id="footer">
-		<!--Footer-->
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>с</span>ыроешка</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="~/images/no-photo.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="~/images/no-photo.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="~/images/no-photo.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="~/images/no-photo.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<img src="~/images/home/map.png" alt="" />
-							<p>
-								Россия, г. Ярославль, ул. Республиканская д. 32
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Service</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
-								<li><a href="#">FAQ’s</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Quock Shop</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">T-Shirt</a></li>
-								<li><a href="#">Mens</a></li>
-								<li><a href="#">Womens</a></li>
-								<li><a href="#">Gift Cards</a></li>
-								<li><a href="#">Shoes</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Policies</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3 col-sm-offset-1">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<form action="#" class="searchform">
-								<input type="text" placeholder="Your email address" />
-								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
-							</form>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">&copy; Магазин "Сыроешка", г. Ярославль, 2019</p>
+					<p class="pull-left">&copy; 2019 SyroeshkaRu Парель управления v1.0</p>
 					<p class="pull-right">Разработано <span><a target="_blank" href="http://www.themeum.com">mail@cs-development.ru</a></span></p>
 				</div>
 			</div>
 		</div>
-
-	</footer><!--/Footer-->
+	</footer>
 
 	<environment include="Development">
 		<script src="~/lib/jquery/dist/jquery.js"></script>
