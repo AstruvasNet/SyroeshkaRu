@@ -58,6 +58,11 @@ namespace SYR.Core.BusinessLogic.Service
 					.ToList());
 		}
 
+		public object GetMenu()
+		{
+			return _mapper.Map<ICollection<Menu>, ICollection<MenuViewModel>>(_db.Menu.ToList());
+		}
+
 		public object GetMenuController(Guid? parentId)
 		{
 			return _mapper.Map<Menu, MenuViewModel>(_db.Menu.FirstOrDefault(i => i.Id == parentId)).Name;

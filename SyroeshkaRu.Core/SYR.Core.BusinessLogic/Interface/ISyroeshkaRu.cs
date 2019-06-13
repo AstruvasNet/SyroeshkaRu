@@ -17,6 +17,7 @@ namespace SYR.Core.BusinessLogic.Interface
 		object GetCategoryProperties(Guid productId);
 		object GetMainMenu();
 		object GetSecondMenu(string parentId);
+		object GetMenu();
 		object GetMenuController(Guid? parentId);
 	}
 }

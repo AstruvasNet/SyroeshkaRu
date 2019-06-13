@@ -22,9 +22,10 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 		}
 
 		[HttpPost("/partial/menu")]
-		public IActionResult Menu(string page)
+		public IActionResult Menu()
 		{
-			return PartialView(_db.GetSecondMenu(page));
+			var test = _db.GetMainMenu();
+			return PartialView(test as ICollection<MenuViewModel>);
 		}
 
 		[HttpGet("/[controller]/[action]")]

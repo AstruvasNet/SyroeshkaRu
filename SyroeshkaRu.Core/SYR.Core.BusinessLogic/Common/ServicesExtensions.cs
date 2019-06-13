@@ -8,7 +8,10 @@ using SYR.Core.DomainModel;
 using SYR.Core.DomainModel.Common;
 using SYR.Core.DomainModel.System;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using SYR.Core.BusinessLogic.Helpers;
 
 namespace SYR.Core.BusinessLogic.Common
 {
@@ -55,6 +58,10 @@ namespace SYR.Core.BusinessLogic.Common
 			}
 
 			services.AddTransient<UserManager<Users>>();
+
+			services.AddTransient<FormHiddenTagHelpers>();
+
+			services.AddSingleton<Dictionary<string, string>>();
 
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

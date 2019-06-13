@@ -30,7 +30,7 @@ AS
 		)
 		VALUES
 		(
-			NEWID(), N'index', N'Новости', 1, 1, 1
+			NEWID(), N'news', N'Новости', 1, 1, 1
 		),
 		(
 			NEWID(), N'banners', N'Баннеры', 1, 2, 1
@@ -42,7 +42,7 @@ AS
 			NEWID(), N'settings', N'Настройки', 1, 4, 1
 		),
 		(
-			NEWID(), N'index', N'Пользователи', 1, 1, 5
+			NEWID(), N'users', N'Пользователи', 1, 1, 5
 		),
 		(
 			NEWID(), N'storages', N'Склады', 1, 2, 5

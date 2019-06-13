@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SYR.Core.BusinessLogic.Interface;
+using SYR.Core.BusinessLogic.Service;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
-using SYR.Core.BusinessLogic.Interface;
-using SYR.Core.BusinessLogic.Service;
-using SYR.Core.BusinessLogic.ViewModel;
-using SYR.Core.DomainModel.System;
 
 namespace SYR.Core.BusinessLogic.Helpers
 {

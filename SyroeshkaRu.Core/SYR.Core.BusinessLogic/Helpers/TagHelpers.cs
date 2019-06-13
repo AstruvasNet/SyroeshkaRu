@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using SYR.Core.DomainModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using SYR.Core.BusinessLogic.ViewModel;
 
 namespace SYR.Core.BusinessLogic.Helpers
 {
@@ -94,9 +97,8 @@ namespace SYR.Core.BusinessLogic.Helpers
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
 			output.TagName = "div";
-			output.Attributes.SetAttribute("class", "form-hidden-elements");
+			output.Attributes.SetAttribute("class", "form-hidden-element");
 
-			var list = "";
 			var attr = Elements.Split(",").ToList();
 			var collection = Model.GetType().GetProperties()
 				.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
@@ -108,8 +110,12 @@ namespace SYR.Core.BusinessLogic.Helpers
 					ICollection<PropertyInfo> outputs = collection.Where(item => item.Name.Contains(attr[i])).ToList();
 					foreach (var item in outputs)
 					{
-						list +=
-							$"<input type=\"hidden\" id=\"{item.Name}\" name=\"{item.Name}\" value=\"{item.GetValue(Model, null)}\"/>";
+						var input = new TagBuilder("input") { TagRenderMode = TagRenderMode.SelfClosing };
+						input.MergeAttribute("type", "hidden");
+						input.MergeAttribute("id", item.Name);
+						input.MergeAttribute("name", item.Name);
+						input.MergeAttribute("value", item.GetValue(Model, null).ToString());
+						output.Content.AppendHtml(input);
 					}
 				}
 			}
@@ -117,13 +123,14 @@ namespace SYR.Core.BusinessLogic.Helpers
 			{
 				foreach (var item in collection)
 				{
-					list +=
-						$"<input type=\"hidden\" id=\"{item.Name}\" name=\"{item.Name}\" value=\"{item.GetValue(Model, null)}\"/>";
+					var input = new TagBuilder("input") { TagRenderMode = TagRenderMode.SelfClosing };
+					input.MergeAttribute("type", "hidden");
+					input.MergeAttribute("id", item.Name);
+					input.MergeAttribute("name", item.Name);
+					input.MergeAttribute("value", item.GetValue(Model, null).ToString());
+					output.Content.AppendHtml(input);
 				}
 			}
-
-			output.Content.SetHtmlContent(list);
-
 		}
 	}
 
@@ -159,11 +166,6 @@ namespace SYR.Core.BusinessLogic.Helpers
 				return;
 			}
 
-			//if (context.AllAttributes.FirstOrDefault(i => i.Name == Element)?.Value.ToString() == "on")
-			//{
-
-			//}
-
 			var collection = Model.GetType().GetProperties()
 				.Where(item => item.PropertyType.Namespace != "System.Collections.Generic").ToList();
 
@@ -171,10 +173,6 @@ namespace SYR.Core.BusinessLogic.Helpers
 			{
 				output.Attributes.Add("id", item.Name);
 				output.Attributes.Add("name", item.Name);
-			}
-
-			foreach (var item in collection.Where(item => item.Name.Contains(Element)))
-			{
 				if (!Convert.ToBoolean(item.GetValue(Model, null)))
 				{
 					output.Attributes.RemoveAll("checked");
@@ -183,6 +181,77 @@ namespace SYR.Core.BusinessLogic.Helpers
 				{
 					output.Attributes.Add("checked", "checked");
 					output.Attributes.Add("disabled", "disabled");
+				}
+			}
+		}
+	}
+
+	[HtmlTargetElement("ul-collection", Attributes = "model")]
+	public class UlCollectionTagHelpers : TagHelper
+	{
+		public UlCollectionTagHelpers()
+		{
+			Value = null;
+			AHref = null;
+			UlClass = null;
+			LiClass = null;
+			Second = null;
+		}
+
+		[HtmlAttributeName("model")]
+		public ICollection<MenuViewModel> Model { get; set; }
+
+		[HtmlAttributeName("value")]
+		public string Value { get; set; }
+
+		[HtmlAttributeName("ul-class")]
+		public string UlClass { get; set; }
+
+		[HtmlAttributeName("li-class")]
+		public string LiClass { get; set; }
+
+		[HtmlAttributeName("a-href")]
+		public string AHref { get; set; }
+
+		[HtmlAttributeName("second")]
+		public string Second { get; set; }
+
+		public override void Process(TagHelperContext context, TagHelperOutput output)
+		{
+			output.TagName = "ul";
+			output.Attributes.Add("class", UlClass);
+
+			if (Second == null)
+			{
+				foreach (var item in Model.Where(i => i.ParentId == null).OrderBy(i => i.Level))
+				{
+					var li = new TagBuilder("li");
+					var a = new TagBuilder("a");
+
+					a.InnerHtml.Append(item.Title);
+					a.Attributes.Add("class", "nav-link");
+					li.InnerHtml.AppendHtml(a);
+					a.MergeAttribute("href",
+						$"/cp/{(item.ParentId != null ? DisplayValues.GetMenuController(item.ParentId) : item.Name)}/{(Model.Count(i => i.ParentId.ToString().Contains(item.Id.ToString())) != 0 ? Model.Where(i => i.ParentId == item.Id).FirstOrDefault(i => i.Level == 1)?.Name : item.Name)}");
+					li.Attributes.Add("class", LiClass);
+					output.Content.AppendHtml(li);
+				}
+			}
+			else
+			{
+				var parentId = Model.FirstOrDefault(i => i.Name.Contains(Second.ToLower()))?.Id;
+				foreach (var item in Model.Where(i => i.ParentId == parentId).OrderBy(i => i.Level))
+				{
+					var li = new TagBuilder("li");
+					var a = new TagBuilder("a");
+
+					a.InnerHtml.Append(item.Title);
+					a.Attributes.Add("class", "nav-link");
+					li.InnerHtml.AppendHtml(a);
+					a.MergeAttribute("href",
+						$"/cp/{(item.ParentId != null ? DisplayValues.GetMenuController(item.ParentId) : item.Name)}/{(Model.Count(i => i.ParentId.ToString().Contains(item.Id.ToString())) != 0 ? Model.Where(i => i.ParentId == item.Id).FirstOrDefault(i => i.Level == 1)?.Name : item.Name)}");
+					li.Attributes.Add("class", LiClass);
+					output.Content.AppendHtml(li);
 				}
 			}
 		}
