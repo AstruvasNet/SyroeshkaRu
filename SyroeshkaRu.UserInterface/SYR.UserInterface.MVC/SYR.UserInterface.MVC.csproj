@@ -25,6 +25,28 @@
     <None Remove="Areas\Identity\Models\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\js\cp.min.js" />
+    <Content Remove="wwwroot\js\test.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\cp.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Client\scss\style.scss" />
+    <Content Include="Client\scss\_references.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\js\cp.min.js" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -37,6 +59,17 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SyroeshkaRu.Core\SYR.Core.BusinessLogic\SYR.Core.BusinessLogic.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\styles\css\admin\" />
+    <Folder Include="wwwroot\styles\css\client\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\js\test.ts" />
   </ItemGroup>
 
 </Project>

@@ -41,6 +41,12 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 		}
 
 		[Route("[action]/{id?}")]
+		public async Task<IActionResult> Products(Guid? id, int? page = 1)
+		{
+			return await Task.Run(View);
+		}
+
+		[Route("[action]/{id?}")]
 		public async Task<IActionResult> Sequrity(Guid? id)
 		{
 			if (!string.IsNullOrEmpty(id.ToString()))

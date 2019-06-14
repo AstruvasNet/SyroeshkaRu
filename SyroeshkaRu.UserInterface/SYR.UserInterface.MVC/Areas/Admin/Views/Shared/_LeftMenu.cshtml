@@ -1,0 +1,10 @@
+﻿@inject ISyroeshkaRu db
+
+<div class="shadow">
+	<div class="logo">
+		<a asp-route="admin" asp-route-action="index"><img src="~/images/home/logotip.png" alt="" /></a><br />
+		<small class="text-danger">Панель управления</small>
+	</div>
+	<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"
+			 ul-class="nav flex-column left-menu" li-class="nav-item" a-href="Name" value="Title" second="@ViewContext.RouteData.Values["controller"]"></ul-menu>
+</div>

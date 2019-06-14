@@ -6,26 +6,14 @@
 	<title>@ViewData["Title"] - SYR.UserInterface.Store</title>
 
 	<environment include="Development">
-		<link rel="stylesheet" href="~/lib/bootstrap3/css/bootstrap.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/lib/jquery/prettyPhoto/css/prettyPhoto.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/lib/bootstrap/bootstrap-slider/css/bootstrap-slider.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/lib/animate/animate.css" asp-append-version="true" />
+		<link rel="stylesheet" asp-href-include="~/lib/**/*.css" asp-href-exclude="~/lib/bootstrap3/**/*.css" asp asp-append-version="true" />
+		<link rel="stylesheet" asp-href-include="~/styles/css/**/*.css" asp-href-exclude="~/styles/css/admin/**/*.css" asp-append-version="true" />
 	</environment>
 	<environment exclude="Development">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-			  crossorigin="anonymous"
-			  integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
+		<link rel="stylesheet" asp-href-include="~/lib/**/*.min.css" asp-href-exclude="~/lib/bootstrap3/**/*.min.css" asp asp-append-version="true" />
+		<link rel="stylesheet" asp-href-include="~/styles/css/**/*.min.css" asp-href-exclude="~/styles/css/admin/**/*.min.css" asp-append-version="true" />
 	</environment>
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/responsive.css" />
 	<link rel="shortcut icon" href="~/favicon.ico">
-	@*<link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">*@
 </head>
 <body>
 	<header id="header">
@@ -55,7 +43,7 @@
 					</div>
 					<div class="col-sm-4">
 						<div class="btn-group pull-right">
-							<partial name="_SelectStorage"/>
+							<partial name="_SelectStorage" />
 						</div>
 					</div>
 				</div>
@@ -76,7 +64,7 @@
 							<ul class="nav navbar-nav">
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
 								<li>
-									<partial name="_LoginPartial"/>
+									<partial name="_LoginPartial" />
 								</li>
 							</ul>
 						</div>

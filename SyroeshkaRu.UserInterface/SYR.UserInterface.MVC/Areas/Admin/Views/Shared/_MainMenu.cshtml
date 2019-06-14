@@ -1,0 +1,30 @@
+﻿@inject ISyroeshkaRu db;
+@*<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light flex-md-nowrap p-0 shadow">
+		<div class="container">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"
+						 ul-class="nav navbar-nav" li-class="nav-item" a-href="Name" value="Title"></ul-menu>
+			</div>
+		</div>
+	</nav>*@
+
+<nav class="navbar navbar-expand-md navbar-light bg-light flex-md-nowrap p-0 shadow">
+	<div class="d-flex align-items-center justify-content-between">
+		<div class="navbar-header text-right">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"
+					 ul-class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center"
+					 li-class="nav-item d-flex align-items-center" a-href="Name" value="Title"></ul-menu>
+		</div>
+	</div>
+</nav>

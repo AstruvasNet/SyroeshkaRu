@@ -1,109 +1,58 @@
-﻿@inject ISyroeshkaRu db
+﻿
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - SyroeshkaRu Панель управления</title>
-
+	<link rel="shortcut icon" href="~/favicon.ico">
 	<environment include="Development">
-		<link rel="stylesheet" href="~/lib/bootstrap3/css/bootstrap.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/lib/jquery/prettyPhoto/css/prettyPhoto.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/lib/bootstrap/bootstrap-slider/css/bootstrap-slider.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/lib/animate/animate.css" asp-append-version="true" />
+		<link rel="stylesheet" asp-href-include="~/lib/font-awesome/**/*.css, ~/lib/bootstrap/**/*.css" asp-href-exclude="~/**/*.min.css" asp-append-version="true" />
+		<link rel="stylesheet" asp-href-include="~/styles/css/**/*.css" asp-href-exclude="~/styles/css/client/**, ~/**/*.min.css" asp-append-version="true" />
 	</environment>
 	<environment exclude="Development">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-			  crossorigin="anonymous"
-			  integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
+		<link rel="stylesheet" asp-href-include="~/lib/font-awesome/**/*.min.css, ~/lib/bootstrap/**/*.min.css" asp-append-version="true" />
+		<link rel="stylesheet" asp-href-include="~/styles/css/**/*.min.css" asp-href-exclude="~/styles/css/client/**" asp-append-version="true" />
 	</environment>
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/responsive.css" />
-	<link rel="stylesheet" href="~/css/cp.css" asp-append-version="true" />
-	<link rel="shortcut icon" href="~/favicon.ico">
 </head>
 <body>
-	<section class="container-fluid">
-		<div class="row">
-			<div class="col-sm-2 col-xs-12 left-menu text-center">
-				<div class="logo">
-					<a asp-route="admin" asp-route-action="index"><img src="~/images/home/logotip.png" alt="" /></a><br />
-					<small class="text-danger">Панель управления</small>
-				</div>
-				<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"
-						 ul-class="list-group" li-class="list-group-item" a-href="Name" value="Title" second="@ViewContext.RouteData.Values["controller"]"></ul-menu>
-			</div>
-			<div class="col-sm-10 right-menu">
-				<div class="header_top">
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"
-								 ul-class="nav navbar-nav" li-class="nav-item" a-href="Name" value="Title"></ul-menu>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-user"></i> @User.Identity.Name<i class="fa fa-caret-down"></i>
-								</a>
-								<ul class="dropdown-menu pull-right login" ui-role="stop-propagation">
-									<li class="nav-item">
-										<a asp-route="manage" asp-route-action="index" class="nav-link text-dark">Настройки</a>
-									</li>
-									<li class="nav-item">
-										<a asp-route="system" asp-route-action="index" target="_blank" class="nav-link text-dark">Сайт</a>
-									</li>
-									<li class="divider"></li>
-									<li class="nav-item">
-										@Html.AntiForgeryToken()
-										<a asp-route="account" asp-route-action="logoff" class="nav-link text-dark" ui-role="submit">Выход</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<main role="main" class="pb-3">
-					@RenderBody()
-				</main>
-			</div>
+	<div class="content d-flex align-items-stretch shadow-lg">
+		<div class="left-flex">
+			<partial name="_LeftMenu" />
 		</div>
-	</section>
+		<div class="right-flex">
+			<header class="section-nav">
+				<partial name="_MainMenu" />
+			</header>
+			<main class="section-main">
+				@RenderBody()
+			</main>
+		</div>
+	</div>
 
-	<footer id="footer">
+	<footer class="container-fluid">
 		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">&copy; 2019 SyroeshkaRu Парель управления v1.0</p>
-					<p class="pull-right">Разработано <span><a target="_blank" href="http://www.themeum.com">mail@cs-development.ru</a></span></p>
+			<div class="row">
+				<div class="col-4">
+					<p>&copy; 2019 SyroeshkaRu Парель управления v1.0</p>
+				</div>
+				<div class="col-8">
+					<p>Разработано <span><a target="_blank" href="http://www.themeum.com">mail@cs-development.ru</a></span></p>
 				</div>
 			</div>
 		</div>
 	</footer>
 
 	<environment include="Development">
-		<script src="~/lib/jquery/dist/jquery.js"></script>
-		<script src="~/lib/bootstrap3/js/bootstrap.js"></script>
-		<script src="~/lib/jquery/scrollUp/jquery.scrollUp.js"></script>
-		<script src="~/lib/bootstrap/bootstrap-slider/bootstrap-slider.js"></script>
-		<script src="~/lib/jquery/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+		<script asp-src-include="~/lib/jquery/dist/*.js, ~/lib/bootstrap/dist/**/*.js" asp-src-exclude="~/**/*.min.js" asp-append-version="true"></script>
+		<script src="~/js/services.js" asp-append-version="true"></script>
+		<script src="~/js/cp.js" asp-append-version="true"></script>
 	</environment>
 	<environment exclude="Development">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-				asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-				asp-fallback-test="window.jQuery"
-				crossorigin="anonymous"
-				integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
-				asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-				asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-				crossorigin="anonymous"
-				integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
-		</script>
+		<script asp-src-include="~/lib/jquery/dist/*.min.js, ~/lib/bootstrap/dist/**/*.min.js"></script>
+		<script src="~/js/services.min.js" asp-append-version="true"></script>
+		<script src="~/js/cp.min.js" asp-append-version="true"></script>
 	</environment>
-	<script src="~/js/services.js" asp-append-version="true"></script>
-	<script src="~/js/cp.js" asp-append-version="true"></script>
 
 	@RenderSection("Scripts", required: false)
 </body>

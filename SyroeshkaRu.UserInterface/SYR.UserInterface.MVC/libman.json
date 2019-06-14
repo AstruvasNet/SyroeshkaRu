@@ -11,6 +11,10 @@
 			"destination": "wwwroot/lib/jquery/scrollup"
 		},
 		{
+			"library": "twitter-bootstrap@4.3.1",
+			"destination": "wwwroot/lib/bootstrap" 
+		},
+		{
 			"library": "bootstrap-slider@10.6.1",
 			"destination": "wwwroot/lib/bootstrap/bootstrap-slider"
 		},
