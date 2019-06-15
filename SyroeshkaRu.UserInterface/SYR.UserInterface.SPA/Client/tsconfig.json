@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "diagnostics": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [ "es2015", "dom" ],
+    "listFiles": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "../wwwroot/js/app",
+    "removeComments": false,
+    "rootDir": "scripts/app",
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

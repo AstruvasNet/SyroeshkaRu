@@ -21,4 +21,9 @@
     <ProjectReference Include="D:\Downloads\AngularSpa-master\AngularSpa-master\SpaDatasource\SpaDatasource.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Client\scripts\" />
+  </ItemGroup>
+
 </Project>
