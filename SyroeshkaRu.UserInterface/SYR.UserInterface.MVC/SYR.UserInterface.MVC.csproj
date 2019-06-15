@@ -67,9 +67,4 @@
     <Folder Include="wwwroot\styles\css\client\" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\js\test.ts" />
-  </ItemGroup>
-
 </Project>
