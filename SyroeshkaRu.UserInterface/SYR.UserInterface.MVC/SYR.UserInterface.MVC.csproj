@@ -75,4 +75,9 @@
     <ProjectReference Include="..\..\SyroeshkaRu.Core\SYR.Core.BusinessLogic\SYR.Core.BusinessLogic.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Client\ts\modules\" />
+  </ItemGroup>
+
 </Project>

@@ -57,19 +57,19 @@ var ServiceModule;
             };
             this.showJqueryDialog = function (message, title, height) {
                 alert(title + "\n" + message);
-                title = title || "Info";
-                height = height || 120;
-                message = message.replace("\r", "").replace("\n", "<br/>");
-                $("<div title='" + title + "'><p>" + message + "</p></div>").dialog({
-                    minHeight: height,
-                    minWidth: 400,
-                    maxHeight: 500,
-                    modal: true,
-                    buttons: {
-                        Ok: function () { $(this).dialog("close"); }
-                    }
-                });
-                console.error(message);
+                //	title = title || "Info";
+                //	height = height || 120;
+                //	message = message.replace("\r", "").replace("\n", "<br/>");
+                //	$("<div title='" + title + "'><p>" + message + "</p></div>").dialog({
+                //		minHeight: height,
+                //		minWidth: 400,
+                //		maxHeight: 500,
+                //		modal: true,
+                //		buttons: {
+                //			Ok: function () { $(this).dialog('close'); }
+                //		}
+                //	});
+                //	console.error(message);
             };
         }
         return HttpService;

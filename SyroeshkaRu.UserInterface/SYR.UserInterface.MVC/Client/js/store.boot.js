@@ -1,4 +1,5 @@
-﻿SystemJS.config({
+﻿var exports = {};
+SystemJS.config({
 	baseURL: "dev/js/components",
 	packages: {
 		"/": { defaultExtension: "js" }

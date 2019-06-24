@@ -5,7 +5,8 @@
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",
-		"outDir": "../js"
+		"outDir": "../js",
+		"module": "commonjs"
 	},
 	"exclude": [
     "node_modules",

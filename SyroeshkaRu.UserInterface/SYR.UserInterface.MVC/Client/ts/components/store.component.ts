@@ -1,4 +1,4 @@
-﻿import { ServiceModule as httpModule } from "../modules/service.module";
+﻿import { ServiceModule as httpModule } from "../services/service.module";
 
 class Boot {
 
@@ -17,7 +17,7 @@ class Boot {
 	}
 
 	testHttp(): void {
-		this.http.post("/ap/getTest", data => {
+		this.http.post("/api/getTest", data => {
 			alert(data);
 		});
 		// request - глобальный обработчик ошибок

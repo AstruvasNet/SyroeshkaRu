@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var service_module_1 = require("../modules/service.module");
+var service_module_1 = require("../services/service.module");
 var Boot = /** @class */ (function () {
     function Boot() {
         this.service = service_module_1.ServiceModule;
@@ -17,7 +17,7 @@ var Boot = /** @class */ (function () {
         });
     };
     Boot.prototype.testHttp = function () {
-        this.http.post("/ap/getTest", function (data) {
+        this.http.post("/api/getTest", function (data) {
             alert(data);
         });
         // request - глобальный обработчик ошибок
