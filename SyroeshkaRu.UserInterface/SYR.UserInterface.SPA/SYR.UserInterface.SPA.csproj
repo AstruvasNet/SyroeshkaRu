@@ -18,6 +18,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SyroeshkaRu.Core\SYR.Core.BusinessLogic\SYR.Core.BusinessLogic.csproj" />
     <ProjectReference Include="D:\Downloads\AngularSpa-master\AngularSpa-master\SpaDatasource\SpaDatasource.csproj" />
   </ItemGroup>
 

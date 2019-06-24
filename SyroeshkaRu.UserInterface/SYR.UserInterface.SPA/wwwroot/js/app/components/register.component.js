@@ -23,7 +23,7 @@ var RegisterComponent = /** @class */ (function () {
         this.authService = authService;
     }
     RegisterComponent.prototype.ngOnInit = function () {
-        this.registerViewModel = new RegisterViewModel_1.RegisterViewModel();
+        this.registerViewModel = new RegisterViewModel_1.Register();
         this.errorMessage = null;
     };
     RegisterComponent.prototype.setTitle = function (newTitle) {

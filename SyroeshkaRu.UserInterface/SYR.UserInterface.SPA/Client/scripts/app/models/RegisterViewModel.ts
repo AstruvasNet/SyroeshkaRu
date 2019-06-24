@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 
-export class RegisterViewModel {
+export class Register {
     login: string;
     password: string;
     email: string;

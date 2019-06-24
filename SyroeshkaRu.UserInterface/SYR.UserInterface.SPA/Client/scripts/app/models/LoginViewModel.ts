@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
  
-export class LoginViewModel {
+export class Login {
     login: string;
     password: string;
 }

@@ -9,7 +9,7 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 	[
 		Area("Admin"),
 		Route("cp/root"),
-		Authorize(Policy = "root")
+		//Authorize(Policy = "root")
 	]
 	public class RootController : Controller
 	{

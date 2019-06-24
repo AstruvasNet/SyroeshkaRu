@@ -7,13 +7,12 @@
 	<title>@ViewData["Title"] - SyroeshkaRu Панель управления</title>
 	<link rel="shortcut icon" href="~/favicon.ico">
 	<environment include="Development">
-		<link rel="stylesheet" asp-href-include="~/lib/font-awesome/**/*.css, ~/lib/bootstrap/**/*.css" asp-href-exclude="~/**/*.min.css" asp-append-version="true" />
-		<link rel="stylesheet" asp-href-include="~/styles/css/**/*.css" asp-href-exclude="~/styles/css/client/**, ~/**/*.min.css" asp-append-version="true" />
+		<link rel="stylesheet" asp-href-include="~/lib/**/*.css" asp-href-exclude="~/lib/**/*.min.css" asp-append-version="true" />
 	</environment>
 	<environment exclude="Development">
-		<link rel="stylesheet" asp-href-include="~/lib/font-awesome/**/*.min.css, ~/lib/bootstrap/**/*.min.css" asp-append-version="true" />
-		<link rel="stylesheet" asp-href-include="~/styles/css/**/*.min.css" asp-href-exclude="~/styles/css/client/**" asp-append-version="true" />
+		<link rel="stylesheet" asp-href-include="~/lib/**/*.min.css" asp-append-version="true" />
 	</environment>
+	<link rel="stylesheet" asp-href-include="~/styles/css/admin/*.min.css" asp-append-version="true" />
 </head>
 <body>
 	<div class="content d-flex align-items-stretch shadow-lg">
@@ -44,15 +43,25 @@
 	</footer>
 
 	<environment include="Development">
-		<script asp-src-include="~/lib/jquery/dist/*.js, ~/lib/bootstrap/dist/**/*.js" asp-src-exclude="~/**/*.min.js" asp-append-version="true"></script>
-		<script src="~/js/services.js" asp-append-version="true"></script>
-		<script src="~/js/cp.js" asp-append-version="true"></script>
+		<script src="~/lib/jquery/jquery.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 	</environment>
-	<environment exclude="Development">
-		<script asp-src-include="~/lib/jquery/dist/*.min.js, ~/lib/bootstrap/dist/**/*.min.js"></script>
-		<script src="~/js/services.min.js" asp-append-version="true"></script>
-		<script src="~/js/cp.min.js" asp-append-version="true"></script>
-	</environment>
+<environment exclude="Development">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+	        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+	        asp-fallback-test="window.jQuery"
+	        crossorigin="anonymous"
+	        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
+	        asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+	        asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+	        crossorigin="anonymous"
+	        integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
+	</script>
+</environment>
+<script src="/scripts/js/services/http.service.min.js" asp-append-version="true"></script>
+	<script src="/scripts/js/admin.min.js" asp-append-version="true"></script>
 
 	@RenderSection("Scripts", required: false)
 </body>

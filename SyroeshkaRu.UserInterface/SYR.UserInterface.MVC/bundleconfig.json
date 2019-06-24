@@ -1,20 +1,24 @@
 [
-  {
-    "outputFileName": "wwwroot/lib/animate/animate.min.css",
-    "inputFiles": [
-      "wwwroot/lib/animate/animate.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/cp.min.js",
-    "inputFiles": [
-      "wwwroot/js/cp.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/services.min.js",
-    "inputFiles": [
-      "wwwroot/js/services.js"
-    ]
-  }
+	{
+		"outputFileName": "wwwroot/scripts/js/site.min.js",
+		"inputFiles": [
+			"Client/ts/js/services/http.service.js",
+			"Client/ts/js/site.js"
+		],
+		"minify": {
+			"enabled": true,
+			"renameLocals": true
+		}
+	},
+	{
+		"outputFileName": "wwwroot/scripts/js/admin.min.js",
+		"inputFiles": [
+			"Client/ts/js/services/http.service.js",
+			"Client/ts/js/admin.js"
+		],
+		"minify": {
+			"enabled": true,
+			"renameLocals": true
+		}
+	}
 ]

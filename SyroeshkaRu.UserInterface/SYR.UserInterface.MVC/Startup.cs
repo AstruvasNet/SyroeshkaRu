@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using SYR.Core.DomainModel;
 using SYR.Core.BusinessLogic.Common;
 using SYR.Core.DomainModel.Common;
@@ -62,10 +64,24 @@ namespace SYR.UserInterface.MVC
 
 			app.UseDatabaseErrorPage();
 			app.UseHttpsRedirection();
+			app.UseDefaultFiles();
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
 			app.UseAuthentication();
 			app.UseSession();
+
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "node_modules")),
+				RequestPath = "/node_modules"
+			});
+
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Client")),
+				RequestPath = "/dev"
+			});
+
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(

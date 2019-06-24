@@ -1,0 +1,64 @@
+﻿@import "style";
+
+/* HEADER */
+
+header{
+	margin:{
+		bottom: 140px;
+	}
+}
+
+.header-middle {
+	.navbar {
+		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+		position: relative;
+
+		&.fixed {
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 1000;
+		}
+	}
+}
+
+.navbar {
+	&.bg-light {
+		@extend %brand-color-menu;
+	}
+
+	&-brand {
+		img {
+			max-width: 150px;
+		}
+	}
+
+	.list-group {
+		&-item {
+			border: 0;
+
+			padding: {
+				top: 0;
+				bottom: 10px;
+			}
+
+			a {
+				color: $brand-color-dark;
+			}
+
+			.fa {
+				margin: {
+					right: 10px;
+				}
+			}
+
+			&:last-child {
+				ul > li {
+					padding: 5px;
+				}
+			}
+		}
+	}
+}
+
+/* HEADER */

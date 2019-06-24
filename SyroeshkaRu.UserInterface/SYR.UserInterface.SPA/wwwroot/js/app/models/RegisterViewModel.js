@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RegisterViewModel = /** @class */ (function () {
-    function RegisterViewModel() {
+var Register = /** @class */ (function () {
+    function Register() {
     }
-    return RegisterViewModel;
+    return Register;
 }());
-exports.RegisterViewModel = RegisterViewModel;
+exports.Register = Register;
 //# sourceMappingURL=RegisterViewModel.js.map

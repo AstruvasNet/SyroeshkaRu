@@ -34,6 +34,9 @@ var AppComponent = /** @class */ (function () {
         // return to 'home' page
         this.router.navigate(['']);
     };
+    AppComponent.prototype.onClick = function (optionId) {
+        console.log(optionId);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',

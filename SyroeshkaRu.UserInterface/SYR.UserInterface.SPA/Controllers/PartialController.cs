@@ -1,27 +1,33 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SYR.Core.BusinessLogic.Interface;
 
-namespace AngularSpa.Controllers
+namespace SYR.UserInterface.SPA.Controllers
 {
-    public class PartialController : Controller
-    {
-        public IActionResult AboutComponent() => PartialView();
+	public class PartialController : Controller
+	{
+		private readonly ISyroeshkaRu _db;
 
-        public IActionResult AppComponent() => PartialView();
+		public PartialController(ISyroeshkaRu db)
+		{
+			_db = db;
+		}
 
-        public IActionResult ContactComponent() => PartialView();
+		[Route("[controller]/[action]/{id?}")]
+		public async Task<IActionResult> AboutComponent() => await Task.Run(() => PartialView(_db.GetMenu()));
 
-        public IActionResult IndexComponent() => PartialView();
+		public IActionResult AppComponent() => PartialView();
 
-        public IActionResult LoginComponent() => PartialView();
+		public IActionResult ContactComponent() => PartialView();
 
-        public IActionResult RegisterComponent() => PartialView();
+		public IActionResult IndexComponent() => PartialView();
 
-        public IActionResult ProfileComponent() => PartialView();
+		public IActionResult LoginComponent() => PartialView();
 
-        public IActionResult CartComponent() => PartialView();
-    }
+		public IActionResult RegisterComponent() => PartialView();
+
+		public IActionResult ProfileComponent() => PartialView();
+
+		public IActionResult CartComponent() => PartialView();
+	}
 }

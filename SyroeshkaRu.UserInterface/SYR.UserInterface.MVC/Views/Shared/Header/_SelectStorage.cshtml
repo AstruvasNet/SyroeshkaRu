@@ -1,0 +1,5 @@
+﻿@inject IHttpContextAccessor httpContextAccessor
+<div class="btn-group">
+	<select asp-items="@DisplayHelpers.StoragesCollection(httpContextAccessor.HttpContext.Session)"
+			class="form-control form-control-sm menu-select"></select>
+</div>

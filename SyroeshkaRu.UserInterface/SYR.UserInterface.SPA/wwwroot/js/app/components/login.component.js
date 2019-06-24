@@ -23,7 +23,7 @@ var LoginComponent = /** @class */ (function () {
         this.authService = authService;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        this.loginViewModel = new LoginViewModel_1.LoginViewModel();
+        this.loginViewModel = new LoginViewModel_1.Login();
         this.errorMessage = null;
     };
     LoginComponent.prototype.setTitle = function (newTitle) {

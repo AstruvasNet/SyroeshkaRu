@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Http } from '@angular/http';
 import { AuthService } from '../security/auth.service';
-import { LoginViewModel } from '../models/LoginViewModel';
+import { Login } from '../models/LoginViewModel';
 
 @Component({
     selector: 'login',
@@ -12,13 +12,13 @@ import { LoginViewModel } from '../models/LoginViewModel';
 })
 
 export class LoginComponent {
-    loginViewModel: LoginViewModel;
+    loginViewModel: Login;
     errorMessage: string;
 
     constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
 
     ngOnInit() {
-        this.loginViewModel = new LoginViewModel();
+        this.loginViewModel = new Login();
         this.errorMessage = null;
     }
 

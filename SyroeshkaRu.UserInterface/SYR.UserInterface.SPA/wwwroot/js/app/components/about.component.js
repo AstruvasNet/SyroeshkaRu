@@ -17,7 +17,7 @@ var AboutComponent = /** @class */ (function () {
     };
     AboutComponent = __decorate([
         core_1.Component({
-            selector: 'my-about',
+            selector: 'about',
             templateUrl: '/partial/aboutComponent'
         }),
         __metadata("design:paramtypes", [])

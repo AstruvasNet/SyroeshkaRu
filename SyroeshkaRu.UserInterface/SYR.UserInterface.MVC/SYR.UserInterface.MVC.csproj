@@ -33,6 +33,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Client\ts\admin.ts" />
+    <None Remove="Client\ts\components\alert.component.ts" />
+    <None Remove="Client\ts\include.ts" />
+    <None Remove="Client\ts\services\http.service.ts" />
+    <None Remove="Client\ts\site.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\js\cp.min.js" />
   </ItemGroup>
 
@@ -49,22 +57,22 @@
 
 
   <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
+    <PackageReference Include="jquery.TypeScript.DefinitelyTyped" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.5.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\..\SyroeshkaRu.Core\SYR.Core.BusinessLogic\SYR.Core.BusinessLogic.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="wwwroot\styles\css\admin\" />
-    <Folder Include="wwwroot\styles\css\client\" />
   </ItemGroup>
 
 </Project>

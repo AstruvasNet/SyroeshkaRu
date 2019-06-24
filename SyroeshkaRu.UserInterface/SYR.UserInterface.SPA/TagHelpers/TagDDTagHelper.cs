@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 
-namespace AngularSpa.TagHelpers
+namespace SYR.UserInterface.SPA.TagHelpers
 {
     [HtmlTargetElement("tag-dd")]
     public class TagDDTagHelper : TagHelper

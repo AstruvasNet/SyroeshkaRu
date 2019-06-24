@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AngularSpa.TagHelpers
+namespace SYR.UserInterface.SPA.TagHelpers
 {
     public static class RegularExpressionValidation
     {

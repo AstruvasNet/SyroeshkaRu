@@ -6,29 +6,31 @@ import { Http } from '@angular/http';
 import { AuthService } from '../security/auth.service';
 
 @Component({
-    selector: 'my-app',
-    templateUrl: '/partial/appComponent'
+	selector: 'my-app',
+	templateUrl: '/partial/appComponent'
 })
 export class AppComponent {
-    public constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
- 
-    angularClientSideData = 'Angular';
- 
-    public setTitle(newTitle: string) {
-        this.titleService.setTitle(newTitle);
-    }
+	public constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
 
-    isLoggedIn()
-    {
-        return this.authService.isLoggedIn();
-    }
+	angularClientSideData = 'Angular';
 
-    public logout()
-    {
-        // we cannot revocate token, so just clear token in browser
-        this.authService.logout();
+	public setTitle(newTitle: string) {
+		this.titleService.setTitle(newTitle);
+	}
 
-        // return to 'home' page
-        this.router.navigate(['']);
-    }
+	isLoggedIn() {
+		return this.authService.isLoggedIn();
+	}
+
+	public logout() {
+		// we cannot revocate token, so just clear token in browser
+		this.authService.logout();
+
+		// return to 'home' page
+		this.router.navigate(['']);
+	}
+
+	public onClick(optionId: string) {
+		console.log(optionId);
+	}
 }

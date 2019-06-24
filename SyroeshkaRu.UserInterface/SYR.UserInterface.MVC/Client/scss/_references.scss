@@ -3,6 +3,7 @@ $brand-color-light: #f8f9fa;
 $brand-color-blue: #cfe8ef;
 $brand-color-dark: #696969;
 $brand-color-black: #171717;
+$brand-color-lime: #A6CE38;
 
 %brand-color-background {
 	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#add9e4+0,d9edf2+60,f7fbfc+100 */
@@ -11,4 +12,9 @@ $brand-color-black: #171717;
 	background: -webkit-linear-gradient(top, #add9e4 0%,#d9edf2 60%,#f7fbfc 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom, #add9e4 0%,#d9edf2 60%,#f7fbfc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#add9e4', endColorstr='#f7fbfc',GradientType=0 ); /* IE6-9 */
+}
+
+%brand-color-menu {
+	background: rgb(255,255,255);
+	background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(202,226,136,1) 21%, rgba(166,206,56,0.5802696078431373) 35%, rgba(243,246,106,0.6334908963585435) 100%);
 }

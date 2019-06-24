@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AngularSpa.TagHelpers
+namespace SYR.UserInterface.SPA.TagHelpers
 {
 	[HtmlTargetElement("tag-di")]
     public class TagDITagHelper : TagHelper

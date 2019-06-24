@@ -1,7 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper "*,AngularSpa"
+@*@addTagHelper "*,AngularSpa"
 @using AngularSpa.ViewModels
-@model RegisterViewModel
+@model RegisterViewModel*@
 
 <div class="jumbotron center-block register-form">
     <h2>Регистрация</h2>
@@ -10,7 +10,7 @@
         <div class="error-box">{{ errorMessage  }}</div>
     </div>
 
-    <form role="form" #registerForm="ngForm">
+    @*<form role="form" #registerForm="ngForm">
         <div *ngIf="registerViewModel != null">
             <tag-di for="Login"></tag-di>
             <tag-di for="Password"></tag-di>
@@ -19,6 +19,6 @@
             <button type="button" (click)="register($event)" class="btn btn-default">Зарегистрироваться</button>
             <span class="small">Уже с нами? <a routerLink="/login"> Входи тут!</a></span>
         </div>
-    </form>
+    </form>*@
 </div>
 

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 
 import { AuthService } from '../security/auth.service';
-import { RegisterViewModel } from '../models/RegisterViewModel';
+import { Register } from '../models/RegisterViewModel';
 
 @Component({
     selector: 'register',
@@ -13,13 +13,13 @@ import { RegisterViewModel } from '../models/RegisterViewModel';
 
 export class RegisterComponent
 {
-    registerViewModel: RegisterViewModel;
+    registerViewModel: Register;
     errorMessage: string;
 
     constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
 
     ngOnInit() {
-        this.registerViewModel = new RegisterViewModel();
+        this.registerViewModel = new Register();
         this.errorMessage = null;
     }
 

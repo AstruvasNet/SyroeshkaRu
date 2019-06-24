@@ -52,7 +52,7 @@
     "css": {
       "enabled": true,
       "termSemicolons": true,
-      "gzip": false
+			"gzip": false
     },
     "javascript": {
       "enabled": true,

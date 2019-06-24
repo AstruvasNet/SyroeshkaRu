@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using SYR.Core.BusinessLogic.Common;
 
 namespace SYR.UserInterface.SPA
 {
@@ -32,6 +33,8 @@ namespace SYR.UserInterface.SPA
 				options.CheckConsentNeeded = context => true;
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
+
+			services.ServicesCollection();
 
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -68,6 +71,8 @@ namespace SYR.UserInterface.SPA
 					template: "{controller=Home}/{action=Index}/{id?}");
 
 				routes.MapSpaFallbackRoute("spa-fallback", new { controller = "home", action = "index" });
+				routes.MapRoute("shop", "partial/{action}/{id?}", 
+					new { controller = "partial", action = "indexComponent"});
 			});
 		}
 	}

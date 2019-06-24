@@ -55,6 +55,11 @@ namespace SYR.UserInterface.MVC.Areas.Identity.Controllers
 		}
 
 		[
+			HttpGet
+		]
+		public async Task<IActionResult> Login() => await Task.Run(View);
+
+		[
 			HttpPost,
 			ValidateAntiForgeryToken
 		]
