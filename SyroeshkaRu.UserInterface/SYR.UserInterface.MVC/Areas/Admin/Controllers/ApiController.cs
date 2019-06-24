@@ -5,19 +5,16 @@ using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.ViewModel;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 {
 	[Route("api")]
 	public class ApiController : Controller
 	{
-		private readonly ISyroeshkaRu _db;
 		private readonly IEdit _edit;
 
-		public ApiController(ISyroeshkaRu db, IEdit edit)
+		public ApiController(IEdit edit)
 		{
-			_db = db;
 			_edit = edit;
 		}
 
@@ -59,6 +56,12 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 			}
 
 			return await Task.Run(() => BadRequest(ModelState));
+		}
+
+		[HttpPost("[action]")]
+		public async Task<string> GetTest()
+		{
+			return await Task.Run(() => "Request: Ok!");
 		}
 	}
 }

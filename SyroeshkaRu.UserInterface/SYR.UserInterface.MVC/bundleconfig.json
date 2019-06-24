@@ -1,24 +1,22 @@
 [
 	{
-		"outputFileName": "wwwroot/scripts/js/site.min.js",
+		"outputFileName": "wwwroot/scripts/js/store.min.js",
 		"inputFiles": [
-			"Client/ts/js/services/http.service.js",
-			"Client/ts/js/site.js"
-		],
-		"minify": {
-			"enabled": true,
-			"renameLocals": true
-		}
+			"node_modules/jquery/dist/jquery.min.js",
+			"node_modules/bootstrap/dist/js/bootstrap.min.js",
+			"client/js/system.boot.js",
+			"client/js/store.boot.js",
+			"client/js/components/admin.component.js",
+			"client/js/components/store.component.js",
+			"client/js/modules/service.module.js"
+		]
 	},
 	{
-		"outputFileName": "wwwroot/scripts/js/admin.min.js",
+		"outputFileName": "wwwroot/styles/css/store.min.css",
 		"inputFiles": [
-			"Client/ts/js/services/http.service.js",
-			"Client/ts/js/admin.js"
-		],
-		"minify": {
-			"enabled": true,
-			"renameLocals": true
-		}
+			"node_modules/bootstrap/dist/css/bootstrap.min.css",
+			"node_modules/font-awesome/css/font-awesome.min.css",
+			"client/css/store.css"
+		]
 	}
 ]
