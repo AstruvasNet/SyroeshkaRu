@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SYR.Core.BusinessLogic.Helpers;
+using SYR.Core.BusinessLogic.Helpers.TagHelpers;
 
 namespace SYR.Core.BusinessLogic.Common
 {
