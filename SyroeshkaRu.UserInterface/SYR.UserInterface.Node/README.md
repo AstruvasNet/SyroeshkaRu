@@ -1,3 +1,0 @@
-﻿# SYR.UserInterface.Node
-
-

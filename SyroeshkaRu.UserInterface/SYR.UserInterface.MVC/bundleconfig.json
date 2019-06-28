@@ -9,6 +9,31 @@
 		]
 	},
 	{
+		"outputFileName": "wwwroot/scripts/js/admin.min.js",
+		"inputFiles": [
+			"node_modules/jquery/dist/jquery.min.js",
+			"node_modules/bootstrap/dist/js/bootstrap.min.js",
+			"client/js/system.boot.js",
+			"client/js/admin.boot.js"
+		]
+	},
+	{
+		"outputFileName": "wwwroot/styles/css/all.min.css",
+		"inputFiles": [
+			"node_modules/bootstrap/dist/css/bootstrap.min.css",
+			"node_modules/font-awesome/css/font-awesome.min.css",
+			"client/css/style.css"
+		]
+	},
+	{
+		"outputFileName": "wwwroot/styles/css/admin.min.css",
+		"inputFiles": [
+			"node_modules/bootstrap/dist/css/bootstrap.min.css",
+			"node_modules/font-awesome/css/font-awesome.min.css",
+			"client/css/admin.css"
+		]
+	},
+	{
 		"outputFileName": "wwwroot/styles/css/store.min.css",
 		"inputFiles": [
 			"node_modules/bootstrap/dist/css/bootstrap.min.css",

@@ -1,1 +1,108 @@
 ﻿@import "_references";
+
+/* INDIVIDUAL ELEMENTS */
+
+b.fa {
+	margin: {
+		right: 5px;
+	}
+}
+
+.form-control-sm,
+.btn-sm {
+	height: calc(1.5em + 5px);
+	padding-top: 1px;
+}
+
+.btn-outline-dark {
+	border-color: $brand-color-lime;
+}
+
+select.form-control-sm {
+	margin: {
+		top: 2px;
+	}
+}
+
+
+.badge-light {
+	@extend %brand-color-menu;
+}
+
+.dropdown-item.scroll-menu {
+	width: 100%;
+}
+
+.alert {
+	border: {
+		left: 5px solid;
+	}
+
+	.close {
+		padding:{
+			top: 0.55rem;
+		}
+		color: $brand-color-dark;
+	}
+}
+
+.text-danger-o {
+	color: $brand-color-red;
+}
+
+/* INDIVIDUAL ELEMENTS */
+
+/* ALL HEADERS */
+
+.navbar {
+	&-brand {
+		img {
+			max-width: 100px;
+		}
+	}
+}
+
+.left-flex {
+	.logo {
+		img {
+			max-width: 150px;
+		}
+	}
+}
+
+.scroll-menu {
+	display: none;
+
+	img {
+		max-width: 70px;
+		margin-right: 20px;
+		margin-bottom: -5px;
+		position: relative;
+	}
+
+	.dropdown-toggle::after {
+		display: none;
+	}
+}
+
+/* ALL HEADERS */
+
+/* ALL FORMS */
+
+.form-group {
+	margin-bottom: 5px;
+}
+
+.modal-content {
+	background: $brand-color-orange-o;
+	color: $brand-color-light;
+
+	.modal-header {
+		.close {
+			color: $brand-color-light;
+			text-shadow: 0 1px 0 $brand-color-light;
+		}
+	}
+}
+
+/* ALL FORMS */

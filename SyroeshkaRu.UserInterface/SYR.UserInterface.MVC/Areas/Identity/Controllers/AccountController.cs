@@ -20,7 +20,12 @@ namespace SYR.UserInterface.MVC.Areas.Identity.Controllers
 
 		public async Task<IActionResult> Register()
 		{
-			return await Task.Run(View);
+			if (!_signInManager.IsSignedIn(User))
+			{
+				return await Task.Run(View);
+			}
+
+			return await Task.Run(() => RedirectToAction("Index", new {Controller = "Home"}));
 		}
 
 		[HttpPost]
@@ -57,7 +62,15 @@ namespace SYR.UserInterface.MVC.Areas.Identity.Controllers
 		[
 			HttpGet
 		]
-		public async Task<IActionResult> Login() => await Task.Run(View);
+		public async Task<IActionResult> Login()
+		{
+			if (!_signInManager.IsSignedIn(User))
+			{
+				return await Task.Run(View);
+			}
+
+			return await Task.Run(() => RedirectToAction("Index", new { Controller = "Home" }));
+		}
 
 		[
 			HttpPost,
@@ -65,21 +78,19 @@ namespace SYR.UserInterface.MVC.Areas.Identity.Controllers
 		]
 		public async Task<IActionResult> Login(LoginViewModel model)
 		{
-			if (ModelState.IsValid)
+			if (!ModelState.IsValid) return BadRequest(ModelState);
+			var result =
+				await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+			if (result.Succeeded)
 			{
-				var result =
-					await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
-				if (result.Succeeded)
+				if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
 				{
-					if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-					{
-						return Ok(model.ReturnUrl);
-					}
-
-					return Ok(model);
+					return Ok(model.ReturnUrl);
 				}
-				ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+
+				return Ok(model);
 			}
+			ModelState.AddModelError("", "Неправильный логин и (или) пароль");
 			return BadRequest(ModelState);
 		}
 

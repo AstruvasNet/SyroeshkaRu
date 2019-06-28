@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Mvc;
-using SYR.Core.BusinessLogic.Helpers;
 using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.ViewModel;
-using SYR.Core.BusinessLogic.ViewPatterns;
+using System.Threading.Tasks;
 
 namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 {
@@ -27,26 +22,16 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 			return await Task.Run(() => PartialView(_db.GetStorages(model.Id)));
 		}
 
-		[HttpGet("[controller]/[action]/{type?}/{id?}")]
-		public async Task<IActionResult> Confirm(int type, Guid id)
+		[HttpPost("[controller]/[action]")]
+		public async Task<IActionResult> GetModal(int type)
 		{
-			var pattern = new WindowStructure();
-			var model = _db.GetStorages(id) as StoragesViewModel;
-			Debug.Assert(model != null, nameof(model) + " != null");
-			switch (type)
-			{
-				case 0:
-					pattern.Data = model;
-					pattern.Header = $"Удаление склада {model.Title}";
-					pattern.Content = $"Внимание! После подтверждения удаления склад {model.Title} и всё, что с ним связано будет удалено";
-					break;
-				default:
-					pattern.Data = null;
-					pattern.Header = "Ошибка";
-					pattern.Content = "Паттерн не найден";
-					break;
-			}
-			return await Task.Run(() => PartialView(pattern));
+			return await Task.Run(() => PartialView(type));
+		}
+
+		[HttpPost("[controller]/[action]")]
+		public async Task<IActionResult> GetLoginForm()
+		{
+			return await Task.Run(PartialView);
 		}
 	}
 }

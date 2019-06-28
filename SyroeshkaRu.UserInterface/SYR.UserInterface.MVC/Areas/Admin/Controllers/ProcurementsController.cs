@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 {
+
 	public class ProcurementsController : Controller
 	{
 		public async Task<IActionResult> Index() => await Task.Run(View);

@@ -13,14 +13,15 @@ namespace SYR.Core.BusinessLogic.ViewModel
 	public class LoginViewModel
 	{
 		[Required(ErrorMessage = "Поле {0} не должно быть пустым")]
-		[Display(Name = "Логин")]
+		[Display(Name = "Логин", Prompt = "Логин")]
 		public string UserName { get; set; }
 
 		[Required(ErrorMessage = "Поле {0} не должно быть пустым")]
-		[Display(Name = "Пароль")]
+		[Display(Name = "Пароль", Prompt = "Пароль")]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 
+		[Display(Name = "Запомнить")]
 		public bool RememberMe { get; set; }
 
 		public string ReturnUrl { get; set; }

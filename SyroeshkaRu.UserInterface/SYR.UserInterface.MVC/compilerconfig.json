@@ -6,5 +6,9 @@
 	{
 		"outputFile": "client/css/admin.css",
 		"inputFile": "client/scss/admin.scss"
+	},
+	{
+		"outputFile": "client/css/style.css",
+		"inputFile": "client/scss/style.scss"
 	}
 ]

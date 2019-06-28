@@ -1,72 +1,55 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.EntityFrameworkCore;
+using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.ViewModel;
-using SYR.Core.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace SYR.Core.BusinessLogic.Helpers
 {
-	[HtmlTargetElement(Attributes = "isAuth")]
-	public class IsAuthTagHelpers : TagHelper
+	[HtmlTargetElement(Attributes = "asp-controller")]
+	public class AspControllerTagHelpers : TagHelper
 	{
-		private readonly IHttpContextAccessor _user;
-		private readonly ModelContext _db;
+		private readonly IAdmin _db;
 
-		public IsAuthTagHelpers(IHttpContextAccessor user, ModelContext db)
+		public AspControllerTagHelpers(IAdmin db)
 		{
-			_user = user;
 			_db = db;
 		}
 
-		[HtmlAttributeName("isAuth")]
-		public string IsAuth { get; set; }
+		[HtmlAttributeName("asp-controller")]
+		public string AspController { get; set; }
+
+		[ViewContext]
+		[HtmlAttributeNotBound]
+		public ViewContext ViewContext { get; set; }
 
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
-			Task.Run(() =>
-			{
-				bool user = _user.HttpContext.User.Identity.IsAuthenticated;
-				ICollection<string> resource = new List<string>();
-				foreach (var x in _user.HttpContext.User.FindAll(ClaimTypes.Role))
-				{
-					string roleId = _db.Roles.Where(i => i.Name == x.Value).Select(i => i.Id).FirstOrDefault();
-					if (user)
-					{
-						var count = _db.SequrityProfiles.Include(inc => inc.SequrityRoles).ThenInclude(inc => inc.Roles)
-							.Where(i => i.Name == IsAuth);
-						if (count.Count() != 0)
-							foreach (var m in count)
-							{
-								foreach (var i in m.SequrityRoles.Where(z =>
-									z.RoleId.GetHashCode() == roleId?.GetHashCode()))
-								{
-									resource.Add(i.RoleId);
-								}
-							}
-					}
-					else
-					{
-						output.TagName = null;
-						output.Content.SetContent(null);
-					}
-				}
+			var profiles = (ICollection<SequrityProfilesViewModel>)_db.GetSequrityProfiles();
 
-				if (resource.Count == 0)
-				{
-					output.TagName = null;
-					output.Content.SetContent(null);
-				}
-			}).Wait();
+			if (ViewContext.HttpContext.User.IsInRole("root"))
+			{
+				output.Content = output.Content;
+			}
+			else if (profiles.Count(i => i.Name.Contains(AspController)) != 0)
+			{
+				ICollection<string> source =
+					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(AspController))
+							.SequrityRoles
+					 from role in ViewContext.HttpContext.User.FindAll(ClaimTypes.Role)
+					 where role.Value == profile.Roles.Name
+					 select role.Value).ToList();
+				if (source.Count != 0) return;
+				output.TagName = null;
+				output.Content.SetContent(null);
+			}
 		}
 	}
 
@@ -186,7 +169,7 @@ namespace SYR.Core.BusinessLogic.Helpers
 			}
 		}
 	}
-
+	//TODO Для админки меню сделать рукописным
 	[HtmlTargetElement("ul-menu", Attributes = "model")]
 	public class UlMenuTagHelpers : TagHelper
 	{

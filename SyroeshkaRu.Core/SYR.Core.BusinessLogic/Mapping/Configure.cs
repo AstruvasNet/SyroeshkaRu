@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using SYR.Core.BusinessLogic.ViewModel;
 using SYR.Core.DomainModel.Client;
 using SYR.Core.DomainModel.System;
@@ -39,6 +40,9 @@ namespace SYR.Core.BusinessLogic.Mapping
 
 				cfg.CreateMap<Roles, RolesViewModel>();
 				cfg.CreateMap<RolesViewModel, Roles>();
+
+				cfg.CreateMap<IdentityUserRole<string>, RolesViewModel>();
+				cfg.CreateMap<RolesViewModel, IdentityUserRole<string>>();
 
 				cfg.CreateMap<Menu, MenuViewModel>();
 				cfg.CreateMap<MenuViewModel, Menu>();

@@ -2,7 +2,7 @@
 	<nav class="navbar navbar-expand-sm navbar-light bg-white">
 		<div class="container">
 			<a asp-controller="Home" asp-action="Index" class="navbar-brand">
-				<img src="images/home/logotip.png" alt="Syroeshka.Ru" />
+				<img src="~/images/home/logotip.png" alt="Syroeshka.Ru" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header" aria-controls="header" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -34,14 +34,30 @@
 					</div>*@
 				<div class="col">
 					<ul class="list-group">
-						<li class="list-group-item"><a href="#"><i class="fa fa-phone"></i>+7(4852) 91-91-66</a></li>
-						<li class="list-group-item"><a href="#"><i class="fa fa-envelope"></i>yar@syroeshka.ru</a></li>
+						<li class="list-group-item"><a href="#"><i class="fa fa-volume-control-phone"></i>+7(4852) 91-91-66</a></li>
+						<li class="list-group-item"><a href="#"><i class="fa fa-envelope-o"></i>yar@syroeshka.ru</a></li>
+					</ul>
+				</div>
+				<div class="col"></div>
+				<div class="col">
+					<ul class="list-group">
 						<li class="list-group-item">
-							<ul class="list-group list-group-horizontal-sm">
-								<li class="list-group-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-group-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-								<li class="list-group-item"><a href="#"><i class="fa fa-vk"></i></a></li>
-							</ul>
+							<partial name="Header/_SelectStorage" />
+						</li>
+						<li class="list-group-item">
+							<div class="row">
+								<div class="col">
+									<a asp-route="system"><b class="fa fa-opencart"></b>Корзина <b class="badge badge-light">0</b></a>
+								</div>
+								<div class="col">
+									<div class="dropdown open">
+										<a asp-route="system" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<b class="fa fa-reorder"></b>Меню
+										</a>
+										<partial name="Header/_LoginPartial"/>
+									</div>
+								</div>
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -71,20 +87,23 @@
 				</div>
 			</div>
 		</div>*@
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="navbar-nav mr-auto">
+				<li class="nav-item scroll-menu">
+					<img src="~/images/home/logotip.png" alt="Syroeshka.Ru" />
+				</li>
 				<li class="nav-item active">
 					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Link</a>
 				</li>
-				<li class="nav-item dropdown">
+				@*<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
 						<a class="dropdown-item" href="#">Action</a>
@@ -92,12 +111,42 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#">Something else here</a>
 					</div>
+				</li>*@
+				@*<li class="nav-item scroll-menu">
+					<a class="nav-link" href="#">
+						<b class="fa fa-opencart"></b> Корзина
+					</a>
+				</li>*@
+				@*<li class="nav-item dropdown open scroll-menu">
+					<a asp-route="system" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<b class="fa fa-list-alt"></b> Меню
+					</a>
+					<partial name="Header/_LoginPartial"/>
+				</li>*@
+			</ul>
+			<ul class="navbar-nav scroll-menu">
+				<li class="nav-item">
+					<a asp-route="system" class="nav-link"><b class="fa fa-opencart"></b>Корзина <b class="badge">0</b></a>
 				</li>
 			</ul>
 			<form class="form-inline">
-				<input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-info btn-sm" type="submit">Search</button>
+				@*<input class="form-control form-control-sm" type="search" placeholder="Поиск" aria-label="Поиск" />
+				<button class="btn btn-outline-default btn-sm"><b class="fa fa-sliders"></b></button>*@
+				<div class="input-group">
+					<input type="text" class="form-control form-control-sm" placeholder="Поиск..." aria-label="Поиск..." aria-describedby="addon">
+					<div class="input-group-append">
+						<button class="btn btn-outline-dark btn-sm"><b class="fa fa-sliders"></b></button>
+					</div>
+				</div>
 			</form>
+			<ul class="navbar-nav scroll-menu">
+				<li class="nav-item dropdown open scroll-menu">
+					<a asp-route="system" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<b class="fa fa-reorder"></b>
+					</a>
+					<partial name="Header/_LoginPartial" />
+				</li>
+			</ul>
 		</div>
 	</nav>
 </div><!--/header-middle-->

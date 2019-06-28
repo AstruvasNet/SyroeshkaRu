@@ -2,7 +2,7 @@
 
 <div class="shadow">
 	<div class="logo">
-		<a asp-route="admin" asp-route-action="index"><img src="~/images/home/logotip.png" alt="" /></a><br />
+		<a asp-route="admin" asp-route-controller="site" asp-route-action="index"><img src="~/images/home/logotip.png" alt="" /></a><br />
 		<small class="text-danger">Панель управления</small>
 	</div>
 	<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"

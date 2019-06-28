@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using SYR.Core.BusinessLogic.Interface;
 using System;
 using System.Threading.Tasks;
+using SYR.Core.BusinessLogic.Common;
 
 namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 {
 	[
 		Area("Admin"),
 		Route("cp/root"),
-		//Authorize(Policy = "root")
+		Sequrity
 	]
 	public class RootController : Controller
 	{

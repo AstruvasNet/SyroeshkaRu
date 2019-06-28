@@ -68,6 +68,15 @@ namespace SYR.Core.BusinessLogic.Service
 					.ThenInclude(i => i.Roles).ToList());
 		}
 
+		public object GetSequrityProfiles(string name)
+		{
+			return _mapper.Map<SequrityProfiles, SequrityProfilesViewModel>(
+				_db.SequrityProfiles
+					.Include(i => i.SequrityRoles)
+					.ThenInclude(i => i.Roles)
+					.FirstOrDefault(m => m.Name == name));
+		}
+
 		public object GetRoles()
 		{
 			return _mapper.Map<ICollection<Roles>, ICollection<RolesViewModel>>(_db.Roles.ToList());

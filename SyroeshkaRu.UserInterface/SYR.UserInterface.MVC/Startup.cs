@@ -97,8 +97,8 @@ namespace SYR.UserInterface.MVC
 				routes.MapRoute("manage", "{area:exists}/{action}",
 					new {Controller = "manage", Action = "index"});
 
-				routes.MapRoute("root", "cp/{controller}/{action}/{id?}",
-					new {Controller = "root", Action = "index", AreaAttribute = "admin"});
+				routes.MapRoute("admin", "cp/{controller}/{action}/{id?}",
+					new {Controller = "site", Action = "index", AreaAttribute = "admin"});
 
 				routes.MapRoute("partial", "cp/{controller}/{action}/{type?}/{id?}",
 					new { Controller = "root", Action = "index", AreaAttribute = "admin" });

@@ -1,1 +1,0 @@
-﻿System.import('app/main.js').catch(function (err) { console.error(err); });

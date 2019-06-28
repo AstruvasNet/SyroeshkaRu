@@ -14,6 +14,7 @@ namespace SYR.Core.BusinessLogic.Interface
 		object GetUsers(int page, int pageSize);
 		object GetStorages(Guid? storageId = null);
 		object GetSequrityProfiles(Guid? id = null);
+		object GetSequrityProfiles(string name);
 		object GetRoles();
 		object GetUserRoles(string user);
 		object GetHistory(int page, int pageSize);

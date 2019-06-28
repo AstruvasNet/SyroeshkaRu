@@ -4,6 +4,13 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SYR.UserInterface.MVC-1BA789A4-111D-4878-B806-6D10E8C0C02F</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <PackageId>SyroeshkaRu</PackageId>
+    <Authors>Astruvas</Authors>
+    <Company>Home</Company>
+    <Product>SyroeshkaRu</Product>
+    <Copyright>Astruvas</Copyright>
+    <AssemblyName>SyroeshkaRu</AssemblyName>
+    <StartupObject>SYR.UserInterface.MVC.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,8 +41,13 @@
 
   <ItemGroup>
     <None Remove="Client\ts\admin.ts" />
+    <None Remove="Client\ts\classes\enum.class.ts" />
     <None Remove="Client\ts\include.ts" />
+    <None Remove="Client\ts\modules\admin.module.ts" />
+    <None Remove="Client\ts\modules\alert.module.ts" />
+    <None Remove="Client\ts\modules\modal.module.ts" />
     <None Remove="Client\ts\modules\service.module.ts" />
+    <None Remove="Client\ts\modules\store.module.ts" />
     <None Remove="Client\ts\site.ts" />
   </ItemGroup>
 
@@ -76,8 +88,20 @@
   </ItemGroup>
 
 
-  <ItemGroup>
-    <Folder Include="Client\ts\modules\" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
 
 </Project>

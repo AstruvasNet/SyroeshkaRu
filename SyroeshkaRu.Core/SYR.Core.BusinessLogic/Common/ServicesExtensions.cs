@@ -20,17 +20,6 @@ namespace SYR.Core.BusinessLogic.Common
 		private static readonly ModelContext _db = new ModelContext();
 		public static void ServicesCollection(this IServiceCollection services)
 		{
-			Task.Run(() =>
-			{
-				foreach (var s in _db.SequrityProfiles)
-				{
-					services.AddAuthorization(options =>
-					{
-						options.AddPolicy(
-							s.Name, policy => policy.Requirements.Add(new AccessRequirement(s.Name)));
-					});
-				}
-			}).Wait();
 
 			services.AddSingleton<IAuthorizationHandler, AccessHandler>();
 
@@ -39,6 +28,16 @@ namespace SYR.Core.BusinessLogic.Common
 			services.AddTransient<IAdmin, AdminService>();
 
 			services.AddDbContext<ModelContext>();
+
+			services.AddTransient<UserManager<Users>>();
+
+			services.AddTransient<FormHiddenTagHelpers>();
+
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+			services.AddTransient<IEdit, EditService>();
+
+			services.AddAntiforgery(t => t.HeaderName = "X-XSRF-TOKEN");
 
 			services.AddIdentity<Users, Roles>(option =>
 				{
@@ -56,16 +55,6 @@ namespace SYR.Core.BusinessLogic.Common
 				DbInitialize.InitRoot(serviceScope.ServiceProvider.GetRequiredService<UserManager<Users>>(),
 					serviceScope.ServiceProvider.GetRequiredService<RoleManager<Roles>>()).Wait();
 			}
-
-			services.AddTransient<UserManager<Users>>();
-
-			services.AddTransient<FormHiddenTagHelpers>();
-
-			services.AddSingleton<Dictionary<string, string>>();
-
-			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-			services.AddTransient<IEdit, EditService>();
 		}
 	}
 }

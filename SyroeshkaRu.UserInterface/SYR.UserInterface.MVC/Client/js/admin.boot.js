@@ -5,4 +5,4 @@ SystemJS.config({
 		"/": { defaultExtension: "js" }
 	}
 });
-System.import("store.component.js");
+System.import("admin.component.js");

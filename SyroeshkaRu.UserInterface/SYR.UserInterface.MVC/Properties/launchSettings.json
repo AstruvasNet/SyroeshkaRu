@@ -12,14 +12,15 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "HOSTING:ENVIRONMENT": "Development"
+      },
+      "nativeDebugging": true
     },
     "Production": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVILONMENT": "Production"
+        "HOSTING:ENVIRONMENT": "Production"
       }
     }
   }

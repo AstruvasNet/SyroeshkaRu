@@ -75,4 +75,11 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		public object ModelObject { get; set; }
 		public PageViewModel PageViewModel { get; set; }
 	}
+
+	public class ModalViewModel
+	{
+		public string Type { get; set; }
+		public string Title { get; set; }
+		public string Data { get; set; }
+	}
 }
