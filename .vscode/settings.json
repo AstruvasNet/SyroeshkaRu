@@ -1,0 +1,9 @@
+{
+	"powermode.enabled": false,
+	"powermode.presets": "magic",
+	"editor.formatOnPaste": true,
+	"editor.formatOnType": true,
+	"editor.tabCompletion": "on",
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false
+}
