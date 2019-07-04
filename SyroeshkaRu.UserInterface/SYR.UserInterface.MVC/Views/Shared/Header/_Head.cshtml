@@ -26,7 +26,7 @@
 								</div>
 								<div class="col align-self-center">
 									<div class="pull-right">
-										<partial name="Header/_SelectStorage"/>
+										<partial name="Header/_SelectStorage" />
 									</div>
 								</div>
 							</div>
@@ -54,7 +54,7 @@
 										<a asp-route="system" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<b class="fa fa-reorder"></b>Меню
 										</a>
-										<partial name="Header/_LoginPartial"/>
+										<partial name="Header/_LoginPartial" />
 									</div>
 								</div>
 							</div>
@@ -104,25 +104,25 @@
 					<a class="nav-link" href="#">Link</a>
 				</li>
 				@*<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div>
-				</li>*@
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</li>*@
 				@*<li class="nav-item scroll-menu">
-					<a class="nav-link" href="#">
-						<b class="fa fa-opencart"></b> Корзина
-					</a>
-				</li>*@
+						<a class="nav-link" href="#">
+							<b class="fa fa-opencart"></b> Корзина
+						</a>
+					</li>*@
 				@*<li class="nav-item dropdown open scroll-menu">
-					<a asp-route="system" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<b class="fa fa-list-alt"></b> Меню
-					</a>
-					<partial name="Header/_LoginPartial"/>
-				</li>*@
+						<a asp-route="system" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<b class="fa fa-list-alt"></b> Меню
+						</a>
+						<partial name="Header/_LoginPartial" />
+					</li>*@
 			</ul>
 			<ul class="navbar-nav scroll-menu">
 				<li class="nav-item">
@@ -131,7 +131,7 @@
 			</ul>
 			<form class="form-inline">
 				@*<input class="form-control form-control-sm" type="search" placeholder="Поиск" aria-label="Поиск" />
-				<button class="btn btn-outline-default btn-sm"><b class="fa fa-sliders"></b></button>*@
+					<button class="btn btn-outline-default btn-sm"><b class="fa fa-sliders"></b></button>*@
 				<div class="input-group">
 					<input type="text" class="form-control form-control-sm" placeholder="Поиск..." aria-label="Поиск..." aria-describedby="addon">
 					<div class="input-group-append">
@@ -150,46 +150,45 @@
 		</div>
 	</nav>
 </div><!--/header-middle-->
-
 @*<div class="header-bottom">
-	<!--header-bottom-->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-9 col-sm-12">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
+		<!--header-bottom-->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 col-sm-12">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="mainmenu pull-left">
+						<ul class="nav navbar-nav collapse navbar-collapse">
+							<li><a asp-route="system" asp-route-action="index" class="active">Главная</a></li>
+							<li class="dropdown">
+								<a href="#">Клиентам<i class="fa fa-angle-down"></i></a>
+								<ul role="menu" class="sub-menu">
+									<li><a href="shop.html">Доставка</a></li>
+									<li><a href="product-details.html">Оплата</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#">Блог<i class="fa fa-angle-down"></i></a>
+								<ul role="menu" class="sub-menu">
+									<li><a href="blog.html">Новости</a></li>
+									<li><a href="blog-single.html">Акции</a></li>
+								</ul>
+							</li>
+							<li><a href="contact-us.html">Контакты</a></li>
+						</ul>
+					</div>
 				</div>
-				<div class="mainmenu pull-left">
-					<ul class="nav navbar-nav collapse navbar-collapse">
-						<li><a asp-route="system" asp-route-action="index" class="active">Главная</a></li>
-						<li class="dropdown">
-							<a href="#">Клиентам<i class="fa fa-angle-down"></i></a>
-							<ul role="menu" class="sub-menu">
-								<li><a href="shop.html">Доставка</a></li>
-								<li><a href="product-details.html">Оплата</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#">Блог<i class="fa fa-angle-down"></i></a>
-							<ul role="menu" class="sub-menu">
-								<li><a href="blog.html">Новости</a></li>
-								<li><a href="blog-single.html">Акции</a></li>
-							</ul>
-						</li>
-						<li><a href="contact-us.html">Контакты</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-3 col-sm-12">
-				<div class="search_box pull-right">
-					<input type="text" placeholder="Поиск" />
+				<div class="col-lg-3 col-sm-12">
+					<div class="search_box pull-right">
+						<input type="text" placeholder="Поиск" />
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div><!--/header-bottom-->*@
+	</div><!--/header-bottom-->*@

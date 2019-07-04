@@ -2,15 +2,12 @@
 import { ModalType, ModalSize } from "../../classes/enum.class";
 
 export module ModalModule {
-
 	export class Options {
-
 		type: number;
 		size: number;
 		data: any;
 
 		constructor(type?: number, size?: number, data?: any) {
-
 			this.type = type || 0;
 			this.size = size || 0;
 			this.data = data || {};
@@ -18,11 +15,9 @@ export module ModalModule {
 	}
 
 	export class Body {
-
 		http = new serviceModule.HttpService;
 
 		load = (options: Options): void => {
-
 			this.close();
 			$("body").append("<div class=\"modal fade\" role=\"dialog\" />");
 			var $this = $(".modal");
@@ -32,7 +27,6 @@ export module ModalModule {
 			this.http.postWithData("/partial/get" + ModalType[options.type] + "Form",
 				{ type: options.type },
 				(data: any) => {
-
 					$this.find(".modal-content").html(data);
 					this.submitEvent($this);
 
@@ -53,7 +47,6 @@ export module ModalModule {
 		}
 
 		submitEvent = (element: any): void => {
-
 			var $this = $(element).find("form");
 			$this.submit(
 				e => {
@@ -64,12 +57,14 @@ export module ModalModule {
 						},
 						error => {
 							$(".errors").remove();
-							error = JSON.parse(error.responseText);
-							$this.find(".modal-body").prepend("<div class=\"errors\" />");
-							$.each(error,
-								(_index, item) => {
-									$(".errors").prepend(item + "</br>").addClass("text-danger-o col-form-label-sm");
-								});
+							if (error) {
+								error = JSON.parse(error.responseText);
+								$this.find(".modal-body").prepend("<div class=\"errors\" />");
+								$.each(error,
+									(_index, item) => {
+										$(".errors").prepend(item + "</br>").addClass("text-danger-o col-form-label-sm");
+									});
+							}
 						});
 				});
 		}

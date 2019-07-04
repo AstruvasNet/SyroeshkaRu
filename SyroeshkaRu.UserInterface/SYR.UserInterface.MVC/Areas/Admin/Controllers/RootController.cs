@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using SYR.Core.BusinessLogic.Filters;
 using SYR.Core.BusinessLogic.Interface;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
-using SYR.Core.BusinessLogic.Common;
 
 namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 {
@@ -37,25 +37,25 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 			if (!string.IsNullOrEmpty(id.ToString()))
 				return await Task.Run(() => View("~/Areas/Admin/Views/Root/Storage.cshtml", _db.GetStorages(id)));
 			if (page != null)
-				return await Task.Run(() => View(_db.GetStorages((int) page, 3)));
+				return await Task.Run(() => View(_db.GetStorages((int)page, 3)));
 			return await Task.Run(() => View(_db.GetStorages()));
 		}
 
-		[Route("[action]/{id?}")]
+		[Route("[action]/{id?}"), Disallow]
 		public async Task<IActionResult> Products(Guid? id, int? page = 1)
 		{
 			return await Task.Run(View);
 		}
 
-		[Route("[action]/{id?}")]
+		[Route("[action]/{id?}"), Disallow]
 		public async Task<IActionResult> Sequrity(Guid? id)
 		{
 			if (!string.IsNullOrEmpty(id.ToString()))
 				return await Task.Run(() => View("~/Areas/Admin/Views/Root/Profile.cshtml", _db.GetSequrityProfiles(id)));
-			return await Task.Run(() => View(_db.GetSequrityProfiles()));
+			return await Task.Run(() => View(_db.GetSequrityProfiles(Assembly.GetEntryAssembly())));
 		}
 
-		[Route("[action]/{id?}")]
+		[Route("[action]/{id?}"), Disallow]
 		public async Task<IActionResult> History(Guid? id, int? page = 1)
 		{
 			if (page != null)

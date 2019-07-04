@@ -1,6 +1,4 @@
-﻿
-
-.logo > small {
+﻿.logo > small {
 	position: absolute;
 	margin-top: -10px;
 	font-weight: bold;
@@ -17,9 +15,9 @@
 		padding-left: 15px;
 	}
 
-	.right-menu > main > .page-header {
-		margin-top: 20px;
-	}
+		.right-menu > main > .page-header {
+			margin-top: 20px;
+		}
 
 [role="main"] {
 	margin-right: 15px;
@@ -39,9 +37,9 @@
 	margin-right: 0;
 }
 
-#footer > .footer-bottom {
-	min-height: 50px;
-}
+	#footer > .footer-bottom {
+		min-height: 50px;
+	}
 
 label {
 	margin-top: 10px;

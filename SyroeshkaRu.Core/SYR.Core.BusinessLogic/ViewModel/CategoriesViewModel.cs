@@ -20,10 +20,11 @@ namespace SYR.Core.BusinessLogic.ViewModel
 	{
 		private readonly ISyroeshkaRu _db;
 
-		CategoriesProductsViewModel()
+		private CategoriesProductsViewModel()
 		{
 			_db = new SyroeshkaRuService();
 		}
+
 		public Guid CategoryId { get; set; }
 		public Guid ProductId { get; set; }
 		public ICollection<CategoriesViewModel> Categories => (ICollection<CategoriesViewModel>)_db.GetCategories(CategoryId);

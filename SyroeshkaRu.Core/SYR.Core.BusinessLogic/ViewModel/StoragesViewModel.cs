@@ -1,8 +1,8 @@
-﻿using System;
+﻿using SYR.Core.BusinessLogic.Interface;
+using SYR.Core.BusinessLogic.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using SYR.Core.BusinessLogic.Interface;
-using SYR.Core.BusinessLogic.Service;
 
 namespace SYR.Core.BusinessLogic.ViewModel
 {
@@ -25,6 +25,7 @@ namespace SYR.Core.BusinessLogic.ViewModel
 
 		//public ICollection<ProductsViewModel> Products { get; set; }
 		public ICollection<StoragesProductsViewModel> Products { get; set; }
+
 		public ICollection<StoragesCategoriesViewModel> Categories { get; set; }
 	}
 
@@ -36,6 +37,7 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		{
 			_db = new SyroeshkaRuService();
 		}
+
 		public Guid StorageId { get; set; }
 		public Guid ProductId { get; set; }
 

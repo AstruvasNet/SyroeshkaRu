@@ -9,18 +9,18 @@ using System.Security.Claims;
 
 namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 {
-	[HtmlTargetElement(Attributes = "asp-controller")]
-	public class AspControllerTagHelpers : TagHelper
+	[HtmlTargetElement(Attributes = "asp-action")]
+	public class AspActionTagHelpers : TagHelper
 	{
 		private readonly IAdmin _db;
 
-		public AspControllerTagHelpers(IAdmin db)
+		public AspActionTagHelpers(IAdmin db)
 		{
 			_db = db;
 		}
 
-		[HtmlAttributeName("asp-controller")]
-		public string AspController { get; set; }
+		[HtmlAttributeName("asp-action")]
+		public string AspAction { get; set; }
 
 		[ViewContext]
 		[HtmlAttributeNotBound]
@@ -34,10 +34,10 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 			{
 				output.Content = output.Content;
 			}
-			else if (profiles.Count(i => i.Name.Contains(AspController)) != 0)
+			else if (profiles.Count(i => i.Name.Contains(AspAction)) != 0)
 			{
 				ICollection<string> source =
-					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(AspController))
+					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(AspAction))
 							.SequrityRoles.Where(i => !i.Allow)
 					 from role in ViewContext.HttpContext.User.FindAll(ClaimTypes.Role)
 					 where role.Value == profile.Roles.Name
@@ -45,6 +45,10 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 				if (source.Count != 0) return;
 				output.TagName = null;
 				output.Content.SetContent(null);
+			}
+			else
+			{
+				output.Content = output.Content;
 			}
 		}
 	}

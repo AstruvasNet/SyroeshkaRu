@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using SYR.Core.DomainModel.System;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SYR.Core.DomainModel.Common
 {

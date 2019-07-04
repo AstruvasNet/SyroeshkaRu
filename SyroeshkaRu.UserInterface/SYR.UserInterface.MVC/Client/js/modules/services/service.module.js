@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var modal_module_1 = require("../libs/modal.module");
-var alert_module_1 = require("../libs/alert.module");
 var ServiceModule;
 (function (ServiceModule) {
     var modal = modal_module_1.ModalModule;
@@ -41,7 +40,7 @@ var ServiceModule;
                         var fullError = data;
                         console.log(errorTitle);
                         console.log(fullError);
-                        that.showJqueryDialog(fullError, errorTitle);
+                        that.showJqueryDialog(fullError);
                     }
                 });
             };
@@ -63,16 +62,16 @@ var ServiceModule;
             this.deleteWithData = function (url, data, successCallback, errorCallback) {
                 _this.request(new Options(url, "delete", data), successCallback, errorCallback);
             };
-            this.showJqueryDialog = function (error, _title) {
+            this.showJqueryDialog = function (error) {
                 error = JSON.parse(error.responseText);
                 var message = "";
                 $.each(error, function (_index, item) {
                     message += "<li>" + item + "</li>";
                 });
-                var alert = new alert_module_1.AlertModule.Body;
-                alert.load(new alert_module_1.AlertModule.Options(null, 2, message));
-                //var body = new modal.Body;
-                //body.load(new modal.Options(_title, 1, messageSerialize));
+                //let alert = new alertModule.Body;
+                //alert.load(new alertModule.Options(null, 2, message));
+                var body = new modal.Body;
+                body.load(new modal.Options(1, 0, message));
             };
         }
         return HttpService;

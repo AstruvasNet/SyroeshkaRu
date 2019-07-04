@@ -8,11 +8,11 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 	public class FormCheckboxTagHelpers : TagHelper
 	{
 		/// <summary>
-		/// Модель.
-		/// <example>
-		///	model="Model"
-		/// </example>
+		/// TagHelper для checkbox
 		/// </summary>
+		/// <value>
+		/// The model.
+		/// </value>
 		[HtmlAttributeName("model")]
 		public object Model { get; set; }
 

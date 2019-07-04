@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SYR.Core.DomainModel.Client;
+using SYR.Core.DomainModel.System;
 using System;
 using System.IO;
-using SYR.Core.DomainModel.System;
 
 namespace SYR.Core.DomainModel
 {
@@ -25,11 +24,6 @@ namespace SYR.Core.DomainModel
 
 		public DbSet<SequrityProfiles> SequrityProfiles { get; set; }
 		public DbSet<SequrityRoles> SequrityRoles { get; set; }
-
-		public ModelContext(DbContextOptions<ModelContext> options) : base(options)
-		{
-			Database.Migrate();
-		}
 
 		public ModelContext()
 		{
@@ -69,7 +63,7 @@ namespace SYR.Core.DomainModel
 				.WithMany(s => s.Products)
 				.HasForeignKey(sp => sp.StorageId);
 
-			#endregion
+			#endregion Склады и продукты
 
 			#region Склады и категории
 
@@ -86,7 +80,7 @@ namespace SYR.Core.DomainModel
 				.WithMany(s => s.Categories)
 				.HasForeignKey(sc => sc.StorageId);
 
-			#endregion
+			#endregion Склады и категории
 
 			#region Категории и продукты
 
@@ -103,7 +97,7 @@ namespace SYR.Core.DomainModel
 				.WithMany(c => c.CategoriesProducts)
 				.HasForeignKey(cp => cp.CategoryId);
 
-			#endregion
+			#endregion Категории и продукты
 
 			#region Роли и ресурсы
 
@@ -120,7 +114,7 @@ namespace SYR.Core.DomainModel
 				.WithMany(r => r.SequrityRoles)
 				.HasForeignKey(rr => rr.RoleId);
 
-			#endregion
+			#endregion Роли и ресурсы
 
 			base.OnModelCreating(modelBuilder);
 		}

@@ -1,18 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SYR.Core.BusinessLogic.Interface;
-
-namespace SYR.UserInterface.MVC.Areas.Admin.Components
+﻿namespace SYR.UserInterface.MVC.Areas.Admin.Components
 {
-	public class RightMenuComponent : ViewComponent
-	{
-		private readonly ISyroeshkaRu _db;
+	//public class RightMenuComponent : ViewComponent
+	//{
+	//	private readonly ISyroeshkaRu _db;
 
-		public RightMenuComponent(ISyroeshkaRu db)
-		{
-			_db = db;
-		}
+	//	public RightMenuComponent(ISyroeshkaRu db)
+	//	{
+	//		_db = db;
+	//	}
 
-		public IViewComponentResult Invoke() =>
-			View("~/Areas/Admin/Views/Partial/Menu.cshtml", _db.GetMainMenu());
-	}
+	//	public IViewComponentResult Invoke() =>
+	//		View("~/Areas/Admin/Views/Partial/Menu.cshtml", _db.GetMainMenu());
+	//}
 }

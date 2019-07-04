@@ -1,55 +1,59 @@
-﻿@model ICollection<SequrityProfilesViewModel>
+﻿@model ICollection<System.Type>
 @{
 	ViewData["Title"] = "Безопасность";
 }
 
-<div class="page-header">
-	<h4>@ViewData["Title"]</h4>
-</div>
+@foreach (var i in Model)
+{
+<div>@i.Name</div>
+}
+@*<div class="page-header">
+		<h4>@ViewData["Title"]</h4>
+	</div>
 
-<div class="page-content">
-	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#home">Профили</a></li>
-		<li><a data-toggle="tab" href="#resources">Ресурсы</a></li>
-	</ul>
+	<div class="page-content">
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home">Профили</a></li>
+			<li><a data-toggle="tab" href="#resources">Ресурсы</a></li>
+		</ul>
 
-	<div class="tab-content">
-		<div id="home" class="tab-pane fade in active">
-			<table class="table table-bordered table-striped">
-				<thead>
-				<tr>
-					<th>Название</th>
-					<th>Описание</th>
-					<th>Роли</th>
-					<th></th>
-				</tr>
-				</thead>
-				<tbody>
-				@foreach (var profile in Model)
-				{
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+				<table class="table table-bordered table-striped">
+					<thead>
 					<tr>
-						<td>@profile.Name</td>
-						<td>@profile.Title</td>
-						<td>
-							@foreach (var role in profile.SequrityRoles)
-							{
-								<div class="label label-default">@role.Roles.Name</div>
-							}
-						</td>
-						<td>
-							<a asp-controller="Root" asp-action="Sequrity" asp-route-id="@profile.Id" class="fa fa-pencil-square-o text-success"></a>
-							<a class="fa fa-times-circle-o text-danger"></a>
-						</td>
+						<th>Название</th>
+						<th>Описание</th>
+						<th>Роли</th>
+						<th></th>
 					</tr>
-				}
-				</tbody>
-			</table>
-		</div>
-		<div id="resources" class="tab-pane fade">
-			<table class="table">
-				<caption>Ресурсы</caption>
-			</table>
+					</thead>
+					<tbody>
+					@foreach (var profile in Model)
+					{
+						<tr>
+							<td>@profile.Name</td>
+							<td>@profile.Title</td>
+							<td>
+								@foreach (var role in profile.SequrityRoles)
+								{
+									<div class="label label-default">@role.Roles.Name</div>
+								}
+							</td>
+							<td>
+								<a asp-controller="Root" asp-action="Sequrity" asp-route-id="@profile.Id" class="fa fa-pencil-square-o text-success"></a>
+								<a class="fa fa-times-circle-o text-danger"></a>
+							</td>
+						</tr>
+					}
+					</tbody>
+				</table>
+			</div>
+			<div id="resources" class="tab-pane fade">
+				<table class="table">
+					<caption>Ресурсы</caption>
+				</table>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="br"></div>
+	<div class="br"></div>*@

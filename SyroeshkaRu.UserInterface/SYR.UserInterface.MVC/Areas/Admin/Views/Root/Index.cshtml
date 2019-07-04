@@ -20,24 +20,24 @@
 		<tbody>
 			@foreach (var user in (ICollection<UsersViewModel>)Model.ModelObject)
 			{
-				<tr>
-					<td>@user.Email</td>
-					<td>@user.UserName</td>
-					<td>
-						@foreach (var roles in DisplayHelpers.RolesCollection())
+			<tr>
+				<td>@user.Email</td>
+				<td>@user.UserName</td>
+				<td>
+					@foreach (var roles in DisplayHelpers.RolesCollection())
 						{
 							if (DisplayHelpers.RoleId(user.Id).Contains(roles.Value))
 							{
-								<div class="label label-default">@roles.Text</div>
+					<div class="label label-default">@roles.Text</div>
 							}
 						}
-					</td>
-					<td>
-						<a asp-controller="root" asp-action="index" asp-route-id="@user.Id"
-						   class="fa fa-pencil-square-o text-success"></a>
-						<a class="fa fa-times-circle-o text-danger"></a>
-					</td>
-				</tr>
+				</td>
+				<td>
+					<a asp-controller="root" asp-action="index" asp-route-id="@user.Id"
+					   class="fa fa-pencil-square-o text-success"></a>
+					<a class="fa fa-times-circle-o text-danger"></a>
+				</td>
+			</tr>
 			}
 		</tbody>
 	</table>

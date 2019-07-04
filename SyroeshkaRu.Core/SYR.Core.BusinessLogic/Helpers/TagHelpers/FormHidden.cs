@@ -9,7 +9,6 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 	[HtmlTargetElement("form-hidden", Attributes = "model")]
 	public class FormHiddenTagHelpers : TagHelper
 	{
-
 		public FormHiddenTagHelpers()
 		{
 			Elements = "";

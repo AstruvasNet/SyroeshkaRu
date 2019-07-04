@@ -2,30 +2,24 @@
 import { AlertType } from "../../classes/enum.class";
 
 export module AlertModule {
-
 	export class Options {
-
 		data: any;
 		type: number;
 		content: string;
 		url: string;
 
 		constructor(data?: any, type?: number, content?: string, url?: string) {
-
 			this.data = data || {};
 			this.type = type || AlertType.default;
 			this.content = content;
 			this.url = url;
-
 		}
 	}
 
 	export class Body {
-
 		http = new serviceModule.HttpService;
 
 		load = (options: Options): void => {
-
 			this.close();
 			$("main").prepend("<div class=\"alert alert-" +
 				AlertType[options.type] +
@@ -51,7 +45,6 @@ export module AlertModule {
 		}
 
 		close = (): void => {
-
 			$(".alert").remove();
 		}
 	}

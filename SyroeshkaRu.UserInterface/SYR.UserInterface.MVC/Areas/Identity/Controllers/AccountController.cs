@@ -25,7 +25,7 @@ namespace SYR.UserInterface.MVC.Areas.Identity.Controllers
 				return await Task.Run(View);
 			}
 
-			return await Task.Run(() => RedirectToAction("Index", new {Controller = "Home"}));
+			return await Task.Run(() => RedirectToAction("Index", new { Controller = "Home" }));
 		}
 
 		[HttpPost]
@@ -46,7 +46,6 @@ namespace SYR.UserInterface.MVC.Areas.Identity.Controllers
 				var result = await _userManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
-
 					await _signInManager.SignInAsync(user, false);
 					await _userManager.AddToRoleAsync(user, "customer");
 					return RedirectToAction("Index", "Home");

@@ -10,16 +10,16 @@
 <div class="page-content">
 	<table class="table table-bordered table-striped table-responsive">
 		<thead>
-		<tr>
-			<th>Id</th>
-			<th>Тип операции</th>
-			<th>Элемент</th>
-			<th>Дата</th>
-			<th>Пользователь</th>
-		</tr>
+			<tr>
+				<th>Id</th>
+				<th>Тип операции</th>
+				<th>Элемент</th>
+				<th>Дата</th>
+				<th>Пользователь</th>
+			</tr>
 		</thead>
 		<tbody>
-		@foreach (var history in (ICollection<HistoryViewModel>) Model.ModelObject)
+			@foreach (var history in (ICollection<HistoryViewModel>) Model.ModelObject)
 		{
 			<tr>
 				<td>@history.Id</td>

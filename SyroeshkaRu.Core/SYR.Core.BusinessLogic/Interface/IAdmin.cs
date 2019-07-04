@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace SYR.Core.BusinessLogic.Interface
 {
@@ -11,13 +12,27 @@ namespace SYR.Core.BusinessLogic.Interface
 		/// <returns>GetUsers(), GetUsers(Id)</returns>
 		/// <see cref="GetUsers(string)"/>
 		object GetUsers(string id = null);
+
 		object GetUsers(int page, int pageSize);
+
 		object GetStorages(Guid? storageId = null);
+
 		object GetSequrityProfiles(Guid? id = null);
+
 		object GetSequrityProfiles(string name);
+
+		object GetSequrityProfiles(Assembly assembly);
+
 		object GetRoles();
+
 		object GetUserRoles(string user);
+
 		object GetHistory(int page, int pageSize);
+
 		object GetStorages(int page, int pageSize);
+
+		object GetMainMenu();
+
+		object GetSecondMenu(string parentId);
 	}
 }

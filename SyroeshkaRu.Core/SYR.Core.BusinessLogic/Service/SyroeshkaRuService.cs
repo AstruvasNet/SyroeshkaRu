@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SYR.Core.BusinessLogic.Common;
 using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.Mapping;
 using SYR.Core.BusinessLogic.ViewModel;
 using SYR.Core.DomainModel;
 using SYR.Core.DomainModel.Client;
 using SYR.Core.DomainModel.System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 
 namespace SYR.Core.BusinessLogic.Service
 {
@@ -37,25 +36,6 @@ namespace SYR.Core.BusinessLogic.Service
 		public object GetUsers(ClaimsPrincipal user)
 		{
 			return _userManager.GetUserId(user);
-		}
-
-		public object GetMainMenu()
-		{
-			return _mapper.Map<ICollection<Menu>, ICollection<MenuViewModel>>(_db.Menu
-				.Where(i => i.Type == (int) SiteType.Menu && i.ParentId == null)
-				.OrderBy(i => i.Level)
-				.ToList());
-		}
-
-		public object GetSecondMenu(string page)
-		{
-			page = page ?? "Index";
-			Guid? parentId = _db.Menu.FirstOrDefault(i => i.Name == page)?.Id;
-			return _mapper
-				.Map<ICollection<Menu>, ICollection<MenuViewModel>>(_db.Menu
-					.Where(i => i.ParentId == parentId && i.ParentId != null)
-					.OrderBy(i => i.Level)
-					.ToList());
 		}
 
 		public object GetMenu()
@@ -84,7 +64,7 @@ namespace SYR.Core.BusinessLogic.Service
 			_mapper.Map<ICollection<StoragesCategories>, ICollection<StoragesCategoriesViewModel>>(
 				_db.StoragesCategories.Include(i => i.Category).GroupBy(i => i.StorageId).Select(i => i.First()).ToList());
 
-		#endregion
+		#endregion Дерево Склады -> Продукты
 
 		#region Категории
 
@@ -93,7 +73,7 @@ namespace SYR.Core.BusinessLogic.Service
 			return _mapper.Map<ICollection<Categories>, ICollection<CategoriesViewModel>>(_db.StoragesCategories.Where(i => i.StorageId == storageId).Select(n => n.Category).ToList());
 		}
 
-		#endregion
+		#endregion Категории
 
 		#region Продукты
 
@@ -109,7 +89,7 @@ namespace SYR.Core.BusinessLogic.Service
 			}
 		}
 
-		#endregion
+		#endregion Продукты
 
 		#region Продукты категории
 
@@ -119,7 +99,7 @@ namespace SYR.Core.BusinessLogic.Service
 				.Where(i => i.StorageId == categoryId).Select(n => n.Product).ToList());
 		}
 
-		#endregion
+		#endregion Продукты категории
 
 		#region Продукты категории
 
@@ -129,7 +109,7 @@ namespace SYR.Core.BusinessLogic.Service
 				.Where(i => i.CategoryId == categoryId).Select(n => n.Product).ToList());
 		}
 
-		#endregion
+		#endregion Продукты категории
 
 		//TODO: Разобраться с продуктами
 
@@ -140,7 +120,7 @@ namespace SYR.Core.BusinessLogic.Service
 			return _mapper.Map<StoragesProducts, StoragesProductsViewModel>(_db.StoragesProducts.FirstOrDefault(i => i.ProductId == productId));
 		}
 
-		#endregion
+		#endregion Параметры склада
 
 		#region Параметры категории
 
@@ -150,6 +130,6 @@ namespace SYR.Core.BusinessLogic.Service
 				_db.CategoriesProducts.Where(i => i.ProductId == productId).ToList());
 		}
 
-		#endregion
+		#endregion Параметры категории
 	}
 }

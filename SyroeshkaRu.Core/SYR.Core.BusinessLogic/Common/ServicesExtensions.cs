@@ -2,26 +2,21 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using SYR.Core.BusinessLogic.Helpers.TagHelpers;
 using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.Service;
 using SYR.Core.DomainModel;
 using SYR.Core.DomainModel.Common;
 using SYR.Core.DomainModel.System;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using SYR.Core.BusinessLogic.Helpers;
-using SYR.Core.BusinessLogic.Helpers.TagHelpers;
 
 namespace SYR.Core.BusinessLogic.Common
 {
 	public static class DependencyInjection
 	{
 		private static readonly ModelContext _db = new ModelContext();
+
 		public static void ServicesCollection(this IServiceCollection services)
 		{
-
 			services.AddSingleton<IAuthorizationHandler, AccessHandler>();
 
 			services.AddTransient<ISyroeshkaRu, SyroeshkaRuService>();

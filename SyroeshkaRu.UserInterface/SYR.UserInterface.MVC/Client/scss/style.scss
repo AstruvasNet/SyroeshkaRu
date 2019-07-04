@@ -24,7 +24,6 @@ select.form-control-sm {
 	}
 }
 
-
 .badge-light {
 	@extend %brand-color-menu;
 }
@@ -39,9 +38,10 @@ select.form-control-sm {
 	}
 
 	.close {
-		padding:{
+		padding: {
 			top: 0.55rem;
 		}
+
 		color: $brand-color-dark;
 	}
 }

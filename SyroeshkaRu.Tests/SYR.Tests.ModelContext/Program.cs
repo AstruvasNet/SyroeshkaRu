@@ -1,11 +1,10 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 
 namespace SYR.Tests.ModelContext
 {
-	class Program
+	internal class Program
 	{
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			try
 			{

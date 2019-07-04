@@ -9,7 +9,7 @@
 		"module": "commonjs"
 	},
 	"exclude": [
-    "node_modules",
-    "wwwroot"
-  ]
+		"node_modules",
+		"wwwroot"
+	]
 }

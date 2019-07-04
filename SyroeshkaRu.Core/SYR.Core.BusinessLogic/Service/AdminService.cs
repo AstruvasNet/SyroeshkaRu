@@ -1,15 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SYR.Core.BusinessLogic.Common;
 using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.Mapping;
 using SYR.Core.BusinessLogic.ViewModel;
 using SYR.Core.DomainModel;
+using SYR.Core.DomainModel.Client;
 using SYR.Core.DomainModel.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SYR.Core.DomainModel.Client;
+using System.Reflection;
 
 namespace SYR.Core.BusinessLogic.Service
 {
@@ -37,7 +40,7 @@ namespace SYR.Core.BusinessLogic.Service
 			return _mapper.Map<Users, UsersViewModel>(_db.Users.Find(id));
 		}
 
-		#endregion
+		#endregion Users
 
 		#region Склады
 
@@ -55,7 +58,7 @@ namespace SYR.Core.BusinessLogic.Service
 				.ToList());
 		}
 
-		#endregion
+		#endregion Склады
 
 		public object GetSequrityProfiles(Guid? id)
 		{
@@ -75,6 +78,15 @@ namespace SYR.Core.BusinessLogic.Service
 					.Include(i => i.SequrityRoles)
 					.ThenInclude(i => i.Roles)
 					.FirstOrDefault(m => m.Name == name));
+		}
+
+		public object GetSequrityProfiles(Assembly assembly)
+		{
+			return assembly
+				.GetTypes()
+				.AsEnumerable()
+				.Where(type => typeof(Controller).IsAssignableFrom(type))
+				.ToList();
 		}
 
 		public object GetRoles()
@@ -111,16 +123,34 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			var model = _mapper.Map<ICollection<History>, ICollection<HistoryViewModel>>(_db.History.ToList());
 			return (from h in _db.History
-				join s in _db.Storages on h.ItemId equals s.Id into g
-				from history in g.DefaultIfEmpty()
-				select new IndexViewModel
-				{
-					PageViewModel = new PageViewModel(model.Count, page, pageSize),
-					ModelObject = model.Skip((page - 1) * pageSize).Take(pageSize).ToList()
-				}).FirstOrDefault();
+					join s in _db.Storages on h.ItemId equals s.Id into g
+					from history in g.DefaultIfEmpty()
+					select new IndexViewModel
+					{
+						PageViewModel = new PageViewModel(model.Count, page, pageSize),
+						ModelObject = model.Skip((page - 1) * pageSize).Take(pageSize).ToList()
+					}).FirstOrDefault();
 		}
 
-		#endregion
+		#endregion Paginations
 
+		public object GetMainMenu()
+		{
+			return _mapper.Map<ICollection<Menu>, ICollection<MenuViewModel>>(_db.Menu
+				.Where(i => i.Type == (int)SiteType.Menu && i.ParentId == null)
+				.OrderBy(i => i.Level)
+				.ToList());
+		}
+
+		public object GetSecondMenu(string page)
+		{
+			page = page ?? "Index";
+			Guid? parentId = _db.Menu.FirstOrDefault(i => i.Name == page)?.Id;
+			return _mapper
+				.Map<ICollection<Menu>, ICollection<MenuViewModel>>(_db.Menu
+					.Where(i => i.ParentId == parentId && i.ParentId != null)
+					.OrderBy(i => i.Level)
+					.ToList());
+		}
 	}
 }

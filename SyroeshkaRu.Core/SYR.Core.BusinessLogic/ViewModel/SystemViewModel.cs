@@ -1,8 +1,7 @@
 ﻿using SYR.Core.BusinessLogic.Common;
+using SYR.Core.BusinessLogic.Helpers;
 using System;
 using System.Collections.Generic;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using SYR.Core.BusinessLogic.Helpers;
 
 namespace SYR.Core.BusinessLogic.ViewModel
 {
@@ -16,6 +15,7 @@ namespace SYR.Core.BusinessLogic.ViewModel
 
 	public class SequrityRolesViewModel
 	{
+		public bool Allow { get; set; }
 		public Guid ResourceId { get; set; }
 		public string RoleId { get; set; }
 		public RolesViewModel Roles { get; set; }
@@ -36,7 +36,6 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		public int? Level { get; set; }
 		public SiteType Type { get; set; }
 		public Guid SequrityId { get; set; }
-
 	}
 
 	public class HistoryViewModel

@@ -2,11 +2,9 @@
 import { AlertModule as alertModule } from "../libs/alert.module";
 
 export module ServiceModule {
-
 	let modal = modalModule;
 
 	export class Options {
-
 		url: string;
 		method: string;
 		data: any;
@@ -14,7 +12,6 @@ export module ServiceModule {
 		token = $("[name=\"__RequestVerificationToken\"]");
 
 		constructor(url: string, method?: string, data?: Object) {
-
 			this.url = url;
 			this.method = method || "get";
 			this.data = data || ($("form input").not(this.token) || $("form input").not($("[value=\"\"]")));
@@ -22,7 +19,6 @@ export module ServiceModule {
 	}
 
 	export class HttpService {
-
 		request = (options: Options, successCallback: Function, errorCallback?: Function): void => {
 			var that = this;
 			$.ajax({
@@ -46,53 +42,46 @@ export module ServiceModule {
 					var fullError = data;
 					console.log(errorTitle);
 					console.log(fullError);
-					that.showJqueryDialog(fullError, errorTitle);
+					that.showJqueryDialog(fullError);
 				}
 			});
 		}
 
 		get = (url: string, successCallback: Function, errorCallback?: Function): void => {
-
 			this.request(new Options(url), successCallback, errorCallback);
 		}
 
 		getWithDataInput = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
-
 			this.request(new Options(url, "get", data), successCallback, errorCallback);
 		}
 
 		post = (url: string, successCallback: Function, errorCallback?: Function): void => {
-
 			this.request(new Options(url, "post"), successCallback, errorCallback);
 		}
 
 		postWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
-
 			this.request(new Options(url, "post", data), successCallback, errorCallback);
 		}
 
 		putWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
-
 			this.request(new Options(url, "put", data), successCallback, errorCallback);
 		}
 
 		deleteWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
-
 			this.request(new Options(url, "delete", data), successCallback, errorCallback);
 		}
 
-		showJqueryDialog = (error: any, _title?: string): void => {
-
+		showJqueryDialog = (error: any): void => {
 			error = JSON.parse(error.responseText);
 			var message = "";
 			$.each(error,
-					(_index, item) => {
-						message += "<li>" + item + "</li>";
-					});
-			let alert = new alertModule.Body;
-			alert.load(new alertModule.Options(null, 2, message));
-			//var body = new modal.Body;
-			//body.load(new modal.Options(_title, 1, messageSerialize));
+				(_index, item) => {
+					message += "<li>" + item + "</li>";
+				});
+			//let alert = new alertModule.Body;
+			//alert.load(new alertModule.Options(null, 2, message));
+			var body = new modal.Body;
+			body.load(new modal.Options(1, 0, message));
 		}
 	}
 }

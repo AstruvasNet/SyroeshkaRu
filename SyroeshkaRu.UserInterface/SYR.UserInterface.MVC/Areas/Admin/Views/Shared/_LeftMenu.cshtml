@@ -1,10 +1,27 @@
-﻿@inject ISyroeshkaRu db
+﻿@inject IAdmin db
 
 <div class="shadow">
 	<div class="logo">
 		<a asp-route="admin" asp-route-controller="site" asp-route-action="index"><img src="~/images/home/logotip.png" alt="" /></a><br />
 		<small class="text-danger">Панель управления</small>
 	</div>
-	<ul-menu model="@(db.GetMenu() as ICollection<MenuViewModel>)"
-			 ul-class="nav flex-column left-menu" li-class="nav-item" a-href="Name" value="Title" second="@ViewContext.RouteData.Values["controller"]"></ul-menu>
+	<ul class="nav flex-column left-menu">
+		@foreach (var menu in (ICollection<MenuViewModel>) db.GetSecondMenu(ViewContext.RouteData.Values["controller"].ToString()))
+		{
+			if (menu.Name == ViewContext.RouteData.Values["action"].ToString())
+			{
+		<li class="nav-item active">
+			<a asp-controller="@DisplayValues.GetMenuController(menu.ParentId)"
+			   asp-action="@(menu.ParentId == null | menu.Level == 1 ? "index" : menu.Name)" asp-area="Admin" class="nav-link">@menu.Title</a>
+		</li>
+			}
+			else
+			{
+		<li class="nav-item">
+			<a asp-controller="@DisplayValues.GetMenuController(menu.ParentId)"
+			   asp-action="@(menu.ParentId == null | menu.Level == 1 ? "index" : menu.Name)" asp-area="Admin" class="nav-link">@menu.Title</a>
+		</li>
+			}
+		}
+	</ul>
 </div>

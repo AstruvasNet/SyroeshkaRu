@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SYR.Core.BusinessLogic.Helpers;
 using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.ViewModel;
 using SYR.Core.DomainModel;
@@ -10,7 +11,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using SYR.Core.BusinessLogic.Helpers;
 
 namespace SYR.Core.BusinessLogic.Service
 {
@@ -67,6 +67,7 @@ namespace SYR.Core.BusinessLogic.Service
 				output);
 			return output.Value;
 		}
+
 		public object EditStoragesProducts(StoragesProductsViewModel model)
 		{
 			var param = new List<SqlParameter>
@@ -112,6 +113,7 @@ namespace SYR.Core.BusinessLogic.Service
 				return $"0//{ex.Message}";
 			}
 		}
+
 		//TODO При полном удалении элемента удалять историю
 		public object DeleteStorages(StoragesViewModel model)
 		{
@@ -124,7 +126,7 @@ namespace SYR.Core.BusinessLogic.Service
 				new SqlParameter("@userId", SqlDbType.UniqueIdentifier, 37,
 					_userManager.GetUserId(_user.HttpContext.User))
 			};
-			
+
 			InputOutputInit(param);
 			try
 			{

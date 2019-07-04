@@ -3,22 +3,22 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-	<div class="dropdown-menu dropdown-menu-right" aria-labelledby=".dropdown-toggle">
-		<h6 class="dropdown-header">@User.Identity.Name</h6>
-		<div class="dropdown-divider"></div>
-		<a asp-controller="site" asp-action="index" asp-area="admin"
-		   class="dropdown-item">Панель управления</a>
-		<a asp-route="system" class="dropdown-item" ui-role="alert">Настройки</a>
-		<div class="dropdown-divider"></div>
-		<a asp-route="account" asp-route-action="logoff" class="dropdown-item" ui-role="submit">Выход</a>
-	</div>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby=".dropdown-toggle">
+	<h6 class="dropdown-header">@User.Identity.Name</h6>
+	<div class="dropdown-divider"></div>
+	<a asp-controller="site" asp-action="index" asp-area="admin"
+	   class="dropdown-item">Панель управления</a>
+	<a asp-route="system" class="dropdown-item" ui-role="alert">Настройки</a>
+	<div class="dropdown-divider"></div>
+	<a asp-route="account" asp-route-action="logoff" class="dropdown-item" ui-role="submit">Выход</a>
+</div>
 }
 else
 {
-	<div class="dropdown-menu dropdown-menu-right" aria-labelledby=".dropdown-toggle">
-		<a asp-route="system" class="dropdown-item">Подписка</a>
-		<div class="dropdown-divider"></div>
-		<a asp-route="account" asp-route-action="register" class="dropdown-item">Регистрация</a>
-		<a asp-route="account" asp-route-action="login" class="dropdown-item" ui-role="modal-form">Войти</a>
-	</div>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby=".dropdown-toggle">
+	<a asp-route="system" class="dropdown-item">Подписка</a>
+	<div class="dropdown-divider"></div>
+	<a asp-route="account" asp-route-action="register" class="dropdown-item">Регистрация</a>
+	<a asp-route="account" asp-route-action="login" class="dropdown-item" ui-role="modal-form">Войти</a>
+</div>
 }

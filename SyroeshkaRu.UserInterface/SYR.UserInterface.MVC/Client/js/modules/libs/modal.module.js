@@ -46,11 +46,13 @@ var ModalModule;
                         location.reload();
                     }, function (error) {
                         $(".errors").remove();
-                        error = JSON.parse(error.responseText);
-                        $this.find(".modal-body").prepend("<div class=\"errors\" />");
-                        $.each(error, function (_index, item) {
-                            $(".errors").prepend(item + "</br>").addClass("text-danger-o col-form-label-sm");
-                        });
+                        if (error) {
+                            error = JSON.parse(error.responseText);
+                            $this.find(".modal-body").prepend("<div class=\"errors\" />");
+                            $.each(error, function (_index, item) {
+                                $(".errors").prepend(item + "</br>").addClass("text-danger-o col-form-label-sm");
+                            });
+                        }
                     });
                 });
             };

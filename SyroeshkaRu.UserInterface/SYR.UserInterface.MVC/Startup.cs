@@ -1,25 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using SYR.Core.DomainModel;
 using SYR.Core.BusinessLogic.Common;
-using SYR.Core.DomainModel.Common;
-using SYR.Core.DomainModel.System;
-using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
+using System.IO;
 
 namespace SYR.UserInterface.MVC
 {
@@ -89,16 +76,16 @@ namespace SYR.UserInterface.MVC
 					template: "{controller=Home}/{action=Index}/{id?}");
 
 				routes.MapRoute("system", "{action}/{id?}",
-					new {Controller = "home", Action = "index", AreaAttribute = ""});
+					new { Controller = "home", Action = "index", AreaAttribute = "" });
 
 				routes.MapRoute("account", "{area:exists}/{action}",
-					new {Controller = "account", Action = "index"});
+					new { Controller = "account", Action = "index" });
 
 				routes.MapRoute("manage", "{area:exists}/{action}",
-					new {Controller = "manage", Action = "index"});
+					new { Controller = "manage", Action = "index" });
 
 				routes.MapRoute("admin", "cp/{controller}/{action}/{id?}",
-					new {Controller = "site", Action = "index", AreaAttribute = "admin"});
+					new { Controller = "site", Action = "index", AreaAttribute = "admin" });
 
 				routes.MapRoute("partial", "cp/{controller}/{action}/{type?}/{id?}",
 					new { Controller = "root", Action = "index", AreaAttribute = "admin" });

@@ -1,5 +1,4 @@
-﻿
-/*************************
+﻿/*************************
 *******Typography******
 **************************/
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
@@ -61,7 +60,6 @@ a#scrollUp {
 		font-size: 30px;
 	}
 
-
 /*************************
 *******Header CSS******
 **************************/
@@ -80,11 +78,9 @@ a#scrollUp {
 	font-family: 'Roboto', sans-serif;
 }
 
-
 	.contactinfo ul li a:hover {
 		background: inherit;
 	}
-
 
 .social-icons ul li a {
 	border: 0 none;
@@ -92,7 +88,6 @@ a#scrollUp {
 	color: #696763;
 	padding: 0;
 }
-
 
 .social-icons ul li {
 	display: inline-block;
@@ -113,7 +108,6 @@ a#scrollUp {
 			-o-transition: all 0.9s ease 0;
 			transition: all 0.9s ease 0;
 		}
-
 
 .fa-facebook:hover {
 	background: #0083C9;
@@ -188,11 +182,10 @@ a#scrollUp {
 	padding-bottom: 20px;
 }
 
-.dropdown-menu.login {
-	min-width: 200px;
-	padding-bottom: 10px;
-}
-
+	.dropdown-menu.login {
+		min-width: 200px;
+		padding-bottom: 10px;
+	}
 
 .shop-menu ul li {
 	padding-left: 15px;
@@ -202,7 +195,6 @@ a#scrollUp {
 	.shop-menu ul li:last-child {
 		padding-right: 0;
 	}
-
 
 	.shop-menu ul li a {
 		background: #FFFFFF;
@@ -215,17 +207,14 @@ a#scrollUp {
 		margin-top: 10px;
 	}
 
-
 		.shop-menu ul li a i {
 			margin-right: 3px;
 		}
-
 
 		.shop-menu ul li a:hover {
 			color: #fe980f;
 			background: #fff;
 		}
-
 
 .header-bottom {
 	padding-bottom: 30px;
@@ -279,14 +268,12 @@ a#scrollUp {
 		background-position: 95%;
 	}
 
-
 /*  Dropdown menu*/
 
 .navbar-header
 .navbar-toggle .icon-bar {
 	background-color: #fff;
 }
-
 
 .nav.navbar-nav > li:hover > ul.sub-menu {
 	display: block;
@@ -319,7 +306,6 @@ ul.sub-menu {
 	color: #FDB45E;
 	padding-left: 0;
 }
-
 
 .navbar-nav li ul.sub-menu li {
 	padding: 10px 20px 0;
@@ -362,7 +348,6 @@ ul.sub-menu {
 #footer {
 	background: #F0F0E9;
 }
-
 
 .footer-top .container {
 	border-bottom: 1px solid #E0E0DA;
@@ -459,7 +444,6 @@ ul.sub-menu {
 	margin-top: 0;
 }
 
-
 .address {
 	margin-top: 30px;
 	position: relative;
@@ -519,7 +503,6 @@ ul.sub-menu {
 		color: #FE980F;
 	}
 
-
 .searchform input {
 	border: 1px solid #DDDDDD;
 	color: #CCCCC6;
@@ -530,7 +513,6 @@ ul.sub-menu {
 	padding: 7px;
 	width: 212px;
 }
-
 
 .searchform button {
 	background: #FE980F;
@@ -577,11 +559,9 @@ ul.sub-menu {
 			text-decoration: underline;
 		}
 
-
 /*************************
 ******* Home ******
 **************************/
-
 
 #slider {
 	padding-bottom: 45px;
@@ -598,7 +578,6 @@ ul.sub-menu {
 .item {
 	padding-left: 100px;
 }
-
 
 .pricing {
 	position: absolute;
@@ -647,7 +626,6 @@ ul.sub-menu {
 	font-weight: 300;
 	margin-top: 23px;
 }
-
 
 .item button:hover {
 	background: #FE980F;
@@ -767,7 +745,6 @@ h2.title:before {
 	padding-left: 20px;
 }
 
-
 	.panel-body ul li a {
 		color: #696763;
 		font-family: 'Roboto', sans-serif;
@@ -779,7 +756,6 @@ h2.title:before {
 	padding-bottom: 20px;
 	padding-top: 15px;
 }
-
 
 	.brands-name .nav-stacked li a {
 		background-color: #FFFFFF;
@@ -804,7 +780,6 @@ h2.title:before {
 	position: relative;
 }
 
-
 .price-range {
 	margin-top: 30px;
 }
@@ -818,7 +793,6 @@ h2.title:before {
 	min-height: 20px;
 	padding: 35px;
 }
-
 
 .tooltip-inner {
 	background-color: #FE980F;
@@ -838,7 +812,6 @@ h2.title:before {
 	margin-left: -5px;
 }
 
-
 .padding-right {
 	padding-right: 0;
 }
@@ -846,7 +819,6 @@ h2.title:before {
 .features_items {
 	overflow: hidden;
 }
-
 
 h2.title {
 	color: #FE980F;
@@ -889,7 +861,6 @@ h2.title {
 	font-weight: 700;
 }
 
-
 .productinfo p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
@@ -921,7 +892,6 @@ h2.title {
 	height: 100%;
 }
 
-
 .product-overlay .overlay-content {
 	bottom: 0;
 	position: absolute;
@@ -945,15 +915,12 @@ h2.title {
 		color: #FE980F;
 	}
 
-
 .product-overlay p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
 	color: #fff;
 }
-
-
 
 .add-to-cart {
 	background: #F5F5ED;
@@ -1101,7 +1068,6 @@ h2.title {
 		margin-bottom: 50px;
 	}
 
-
 		.our_partners ul li a:hover {
 			background: none;
 		}
@@ -1109,7 +1075,6 @@ h2.title {
 /*************************
 *******Shop CSS******
 **************************/
-
 
 #advertisement {
 	padding-bottom: 45px;
@@ -1163,8 +1128,6 @@ h2.title {
 			color: #fff;
 		}
 
-
-
 /*************************
 *******Product Details CSS******
 **************************/
@@ -1173,11 +1136,9 @@ h2.title {
 	overflow: hidden;
 }
 
-
 #similar-product {
 	margin-top: 40px;
 }
-
 
 #reviews {
 	padding-left: 25px;
@@ -1189,8 +1150,6 @@ h2.title {
 	overflow: hidden;
 	margin-top: 10px;
 }
-
-
 
 .view-product {
 	position: relative;
@@ -1307,7 +1266,6 @@ h2.title {
 	margin-top: 15px;
 }
 
-
 .cart {
 	background: #FE980F;
 	border: 0 none;
@@ -1318,7 +1276,6 @@ h2.title {
 	margin-bottom: 10px;
 	margin-left: 20px;
 }
-
 
 .shop-details-tab {
 	border: 1px solid #F7F7F0;
@@ -1332,7 +1289,6 @@ h2.title {
 		padding-left: 0;
 		padding-right: 0;
 	}
-
 
 #reviews ul {
 	background: #FFFFFF;
@@ -1410,7 +1366,6 @@ h2.title {
 	font-size: 14px;
 }
 
-
 /*************************
 *******404 CSS******
 **************************/
@@ -1460,7 +1415,6 @@ h2.title {
 		padding: 8px 40px;
 	}
 
-
 /*************************
 *******login page CSS******
 **************************/
@@ -1478,7 +1432,6 @@ h2.title {
 	font-weight: 300;
 	margin-bottom: 30px;
 }
-
 
 .login-form form input, .signup-form form input {
 	background: #F0F0E9;
@@ -1537,7 +1490,6 @@ h2.title {
 	border-bottom: none;
 }
 
-
 .or {
 	background: #FE980F;
 	border-radius: 40px;
@@ -1550,7 +1502,6 @@ h2.title {
 	text-align: center;
 	width: 50px;
 }
-
 
 /*************************
 *******Cart CSS******
@@ -1597,7 +1548,6 @@ h2.title {
 	margin-bottom: 50px
 }
 
-
 	#cart_items .cart_info .cart_menu {
 		background: #FE980F;
 		color: #fff;
@@ -1609,7 +1559,6 @@ h2.title {
 	#cart_items .cart_info .table.table-condensed thead tr {
 		height: 51px;
 	}
-
 
 	#cart_items .cart_info .table.table-condensed tr {
 		border-bottom: 1px solid#F7F7F0
@@ -1624,11 +1573,9 @@ h2.title {
 	vertical-align: inherit;
 }
 
-
 #cart_items .cart_info .image {
 	padding-left: 30px;
 }
-
 
 #cart_items .cart_info .cart_description h4 {
 	margin-bottom: 0
@@ -1645,12 +1592,10 @@ h2.title {
 	color: #696763
 }
 
-
 #cart_items .cart_info .cart_price p {
 	color: #696763;
 	font-size: 18px
 }
-
 
 #cart_items .cart_info .cart_total_price {
 	color: #FE980F;
@@ -1673,7 +1618,6 @@ h2.title {
 	width: 35px;
 }
 
-
 .cart_quantity_input {
 	color: #696763;
 	float: left;
@@ -1682,13 +1626,11 @@ h2.title {
 	font-family: 'Roboto',sans-serif;
 }
 
-
 .cart_delete {
 	display: block;
 	margin-right: -12px;
 	overflow: hidden;
 }
-
 
 	.cart_delete a {
 		background: #F0F0E9;
@@ -1700,7 +1642,6 @@ h2.title {
 		.cart_delete a:hover {
 			background: #FE980F
 		}
-
 
 .bg h2.title {
 	margin-right: 0;
@@ -1719,7 +1660,6 @@ h2.title {
 	font-size: 16px;
 	font-weight: 300;
 }
-
 
 #do_action .total_area {
 	padding-bottom: 18px !important;
@@ -1743,13 +1683,11 @@ h2.title {
 	padding: 7px 20px;
 }
 
-
 .user_option label {
 	color: #696763;
 	font-weight: normal;
 	margin-left: 10px;
 }
-
 
 .user_info {
 	display: block;
@@ -1793,7 +1731,6 @@ h2.title {
 		border: 0
 	}
 
-
 .chose_area .update {
 	margin-left: 40px;
 }
@@ -1815,8 +1752,6 @@ h2.title {
 	margin-left: 20px
 }
 
-
-
 /*************************
 *******checkout CSS******
 **************************/
@@ -1837,7 +1772,6 @@ h2.title {
 .checkout-options {
 	padding-left: 20px
 }
-
 
 	.checkout-options h3 {
 		color: #363432;
@@ -1887,7 +1821,6 @@ h2.title {
 		padding: 2px 3px;
 	}
 
-
 .register-req {
 	font-size: 14px;
 	font-weight: 300;
@@ -1899,8 +1832,6 @@ h2.title {
 		margin-bottom: 0
 	}
 
-
-
 .shopper-info p,
 .bill-to p,
 .order-message p {
@@ -1908,7 +1839,6 @@ h2.title {
 	font-size: 20px;
 	font-weight: 300
 }
-
 
 .shopper-info .btn-primary {
 	background: #FE980F;
@@ -1918,12 +1848,10 @@ h2.title {
 	margin-top: 20px;
 }
 
-
 .form-two, .form-one {
 	float: left;
 	width: 47%
 }
-
 
 	.shopper-info > form > input,
 	.form-two > form > select,
@@ -1945,7 +1873,6 @@ h2.title {
 	margin-left: 5%
 }
 
-
 .order-message textarea {
 	font-size: 12px;
 	height: 335px;
@@ -1960,7 +1887,6 @@ h2.title {
 	margin-left: 10px;
 	font-size: 14px
 }
-
 
 .review-payment h2 {
 	color: #696763;
@@ -2007,14 +1933,9 @@ h2.title {
 		border-bottom: 1px solid #F7F7F0;
 	}
 
-
-
-
 /*************************
 *******Blog CSS******
 **************************/
-
-
 
 .blog-post-area
 .single-blog-post h3 {
@@ -2099,7 +2020,6 @@ h2.title {
 		color: #FE980F
 	}
 
-
 .blog-post-area
 .single-blog-post
 .btn-primary {
@@ -2109,7 +2029,6 @@ h2.title {
 	color: #FFFFFF;
 	margin-top: 17px;
 }
-
 
 .pagination-area {
 	margin-bottom: 45px;
@@ -2133,8 +2052,6 @@ h2.title {
 			background: #FE980F;
 			color: #fff
 		}
-
-
 
 /*************************
 *******Blog Single CSS******
@@ -2180,7 +2097,6 @@ h2.title {
 		margin-bottom: 0
 	}
 
-
 		.rating-area
 		.ratings li i {
 			color: #CCCCCC
@@ -2199,7 +2115,6 @@ h2.title {
 		color: #FE980F
 	}
 
-
 	.rating-area .tag {
 		float: right;
 		margin-bottom: 0;
@@ -2214,12 +2129,10 @@ h2.title {
 				color: #363432;
 			}
 
-
 .socials-share {
 	margin-bottom: 30px;
 	margin-top: 18px;
 }
-
 
 .commnets
 .media-object {
@@ -2274,7 +2187,6 @@ h2.title {
 		width: 17px;
 	}
 
-
 		.blog-socials ul li a {
 			color: #393B3B;
 			display: block;
@@ -2287,7 +2199,6 @@ h2.title {
 				color: #fff;
 				background: #FE980F
 			}
-
 
 .media-list .btn-primary,
 .commnets .btn-primary {
@@ -2328,14 +2239,11 @@ h2.title {
 	width: 95%;
 }
 
-
 .sinlge-post-meta {
 	overflow: hidden;
 	padding-left: 0;
 	margin-bottom: 15px
 }
-
-
 
 	.sinlge-post-meta li {
 		background: #F0F0E9;
@@ -2361,7 +2269,6 @@ h2.title {
 				border-width: 6px;
 				left: 27px;
 			}
-
 
 .replay-box {
 	margin-bottom: 107px;
@@ -2439,8 +2346,6 @@ h2.title {
 		left: 5px
 	}
 
-
-
 /*************************
 ******* Contact CSS ********
 **************************/
@@ -2487,7 +2392,6 @@ h2.title {
 	margin-bottom: 15px;
 	margin-top: 20px;
 }
-
 
 #contact-page .form-control:focus,
 #contact-page .form-control:hover {

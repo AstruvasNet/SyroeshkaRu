@@ -1,6 +1,3 @@
-using System;
-using Newtonsoft.Json;
-
 namespace SYR.UserInterface.MVC.Models
 {
 	public class ErrorViewModel

@@ -1,5 +1,4 @@
 ﻿export enum AlertType {
-
 	default,
 	success,
 	danger,
@@ -8,13 +7,11 @@
 }
 
 export enum ModalType {
-
 	confirm,
 	login
 }
 
 export enum ModalSize {
-
 	lg,
 	md,
 	sm,

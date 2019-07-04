@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SYR.Core.BusinessLogic.Helpers;
-using SYR.Core.DomainModel;
 using SYR.Core.DomainModel.System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace SYR.Core.BusinessLogic.ViewModel
 {
@@ -71,7 +69,7 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		public ICollection<string> UserRole { get; set; }
 		public IEnumerable<SelectListItem> RolesCollection { get; set; }
 
-		UsersViewModel()
+		private UsersViewModel()
 		{
 			Roles = new List<Roles>();
 			UserRole = new List<string>();

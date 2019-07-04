@@ -1,7 +1,7 @@
 ﻿$(function() {
 	$(function () {
 		$('[data-toggle="tab"]').on('shown.bs.tab', function () {
-			// сохраним последнюю вкладку      
+			// сохраним последнюю вкладку
 			localStorage.setItem('lastTab', $(this).attr('href'));
 		});
 		//перейти к последней вкладки, если она существует:

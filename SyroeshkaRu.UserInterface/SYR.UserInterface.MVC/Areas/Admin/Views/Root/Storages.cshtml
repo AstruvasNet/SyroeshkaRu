@@ -3,24 +3,24 @@
 	ViewData["Title"] = "Склады";
 }
 
-	<div class="header-p header-p-left">
-		<p>@ViewData["Title"]</p>
-	</div>
+<div class="header-p header-p-left">
+	<p>@ViewData["Title"]</p>
+</div>
 
 <div class="card page-content">
 	<table class="table table-sm table-bordered table-striped">
 		<thead>
-		<tr>
-			<th>Название</th>
-			<th>Описание</th>
-			<th>Основной</th>
-			<th>Категории</th>
-			<th>Продукты</th>
-			<th></th>
-		</tr>
+			<tr>
+				<th>Название</th>
+				<th>Описание</th>
+				<th>Основной</th>
+				<th>Категории</th>
+				<th>Продукты</th>
+				<th></th>
+			</tr>
 		</thead>
 		<tbody>
-		@foreach (var storage in (ICollection<StoragesViewModel>)Model.ModelObject)
+			@foreach (var storage in (ICollection<StoragesViewModel>)Model.ModelObject)
 		{
 			<tr>
 				<td>@storage.Title</td>
@@ -44,11 +44,11 @@
 		}
 		</tbody>
 		<tfoot>
-		<tr>
-			<td colspan="6">
-				<a asp-controller="Root" asp-action="Storages" asp-route-id="@Guid.Empty" class="btn btn-success btn-xs">Добавить</a>
-			</td>
-		</tr>
+			<tr>
+				<td colspan="6">
+					<a asp-controller="Root" asp-action="Storages" asp-route-id="@Guid.Empty" class="btn btn-success btn-xs">Добавить</a>
+				</td>
+			</tr>
 		</tfoot>
 	</table>
 </div>

@@ -3,7 +3,6 @@
 var boot = new store.Boot();
 
 $(() => {
-
 	boot.scrollEvent(window);
 	boot.load();
 });

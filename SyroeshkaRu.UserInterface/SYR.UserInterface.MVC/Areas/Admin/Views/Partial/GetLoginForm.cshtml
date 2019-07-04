@@ -1,29 +1,28 @@
 ﻿@model LoginViewModel
-
 @*<div class="login-form">
-	<h2>Авторизация</h2>
-	<form asp-route="account" asp-route-action="login" class="login-form">
-		<input asp-for="UserName" placeholder="Login" />
-		<input asp-for="Password" placeholder="Password" />
-		<span>
-			<input asp-for="RememberMe" type="checkbox" class="checkbox">
-			Запомнить
-		</span>
-		<div class="row">
-			<a asp-route="">Сброс пароля</a>
-		</div>
-		<div class="form-inline row">
-			<div class="form-group">
-				<button type="submit" class="btn btn-success btn-sm" ui-role="submit">
-					Авторизация
-				</button>
+		<h2>Авторизация</h2>
+		<form asp-route="account" asp-route-action="login" class="login-form">
+			<input asp-for="UserName" placeholder="Login" />
+			<input asp-for="Password" placeholder="Password" />
+			<span>
+				<input asp-for="RememberMe" type="checkbox" class="checkbox">
+				Запомнить
+			</span>
+			<div class="row">
+				<a asp-route="">Сброс пароля</a>
 			</div>
-			<div class="form-group">
-				<button type="button" asp-route="account" asp-route-action="register" class="btn btn-default">Регистрация</button>
+			<div class="form-inline row">
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-sm" ui-role="submit">
+						Авторизация
+					</button>
+				</div>
+				<div class="form-group">
+					<button type="button" asp-route="account" asp-route-action="register" class="btn btn-default">Регистрация</button>
+				</div>
 			</div>
-		</div>
-	</form>
-</div>*@
+		</form>
+	</div>*@
 
 <form asp-route="account" asp-route-action="login" asp-antiforgery="false">
 	<div class="modal-header">
@@ -43,12 +42,12 @@
 			</div>
 		</div>
 		<div class="form-check">
-			<input asp-for="RememberMe" type="checkbox" class="form-check-input"/>
+			<input asp-for="RememberMe" type="checkbox" class="form-check-input" />
 			<label asp-for="RememberMe" class="form-check-label col-form-label-sm"></label>
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button type="submit" class="btn btn-sm btn-success">Авторизация</button>
+		<button type="submit" class="btn btn-sm btn-success" ui-role="submit">Авторизация</button>
 		<button asp-route="account" asp-route-action="register" type="button" class="btn btn-sm btn-info">Регистрация</button>
 	</div>
 </form>
