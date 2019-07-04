@@ -55,7 +55,7 @@ export module ModalModule {
 						() => {
 							location.reload();
 						},
-						error => {
+						(error: any) => {
 							$(".errors").remove();
 							if (error) {
 								error = JSON.parse(error.responseText);
