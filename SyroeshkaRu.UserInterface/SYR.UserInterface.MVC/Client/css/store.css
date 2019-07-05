@@ -1,8 +1,10 @@
-﻿.badge-light, .navbar.bg-light {
+﻿/* #region BrandColors */
+/* #endregion BrandColors */
+.badge-light, .navbar.bg-light {
 	background: white;
 	background: linear-gradient(180deg, white 0%, #cae288 21%, rgba(166, 206, 56, 0.58027) 35%, rgba(243, 246, 106, 0.633491) 100%); }
 
-/* INDIVIDUAL ELEMENTS */
+/* #region INDIVIDUAL ELEMENTS */
 b.fa {
 	margin-right: 5px; }
 
@@ -29,8 +31,8 @@ select.form-control-sm {
 .text-danger-o {
 	color: rgba(255, 0, 0, 0.8); }
 
-/* INDIVIDUAL ELEMENTS */
-/* ALL HEADERS */
+/* #endregion INDIVIDUAL ELEMENTS */
+/* #region ALL HEADERS */
 .navbar-brand img {
 	max-width: 100px; }
 
@@ -47,8 +49,8 @@ select.form-control-sm {
 	.scroll-menu .dropdown-toggle::after {
 		display: none; }
 
-/* ALL HEADERS */
-/* ALL FORMS */
+/* #endregion ALL HEADERS */
+/* #region ALL FORMS */
 .form-group {
 	margin-bottom: 5px; }
 
@@ -59,8 +61,8 @@ select.form-control-sm {
 		color: #f8f9fa;
 		text-shadow: 0 1px 0 #f8f9fa; }
 
-/* ALL FORMS */
-/* HEADER */
+/* #endregion ALL FORMS */
+/* #region HEADER */
 .header-middle .navbar {
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
 	position: relative; }
@@ -108,13 +110,13 @@ select.form-control-sm {
 .navbar .dropdown .dropdown-toggle {
 	color: #696969; }
 
-/* HEADER */
-/* MAIN */
+/* #endregion HEADER */
+/* #region MAIN */
 main {
 	margin-top: 50px; }
 
-/* MAIN */
-/* FORMS */
+/* #endregion MAIN */
+/* #region FORMS */
 form .modal-body {
 	padding-left: 60px;
 	padding-right: 60px; }
@@ -125,4 +127,4 @@ form .modal-body {
 		form .modal-body .form-check input[type="checkbox"].form-check-input {
 			margin-top: 10px; }
 
-/* FORMS */
+/* #endregion FORMS */

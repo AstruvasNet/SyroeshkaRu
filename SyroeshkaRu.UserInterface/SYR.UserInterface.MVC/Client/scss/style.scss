@@ -1,6 +1,6 @@
 ﻿@import "_references";
 
-/* INDIVIDUAL ELEMENTS */
+/* #region INDIVIDUAL ELEMENTS */
 
 b.fa {
 	margin: {
@@ -50,9 +50,9 @@ select.form-control-sm {
 	color: $brand-color-red;
 }
 
-/* INDIVIDUAL ELEMENTS */
+/* #endregion INDIVIDUAL ELEMENTS */
 
-/* ALL HEADERS */
+/* #region ALL HEADERS */
 
 .navbar {
 	&-brand {
@@ -85,9 +85,9 @@ select.form-control-sm {
 	}
 }
 
-/* ALL HEADERS */
+/* #endregion ALL HEADERS */
 
-/* ALL FORMS */
+/* #region ALL FORMS */
 
 .form-group {
 	margin-bottom: 5px;
@@ -105,4 +105,4 @@ select.form-control-sm {
 	}
 }
 
-/* ALL FORMS */
+/* #endregion ALL FORMS */

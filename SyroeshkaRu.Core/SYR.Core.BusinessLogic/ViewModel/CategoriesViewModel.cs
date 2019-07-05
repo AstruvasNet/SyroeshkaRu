@@ -11,7 +11,8 @@ namespace SYR.Core.BusinessLogic.ViewModel
 
 		public CategoriesViewModel() => _db = new SyroeshkaRuService();
 
-		public Guid Id { get; set; }
+		private Guid Id => default;
+
 		public string Title { get; set; }
 		public ICollection<ProductsViewModel> Products => (ICollection<ProductsViewModel>)_db.GetCategoryProducts(Id);
 	}
@@ -25,7 +26,8 @@ namespace SYR.Core.BusinessLogic.ViewModel
 			_db = new SyroeshkaRuService();
 		}
 
-		public Guid CategoryId { get; set; }
+		private Guid CategoryId => default;
+
 		public Guid ProductId { get; set; }
 		public ICollection<CategoriesViewModel> Categories => (ICollection<CategoriesViewModel>)_db.GetCategories(CategoryId);
 		public CategoriesViewModel Category => (CategoriesViewModel)_db.GetCategories(CategoryId);

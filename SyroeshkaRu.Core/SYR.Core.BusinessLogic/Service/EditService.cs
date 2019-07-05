@@ -22,7 +22,16 @@ namespace SYR.Core.BusinessLogic.Service
 		private SqlParameter _output;
 		private string _input;
 
-		private SqlParameter Output()
+		public EditService(ModelContext db, IHttpContextAccessor user, UserManager<Users> userManager)
+		{
+			_db = db;
+			_user = user;
+			_userManager = userManager;
+		}
+
+		#region InputOutputParameters
+
+		private static SqlParameter Output()
 		{
 			return new SqlParameter
 			{
@@ -38,19 +47,15 @@ namespace SYR.Core.BusinessLogic.Service
 			return param.Aggregate("", (current, t) => current + $"{t.ParameterName} = '{t.SourceColumn}',");
 		}
 
-		public EditService(ModelContext db, IHttpContextAccessor user, UserManager<Users> userManager)
-		{
-			_db = db;
-			_user = user;
-			_userManager = userManager;
-		}
-
 		private void InputOutputInit(ICollection<SqlParameter> param)
 		{
 			_output = Output();
 			_input = Input(param);
 		}
 
+		#endregion
+
+		#region EditProducts
 		public object EditProducts(ProductsViewModel model)
 		{
 			var param = new List<SqlParameter>
@@ -67,7 +72,9 @@ namespace SYR.Core.BusinessLogic.Service
 				output);
 			return output.Value;
 		}
+		#endregion
 
+		#region EditStoragesProducts
 		public object EditStoragesProducts(StoragesProductsViewModel model)
 		{
 			var param = new List<SqlParameter>
@@ -88,7 +95,9 @@ namespace SYR.Core.BusinessLogic.Service
 				return ex;
 			}
 		}
+		#endregion
 
+		#region EditStorages
 		public object EditStorages(StoragesViewModel model)
 		{
 			var param = new List<SqlParameter>
@@ -113,8 +122,9 @@ namespace SYR.Core.BusinessLogic.Service
 				return $"0//{ex.Message}";
 			}
 		}
+		#endregion
 
-		//TODO При полном удалении элемента удалять историю
+		#region DeleteStorages
 		public object DeleteStorages(StoragesViewModel model)
 		{
 			var param = new List<SqlParameter>
@@ -138,5 +148,6 @@ namespace SYR.Core.BusinessLogic.Service
 				return $"0//{ex.Message}";
 			}
 		}
+		#endregion
 	}
 }

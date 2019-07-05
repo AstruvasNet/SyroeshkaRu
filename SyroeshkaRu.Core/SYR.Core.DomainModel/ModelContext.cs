@@ -10,6 +10,7 @@ namespace SYR.Core.DomainModel
 {
 	public sealed class ModelContext : IdentityDbContext<Users>
 	{
+		#region DbSet
 		public DbSet<Products> Products { get; set; }
 		public DbSet<Storages> Storages { get; set; }
 		public DbSet<Categories> Categories { get; set; }
@@ -24,6 +25,8 @@ namespace SYR.Core.DomainModel
 
 		public DbSet<SequrityProfiles> SequrityProfiles { get; set; }
 		public DbSet<SequrityRoles> SequrityRoles { get; set; }
+
+		#endregion
 
 		public ModelContext()
 		{
@@ -48,8 +51,7 @@ namespace SYR.Core.DomainModel
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			#region Склады и продукты
-
+			#region StoragesProducts
 			modelBuilder.Entity<StoragesProducts>()
 				.HasKey(s => new { s.ProductId, s.StorageId });
 
@@ -63,9 +65,9 @@ namespace SYR.Core.DomainModel
 				.WithMany(s => s.Products)
 				.HasForeignKey(sp => sp.StorageId);
 
-			#endregion Склады и продукты
+			#endregion
 
-			#region Склады и категории
+			#region StoragesCategories
 
 			modelBuilder.Entity<StoragesCategories>()
 				.HasKey(s => new { s.StorageId, s.CategoryId });
@@ -80,26 +82,9 @@ namespace SYR.Core.DomainModel
 				.WithMany(s => s.Categories)
 				.HasForeignKey(sc => sc.StorageId);
 
-			#endregion Склады и категории
+			#endregion
 
-			#region Категории и продукты
-
-			modelBuilder.Entity<CategoriesProducts>()
-				.HasKey(c => new { c.ProductId, c.CategoryId });
-
-			modelBuilder.Entity<CategoriesProducts>()
-				.HasOne(cp => cp.Product)
-				.WithMany(p => p.CategoriesProducts)
-				.HasForeignKey(cp => cp.ProductId);
-
-			modelBuilder.Entity<CategoriesProducts>()
-				.HasOne(cp => cp.Category)
-				.WithMany(c => c.CategoriesProducts)
-				.HasForeignKey(cp => cp.CategoryId);
-
-			#endregion Категории и продукты
-
-			#region Роли и ресурсы
+			#region SequrityRoles
 
 			modelBuilder.Entity<SequrityRoles>()
 				.HasKey(c => new { c.SequrityProfileId, c.RoleId });
@@ -114,7 +99,7 @@ namespace SYR.Core.DomainModel
 				.WithMany(r => r.SequrityRoles)
 				.HasForeignKey(rr => rr.RoleId);
 
-			#endregion Роли и ресурсы
+			#endregion
 
 			base.OnModelCreating(modelBuilder);
 		}

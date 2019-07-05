@@ -21,27 +21,27 @@
 		</thead>
 		<tbody>
 			@foreach (var storage in (ICollection<StoragesViewModel>)Model.ModelObject)
-		{
-			<tr>
-				<td>@storage.Title</td>
-				<td>@storage.Description</td>
-				<td>
-					<form-checkbox model="storage" element="IsDefault" disabled="true"></form-checkbox>
-				</td>
-				<td>
-					<a href="#">@storage.Categories.Count</a>
-				</td>
-				<td>
-					<a href="#">@storage.Products.Count</a>
-				</td>
-				<td class="control-icons">
-					<a asp-controller="Root" asp-action="Storages" asp-route-id="@storage.Id"
-					   class="fa fa-pencil-square-o text-success"></a>
-					<a asp-controller="Partial" asp-action="Confirm" asp-route-type="0" asp-route-id="@storage.Id"
-					   class="fa fa-times-circle-o text-danger" ui-role="remove" title="Удаление склада"></a>
-				</td>
-			</tr>
-		}
+			{
+				<tr>
+					<td>@storage.Title</td>
+					<td>@storage.Description</td>
+					<td>
+						<form-checkbox model="storage" element="IsDefault" disabled="true"></form-checkbox>
+					</td>
+					<td>
+						<a href="#">@storage.Categories.Count</a>
+					</td>
+					<td>
+						<a href="#">@storage.Products.Count</a>
+					</td>
+					<td class="control-icons">
+						<a asp-controller="Root" asp-action="Storages" asp-route-id="@storage.Id"
+						   class="fa fa-pencil-square-o text-success"></a>
+						<a asp-controller="Partial" asp-action="" asp-route-type="0" asp-route-id="@storage.Id"
+						   class="fa fa-times-circle-o text-danger" ui-role="remove" title="Удаление склада"></a>
+					</td>
+				</tr>
+			}
 		</tbody>
 		<tfoot>
 			<tr>

@@ -39,9 +39,9 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 				ICollection<string> source =
 					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(AspAction))
 							.SequrityRoles.Where(i => !i.Allow)
-					 from role in ViewContext.HttpContext.User.FindAll(ClaimTypes.Role)
-					 where role.Value == profile.Roles.Name
-					 select role.Value).ToList();
+					from role in ViewContext.HttpContext.User.FindAll(ClaimTypes.Role)
+					where role.Value == profile.Roles.Name
+					select role.Value).ToList();
 				if (source.Count != 0) return;
 				output.TagName = null;
 				output.Content.SetContent(null);

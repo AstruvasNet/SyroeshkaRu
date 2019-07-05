@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SYR.Core.BusinessLogic.Helpers;
-using SYR.Core.DomainModel.System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace SYR.Core.BusinessLogic.ViewModel
 {
@@ -22,7 +20,7 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		[Display(Name = "Запомнить")]
 		public bool RememberMe { get; set; }
 
-		public string ReturnUrl { get; set; }
+		public string ReturnUrl => null;
 	}
 
 	public class RegisterViewModel
@@ -65,19 +63,7 @@ namespace SYR.Core.BusinessLogic.ViewModel
 
 	public class UsersViewModel : IdentityUser
 	{
-		public ICollection<Roles> Roles { get; set; }
 		public ICollection<string> UserRole { get; set; }
 		public IEnumerable<SelectListItem> RolesCollection { get; set; }
-
-		private UsersViewModel()
-		{
-			Roles = new List<Roles>();
-			UserRole = new List<string>();
-			RolesCollection = Roles.Select(m => new SelectListItem
-			{
-				Text = m.Name,
-				Value = m.Id
-			}).OrderBy(i => i.Value);
-		}
 	}
 }

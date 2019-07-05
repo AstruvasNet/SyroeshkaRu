@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SYR.Core.BusinessLogic.Interface;
@@ -7,13 +11,10 @@ using SYR.Core.BusinessLogic.ViewModel;
 using SYR.Core.DomainModel;
 using SYR.Core.DomainModel.Client;
 using SYR.Core.DomainModel.System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 
 namespace SYR.Core.BusinessLogic.Service
 {
+	//TODO Почистить класс
 	public class SyroeshkaRuService : ISyroeshkaRu
 	{
 		private readonly ModelContext _db;
@@ -33,11 +34,6 @@ namespace SYR.Core.BusinessLogic.Service
 			_userManager = userManager;
 		}
 
-		public object GetUsers(ClaimsPrincipal user)
-		{
-			return _userManager.GetUserId(user);
-		}
-
 		public object GetMenu()
 		{
 			return _mapper.Map<ICollection<Menu>, ICollection<MenuViewModel>>(_db.Menu.ToList());
@@ -47,6 +43,14 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			return _mapper.Map<Menu, MenuViewModel>(_db.Menu.FirstOrDefault(i => i.Id == parentId)).Name;
 		}
+
+		public object GetUsers(ClaimsPrincipal user)
+		{
+			return _userManager.GetUserId(user);
+		}
+
+		/* #region GetMenu */
+		/* #endregion */
 
 		#region Дерево Склады -> Продукты
 

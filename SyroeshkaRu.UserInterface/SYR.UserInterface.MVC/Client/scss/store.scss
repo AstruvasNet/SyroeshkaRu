@@ -1,6 +1,6 @@
 ﻿@import "style";
 
-/* HEADER */
+/* #region HEADER */
 
 .header-middle {
 	.navbar {
@@ -107,17 +107,17 @@
 	}
 }
 
-/* HEADER */
+/* #endregion HEADER */
 
-/* MAIN */
+/* #region MAIN */
 
 main {
 	margin-top: 50px;
 }
 
-/* MAIN */
+/* #endregion MAIN */
 
-/* FORMS */
+/* #region FORMS */
 
 form {
 	.modal-body {
@@ -146,4 +146,4 @@ form {
 	}
 }
 
-/* FORMS */
+/* #endregion FORMS */

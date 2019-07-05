@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +13,6 @@ using SYR.Core.BusinessLogic.ViewModel;
 using SYR.Core.DomainModel;
 using SYR.Core.DomainModel.Client;
 using SYR.Core.DomainModel.System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
 namespace SYR.Core.BusinessLogic.Service
 {
@@ -28,7 +28,7 @@ namespace SYR.Core.BusinessLogic.Service
 			_mapper = new Configure().Configuration().CreateMapper();
 		}
 
-		#region Users
+		#region GetUsers
 
 		public object GetUsers(string id = null)
 		{
@@ -40,9 +40,9 @@ namespace SYR.Core.BusinessLogic.Service
 			return _mapper.Map<Users, UsersViewModel>(_db.Users.Find(id));
 		}
 
-		#endregion Users
+		#endregion GetUsers
 
-		#region Склады
+		#region GetStorages
 
 		public object GetStorages(Guid? storageId = null)
 		{
@@ -58,7 +58,9 @@ namespace SYR.Core.BusinessLogic.Service
 				.ToList());
 		}
 
-		#endregion Склады
+		#endregion GetStorages
+
+		#region GetSequrityProfiles
 
 		public object GetSequrityProfiles(Guid? id)
 		{
@@ -89,17 +91,27 @@ namespace SYR.Core.BusinessLogic.Service
 				.ToList();
 		}
 
+		#endregion GetSequrityProfiles
+
+		#region GetRoles
+
 		public object GetRoles()
 		{
 			return _mapper.Map<ICollection<Roles>, ICollection<RolesViewModel>>(_db.Roles.ToList());
 		}
+
+		#endregion GetRoles
+
+		#region GetUserRoles
 
 		public object GetUserRoles(string id)
 		{
 			return _db.UserRoles.Where(i => i.UserId == id).Select(i => i.RoleId).ToList();
 		}
 
-		#region Paginations
+		#endregion GetUserRoles
+
+		#region GetPaginations
 
 		public object GetUsers(int page, int pageSize)
 		{
@@ -132,7 +144,9 @@ namespace SYR.Core.BusinessLogic.Service
 					}).FirstOrDefault();
 		}
 
-		#endregion Paginations
+		#endregion GetPaginations
+
+		#region GetMenu
 
 		public object GetMainMenu()
 		{
@@ -152,5 +166,7 @@ namespace SYR.Core.BusinessLogic.Service
 					.OrderBy(i => i.Level)
 					.ToList());
 		}
+
+		#endregion GetMenu
 	}
 }

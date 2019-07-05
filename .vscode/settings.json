@@ -5,5 +5,23 @@
 	"editor.formatOnType": true,
 	"editor.tabCompletion": "on",
 	"editor.insertSpaces": false,
-	"editor.detectIndentation": false
+	"editor.detectIndentation": false,
+	"editor.folding": true,
+	"editor.showFoldingControls": "mouseover",
+	"maptz.regionfolder": {
+		"[ahk]": {
+			"foldEnd": "; #endregion",
+			"foldEndRegex": ";[\\s]*#endregion",
+			"foldStart": "; #region [NAME]",
+			"foldStartRegex": ";[\\s]*#region[\\s]*(.*)"
+		}
+	},
+	"regionsWithColors.color": "rgba(0, 0, 0, 0.3)",
+	"trailing-spaces.deleteModifiedLinesOnly": false,
+	"indentRainbow.colors": [
+		"rgba(255,255,64,0.1)",
+		"rgba(127,255,127,0.1)",
+		"rgba(255,127,255,0.1)",
+		"rgba(79,236,236,0.1)"
+	]
 }
