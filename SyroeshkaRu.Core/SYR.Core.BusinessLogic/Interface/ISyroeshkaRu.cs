@@ -15,11 +15,11 @@ namespace SYR.Core.BusinessLogic.Interface
 
 		object GetProducts(Guid categoryId);
 
-		object GetCategoryProducts(Guid categoryId);
+		//object GetCategoryProducts(Guid categoryId);
 
 		object GetStorageProperties(Guid productId);
 
-		object GetCategoryProperties(Guid productId);
+		//object GetCategoryProperties(Guid productId);
 
 		object GetMenu();
 

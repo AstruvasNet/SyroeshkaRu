@@ -4,6 +4,7 @@ namespace SYR.Core.DomainModel.Client
 {
 	public class CategoriesProducts
 	{
+		public Guid Id { get; set; }
 		public Guid CategoryId { get; set; }
 		public Categories Category { get; set; }
 

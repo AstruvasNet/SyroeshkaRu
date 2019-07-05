@@ -107,11 +107,11 @@ namespace SYR.Core.BusinessLogic.Service
 
 		#region Продукты категории
 
-		public object GetCategoryProducts(Guid categoryId)
-		{
-			return _mapper.Map<ICollection<Products>, ICollection<ProductsViewModel>>(_db.CategoriesProducts
-				.Where(i => i.CategoryId == categoryId).Select(n => n.Product).ToList());
-		}
+		//public object GetCategoryProducts(Guid categoryId)
+		//{
+		//	return _mapper.Map<ICollection<Products>, ICollection<ProductsViewModel>>(_db.CategoriesProducts
+		//		.Where(i => i.CategoryId == categoryId).Select(n => n.Product).ToList());
+		//}
 
 		#endregion Продукты категории
 
@@ -128,11 +128,11 @@ namespace SYR.Core.BusinessLogic.Service
 
 		#region Параметры категории
 
-		public object GetCategoryProperties(Guid productId)
-		{
-			return _mapper.Map<ICollection<CategoriesProducts>, ICollection<CategoriesProductsViewModel>>(
-				_db.CategoriesProducts.Where(i => i.ProductId == productId).ToList());
-		}
+		//public object GetCategoryProperties(Guid productId)
+		//{
+		//	return _mapper.Map<ICollection<CategoriesProducts>, ICollection<CategoriesProductsViewModel>>(
+		//		_db.CategoriesProducts.Where(i => i.ProductId == productId).ToList());
+		//}
 
 		#endregion Параметры категории
 	}

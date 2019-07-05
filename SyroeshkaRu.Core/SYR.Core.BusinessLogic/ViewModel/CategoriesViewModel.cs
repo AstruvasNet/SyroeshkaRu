@@ -14,7 +14,7 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		private Guid Id => default;
 
 		public string Title { get; set; }
-		public ICollection<ProductsViewModel> Products => (ICollection<ProductsViewModel>)_db.GetCategoryProducts(Id);
+		//public ICollection<ProductsViewModel> Products => (ICollection<ProductsViewModel>)_db.GetCategoryProducts(Id);
 	}
 
 	public class CategoriesProductsViewModel

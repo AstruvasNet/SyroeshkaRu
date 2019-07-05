@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace SYR.Core.BusinessLogic.Filters
 {
-	[AttributeUsage(AttributeTargets.Class)]
+	[AttributeUsage(AttributeTargets.All)]
 	public class Sequrity : ActionFilterAttribute
 	{
 		private readonly IAdmin _db = new AdminService();
@@ -18,22 +18,34 @@ namespace SYR.Core.BusinessLogic.Filters
 		public override void OnActionExecuting(ActionExecutingContext context)
 		{
 			var profiles = (ICollection<SequrityProfilesViewModel>)_db.GetSequrityProfiles();
-			var route = context.RouteData.Values.FirstOrDefault(i => i.Key == "controller").Value;
+			var controller = context.RouteData.Values.FirstOrDefault(i => i.Key == "controller").Value;
+			var action = context.RouteData.Values.FirstOrDefault(i => i.Key == "action").Value;
 
 			if (context.HttpContext.User.IsInRole("root"))
 			{
 				context.Result = context.Result;
 			}
-			else if (profiles.Count(i => i.Name.Contains(route.ToString().ToLower())) != 0)
+			else if (profiles.Count(i => i.Name.Contains(controller.ToString().ToLower())) != 0)
 			{
 				ICollection<string> source =
-					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(route.ToString()))
+					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(controller.ToString()))
 							.SequrityRoles.Where(i => !i.Allow)
 					 from role in context.HttpContext.User.FindAll(ClaimTypes.Role)
 					 where role.Value == profile.Roles.Name
 					 select role.Value).ToList();
 
 				context.Result = source.Count != 0 ? context.Result : new NotFoundResult();
+			}
+			else if (profiles.Count(i => i.Name.Contains(action.ToString().ToLower())) != 0)
+			{
+				ICollection<string> source =
+					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(action.ToString()))
+							.SequrityRoles.Where(i => i.Allow)
+						from role in context.HttpContext.User.FindAll(ClaimTypes.Role)
+						where role.Value == profile.Roles.Name
+						select role.Value).ToList();
+
+				context.Result = source.Count == 0 ? context.Result : new NotFoundResult();
 			}
 			else
 			{

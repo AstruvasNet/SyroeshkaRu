@@ -41,13 +41,13 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 			return await Task.Run(() => View(_db.GetStorages()));
 		}
 
-		[Route("[action]/{id?}"), Disallow]
+		[Route("[action]/{id?}"), Sequrity]
 		public async Task<IActionResult> Products(Guid? id, int? page = 1)
 		{
 			return await Task.Run(View);
 		}
 
-		[Route("[action]/{id?}"), Disallow]
+		[Route("[action]/{id?}"), Sequrity]
 		public async Task<IActionResult> Sequrity(Guid? id)
 		{
 			if (!string.IsNullOrEmpty(id.ToString()))
@@ -55,7 +55,7 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 			return await Task.Run(() => View(_db.GetSequrityProfiles(Assembly.GetEntryAssembly())));
 		}
 
-		[Route("[action]/{id?}"), Disallow]
+		[Route("[action]/{id?}"), Sequrity]
 		public async Task<IActionResult> History(Guid? id, int? page = 1)
 		{
 			if (page != null)
