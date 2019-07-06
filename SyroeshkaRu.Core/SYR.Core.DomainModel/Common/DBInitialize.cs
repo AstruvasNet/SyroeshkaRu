@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SYR.Core.DomainModel.Client;
 
 namespace SYR.Core.DomainModel.Common
 {
@@ -57,23 +58,48 @@ namespace SYR.Core.DomainModel.Common
 
 			using (var db = new ModelContext())
 			{
-				if (db.SequrityProfiles.Count() == 0)
+				using (var transaction = db.Database.BeginTransaction())
 				{
-					var roleId = roleManager.Roles.FirstOrDefault(i => i.Name.Contains("admin"))?.Id;
-
-					var profiles = new List<SequrityProfiles>
+					try
 					{
-						new SequrityProfiles {Id = Guid.NewGuid(), Name = "site", Title = "Администратор"},
-						new SequrityProfiles {Id = Guid.NewGuid(), Name = "root", Title = "Администратор"},
-						new SequrityProfiles {Id = Guid.NewGuid(), Name = "sequrity", Title = "Администратор"}
-					};
+						if (db.SequrityProfiles.Count() == 0)
+						{
+							var roleId = roleManager.Roles.FirstOrDefault(i => i.Name.Contains("admin"))?.Id;
 
-					var roles = profiles.Select(t => new SequrityRoles { RoleId = roleId, SequrityProfile = t }).ToList();
+							var profiles = new List<SequrityProfiles>
+							{
+								new SequrityProfiles {Id = Guid.NewGuid(), Name = "site", Title = "Администратор"},
+								new SequrityProfiles {Id = Guid.NewGuid(), Name = "root", Title = "Администратор"},
+								new SequrityProfiles {Id = Guid.NewGuid(), Name = "sequrity", Title = "Администратор"}
+							};
 
-					for (int i = profiles.Count - 1; i >= 0; i--)
-						db.SequrityProfiles.Add(profiles[i]);
-					for (int i = roles.Count - 1; i >= 0; i--)
-						db.SequrityRoles.Add(roles[i]);
+							var roles = profiles.Select(t => new SequrityRoles {RoleId = roleId, SequrityProfile = t})
+								.ToList();
+
+							for (int i = profiles.Count - 1; i >= 0; i--)
+								db.SequrityProfiles.Add(profiles[i]);
+							for (int i = roles.Count - 1; i >= 0; i--)
+								db.SequrityRoles.Add(roles[i]);
+						}
+
+						if (db.Storages.Count() == 0)
+						{
+							var storage = new Storages
+							{
+								Id = Guid.NewGuid(),
+								Title = "Основной склад",
+								IsDefault = true,
+								IsDeleted = false
+							};
+
+							db.Storages.Add(storage);
+						}
+						transaction.Commit();
+					}
+					catch (Exception)
+					{
+						transaction.Rollback();
+					}
 				}
 
 				db.SaveChanges();
