@@ -117,7 +117,7 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			return new PaginationViewModel
 			{
-				PageViewModel = new PageViewModel(((ICollection<UsersViewModel>)GetUsers()).Count, page, pageSize),
+				PageObject = new PageViewModel(((ICollection<UsersViewModel>)GetUsers()).Count, page, pageSize),
 				ModelObject = ((ICollection<UsersViewModel>)GetUsers()).Skip((page - 1) * pageSize).Take(pageSize).ToList()
 			};
 		}
@@ -126,7 +126,7 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			return new PaginationViewModel
 			{
-				PageViewModel = new PageViewModel(((ICollection<StoragesViewModel>)GetStorages()).Count, page, pageSize),
+				PageObject = new PageViewModel(((ICollection<StoragesViewModel>)GetStorages()).Count, page, pageSize),
 				ModelObject = ((ICollection<StoragesViewModel>)GetStorages()).Skip((page - 1) * pageSize).Take(pageSize).ToList()
 			};
 		}
@@ -139,7 +139,7 @@ namespace SYR.Core.BusinessLogic.Service
 					from history in g.DefaultIfEmpty()
 					select new PaginationViewModel
 					{
-						PageViewModel = new PageViewModel(model.Count, page, pageSize),
+						PageObject = new PageViewModel(model.Count, page, pageSize),
 						ModelObject = model.Skip((page - 1) * pageSize).Take(pageSize).ToList()
 					}).FirstOrDefault();
 		}
