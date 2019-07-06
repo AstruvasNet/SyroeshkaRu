@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SYR.Core.DomainModel.System;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -58,23 +59,21 @@ namespace SYR.Core.DomainModel.Common
 			{
 				if (db.SequrityProfiles.Count() == 0)
 				{
-					var roleId = roleManager.Roles.FirstOrDefault(i => i.Name.Contains("root"))?.Id;
+					var roleId = roleManager.Roles.FirstOrDefault(i => i.Name.Contains("admin"))?.Id;
 
-					var rootProfile = new SequrityProfiles
+					var profiles = new List<SequrityProfiles>
 					{
-						Id = Guid.NewGuid(),
-						Name = "root",
-						Title = "Только супер администратор"
+						new SequrityProfiles {Id = Guid.NewGuid(), Name = "site", Title = "Администратор"},
+						new SequrityProfiles {Id = Guid.NewGuid(), Name = "root", Title = "Администратор"},
+						new SequrityProfiles {Id = Guid.NewGuid(), Name = "sequrity", Title = "Администратор"}
 					};
 
-					var rootRoles = new SequrityRoles
-					{
-						RoleId = roleId,
-						SequrityProfile = rootProfile
-					};
+					var roles = profiles.Select(t => new SequrityRoles { RoleId = roleId, SequrityProfile = t }).ToList();
 
-					db.SequrityProfiles.Add(rootProfile);
-					db.SequrityRoles.Add(rootRoles);
+					for (int i = profiles.Count - 1; i >= 0; i--)
+						db.SequrityProfiles.Add(profiles[i]);
+					for (int i = roles.Count - 1; i >= 0; i--)
+						db.SequrityRoles.Add(roles[i]);
 				}
 
 				db.SaveChanges();

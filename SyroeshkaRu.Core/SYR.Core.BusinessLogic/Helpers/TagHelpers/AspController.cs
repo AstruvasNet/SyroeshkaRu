@@ -20,10 +20,14 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 		}
 
 		[HtmlAttributeName("asp-controller")]
+		// ReSharper disable once MemberCanBePrivate.Global
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public string AspController { get; set; }
 
 		[ViewContext]
 		[HtmlAttributeNotBound]
+		// ReSharper disable once MemberCanBePrivate.Global
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public ViewContext ViewContext { get; set; }
 
 		public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -38,7 +42,7 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 			{
 				ICollection<string> source =
 					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(AspController))
-							.SequrityRoles.Where(i => !i.Allow)
+							.SequrityRoles
 					 from role in ViewContext.HttpContext.User.FindAll(ClaimTypes.Role)
 					 where role.Value == profile.Roles.Name
 					 select role.Value).ToList();

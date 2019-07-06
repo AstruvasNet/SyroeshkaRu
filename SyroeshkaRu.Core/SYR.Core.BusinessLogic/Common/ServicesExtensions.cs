@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using SYR.Core.BusinessLogic.Helpers.TagHelpers;
@@ -13,12 +12,8 @@ namespace SYR.Core.BusinessLogic.Common
 {
 	public static class DependencyInjection
 	{
-		private static readonly ModelContext _db = new ModelContext();
-
 		public static void ServicesCollection(this IServiceCollection services)
 		{
-			services.AddSingleton<IAuthorizationHandler, AccessHandler>();
-
 			services.AddTransient<ISyroeshkaRu, SyroeshkaRuService>();
 
 			services.AddTransient<IAdmin, AdminService>();

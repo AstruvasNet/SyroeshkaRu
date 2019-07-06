@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 {
+	// ReSharper disable once ClassNeverInstantiated.Global
 	public class PageLinkTagHelper : TagHelper
 	{
 		private readonly IUrlHelperFactory _urlHelperFactory;
@@ -19,12 +20,15 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 
 		[ViewContext]
 		[HtmlAttributeNotBound]
+		// ReSharper disable once MemberCanBePrivate.Global
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public ViewContext ViewContext { get; set; }
 
 		public PageViewModel PageModel { get; set; }
 		public string PageAction { get; set; }
 
 		[HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
+		// ReSharper disable once MemberCanBePrivate.Global
 		public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
 
 		public override void Process(TagHelperContext context, TagHelperOutput output)

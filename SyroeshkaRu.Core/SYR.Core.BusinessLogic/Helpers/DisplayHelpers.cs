@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace SYR.Core.BusinessLogic.Helpers
 {
-	public class DisplayHelpers
+	public static class DisplayHelpers
 	{
 		private static readonly IAdmin _dbAdmin = new AdminService();
 

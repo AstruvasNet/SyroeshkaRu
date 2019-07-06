@@ -21,6 +21,8 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 		/// </example>
 		/// </summary>
 		[HtmlAttributeName("model")]
+		// ReSharper disable once MemberCanBePrivate.Global
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public object Model { get; set; }
 
 		/// <summary>
@@ -28,6 +30,7 @@ namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 		/// elements="Id,Name,Title"
 		/// </summary>
 		[HtmlAttributeName("elements")]
+		// ReSharper disable once MemberCanBePrivate.Global
 		public string Elements { get; set; }
 
 		public override void Process(TagHelperContext context, TagHelperOutput output)

@@ -1,24 +1,21 @@
-﻿using SYR.Core.BusinessLogic.Interface;
-using SYR.Core.BusinessLogic.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SYR.Core.BusinessLogic.ViewModel
 {
 	public class ProductsViewModel
 	{
-		private readonly ISyroeshkaRu _db;
-
-		public ProductsViewModel()
-		{
-			_db = new SyroeshkaRuService();
-		}
-
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public Guid Id { get; set; }
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public string Name { get; set; }
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public string Description { get; set; }
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public string Keywords { get; set; }
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public string Content { get; set; }
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public bool IsNew { get; set; }
 
 		public ICollection<StoragesProductsViewModel> StoragesProducts { get; set; }

@@ -10,6 +10,12 @@ using System.Security.Claims;
 
 namespace SYR.Core.BusinessLogic.Filters
 {
+	/// <summary>Глобальный фильтр ограничения доступа</summary>
+	/// <example>
+	/// Если в базе существует параметр с полем названия контроллера, то все роли, связанные с этим параметрам имеют доступ к данному контроллеру.
+	/// Если в базе существует параметр с полем названия метода, то все роли, связанные с этим параметром не имеют доступ к данному методу
+	/// </example>
+
 	[AttributeUsage(AttributeTargets.All)]
 	public class Sequrity : ActionFilterAttribute
 	{
@@ -27,25 +33,26 @@ namespace SYR.Core.BusinessLogic.Filters
 			}
 			else if (profiles.Count(i => i.Name.Contains(controller.ToString().ToLower())) != 0)
 			{
-				ICollection<string> source =
+				ICollection<string> controllerSequrity =
 					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(controller.ToString()))
-							.SequrityRoles.Where(i => !i.Allow)
+							.SequrityRoles
 					 from role in context.HttpContext.User.FindAll(ClaimTypes.Role)
 					 where role.Value == profile.Roles.Name
 					 select role.Value).ToList();
 
-				context.Result = source.Count != 0 ? context.Result : new NotFoundResult();
-			}
-			else if (profiles.Count(i => i.Name.Contains(action.ToString().ToLower())) != 0)
-			{
-				ICollection<string> source =
-					(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(action.ToString()))
-							.SequrityRoles.Where(i => i.Allow)
-						from role in context.HttpContext.User.FindAll(ClaimTypes.Role)
-						where role.Value == profile.Roles.Name
-						select role.Value).ToList();
+				context.Result = controllerSequrity.Count != 0 ? context.Result : new NotFoundResult();
 
-				context.Result = source.Count == 0 ? context.Result : new NotFoundResult();
+				if (profiles.Count(i => i.Name.Contains(action.ToString().ToLower())) != 0)
+				{
+					ICollection<string> actionSequrity =
+						(from profile in ((SequrityProfilesViewModel)_db.GetSequrityProfiles(action.ToString()))
+								.SequrityRoles
+							from role in context.HttpContext.User.FindAll(ClaimTypes.Role)
+							where role.Value == profile.Roles.Name
+							select role.Value).ToList();
+
+					context.Result = actionSequrity.Count == 0 ? context.Result : new NotFoundResult();
+				}
 			}
 			else
 			{

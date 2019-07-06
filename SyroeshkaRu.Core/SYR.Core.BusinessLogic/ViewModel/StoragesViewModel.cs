@@ -1,6 +1,4 @@
-﻿using SYR.Core.BusinessLogic.Interface;
-using SYR.Core.BusinessLogic.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -24,39 +22,32 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		public string ShortName => $"{Title} ({Description})";
 
 		//public ICollection<ProductsViewModel> Products { get; set; }
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public ICollection<StoragesProductsViewModel> Products { get; set; }
 
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public ICollection<StoragesCategoriesViewModel> Categories { get; set; }
 	}
 
 	public class StoragesProductsViewModel
 	{
-		private readonly ISyroeshkaRu _db;
-
-		public StoragesProductsViewModel()
-		{
-			_db = new SyroeshkaRuService();
-		}
-
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public Guid StorageId { get; set; }
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public Guid ProductId { get; set; }
 
 		public ProductsViewModel Product { get; set; }
 
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public decimal Price { get; set; }
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
 		public decimal Quantity { get; set; }
 	}
 
 	public class StoragesCategoriesViewModel
 	{
-		private readonly ISyroeshkaRu _db;
-
-		public StoragesCategoriesViewModel()
-		{
-			_db = new SyroeshkaRuService();
-		}
-
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		// ReSharper disable once MemberCanBePrivate.Global
 		public Guid StorageId { get; set; }
-		public ICollection<CategoriesViewModel> Categories => (ICollection<CategoriesViewModel>)_db.GetCategories(StorageId);
 	}
 }

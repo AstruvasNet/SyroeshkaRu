@@ -4,7 +4,6 @@ namespace SYR.Core.DomainModel.System
 {
 	public class SequrityRoles
 	{
-		public bool Allow { get; set; }
 		public Guid SequrityProfileId { get; set; }
 		public SequrityProfiles SequrityProfile { get; set; }
 

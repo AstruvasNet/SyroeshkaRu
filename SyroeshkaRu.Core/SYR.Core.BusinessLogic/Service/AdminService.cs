@@ -115,7 +115,7 @@ namespace SYR.Core.BusinessLogic.Service
 
 		public object GetUsers(int page, int pageSize)
 		{
-			return new IndexViewModel
+			return new PaginationViewModel
 			{
 				PageViewModel = new PageViewModel(((ICollection<UsersViewModel>)GetUsers()).Count, page, pageSize),
 				ModelObject = ((ICollection<UsersViewModel>)GetUsers()).Skip((page - 1) * pageSize).Take(pageSize).ToList()
@@ -124,7 +124,7 @@ namespace SYR.Core.BusinessLogic.Service
 
 		public object GetStorages(int page, int pageSize)
 		{
-			return new IndexViewModel
+			return new PaginationViewModel
 			{
 				PageViewModel = new PageViewModel(((ICollection<StoragesViewModel>)GetStorages()).Count, page, pageSize),
 				ModelObject = ((ICollection<StoragesViewModel>)GetStorages()).Skip((page - 1) * pageSize).Take(pageSize).ToList()
@@ -137,7 +137,7 @@ namespace SYR.Core.BusinessLogic.Service
 			return (from h in _db.History
 					join s in _db.Storages on h.ItemId equals s.Id into g
 					from history in g.DefaultIfEmpty()
-					select new IndexViewModel
+					select new PaginationViewModel
 					{
 						PageViewModel = new PageViewModel(model.Count, page, pageSize),
 						ModelObject = model.Skip((page - 1) * pageSize).Take(pageSize).ToList()
