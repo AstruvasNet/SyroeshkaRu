@@ -20,12 +20,12 @@ export module ModalModule {
 		load = (options: Options): void => {
 			this.close();
 			$("body").append("<div class=\"modal fade\" role=\"dialog\" />");
-			var $this = $(".modal");
+			let $this = $(".modal");
 			$this.append("<div class=\"modal-dialog modal-" + ModalSize[options.size] + "\" />");
 			$this.children(".modal-dialog").append("<div class=\"modal-content\" role=\"document\"/>");
 
 			this.http.postWithData("/partial/get" + ModalType[options.type] + "Form",
-				{ type: options.type },
+				options.data,
 				(data: any) => {
 					$this.find(".modal-content").html(data);
 					this.submitEvent($this);
@@ -44,13 +44,15 @@ export module ModalModule {
 			$this.modal({
 				backdrop: "static"
 			});
-		}
+		};
 
 		submitEvent = (element: any): void => {
-			var $this = $(element).find("form");
+			let $this = $(element).find("form");
+			// noinspection JSDeprecatedSymbols
 			$this.submit(
 				e => {
 					e.preventDefault();
+					// noinspection SpellCheckingInspection
 					this.http.postWithData($this.attr("action"), $this.serialize(),
 						() => {
 							location.reload();
@@ -62,12 +64,13 @@ export module ModalModule {
 								$this.find(".modal-body").prepend("<div class=\"errors\" />");
 								$.each(error,
 									(_index, item) => {
-										$(".errors").prepend(item + "</br>").addClass("text-danger-o col-form-label-sm");
+										$(".errors").prepend(item + "</br>")
+											.addClass("text-danger-o col-form-label-sm");
 									});
 							}
 						});
 				});
-		}
+		};
 
 		close = (): void => {
 			$(".modal").remove(".modal");

@@ -8,15 +8,15 @@
 </div>
 
 <div class="card page-content">
-	<table class="table table-sm table-bordered table-striped">
+	<table>
 		<thead>
 			<tr>
-				<th>Название</th>
-				<th>Описание</th>
-				<th>Основной</th>
-				<th>Категории</th>
-				<th>Продукты</th>
-				<th></th>
+				<th class="btn-info">Название</th>
+				<th class="btn-info">Описание</th>
+				<th class="btn-info">Основной</th>
+				<th class="btn-info">Категории</th>
+				<th class="btn-info">Продукты</th>
+				<th class="bg-info"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,8 +37,9 @@
 					<td class="control-icons">
 						<a asp-controller="Root" asp-action="Storages" asp-route-id="@storage.Id"
 						   class="fa fa-pencil-square-o text-success"></a>
-						<a asp-controller="Partial" asp-action="" asp-route-type="0" asp-route-id="@storage.Id"
-						   class="fa fa-times-circle-o text-danger" ui-role="remove" title="Удаление склада"></a>
+						<a asp-controller="Partial" asp-action="GetConfirmForm" asp-area="Admin" asp-route-id="@storage.Id"
+						   class="fa fa-times-circle-o text-danger" ui-role="remove" title="Удаление склада"
+						   data-toggle="tooltip" data-placement="left"></a>
 					</td>
 				</tr>
 			}

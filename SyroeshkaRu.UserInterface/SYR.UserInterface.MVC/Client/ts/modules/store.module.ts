@@ -19,13 +19,13 @@ export module StoreModule {
 				$("main").css("margin-top", 50);
 				$(".scroll-menu").css("display", "none");
 			}
-		}
+		};
 
 		scrollEvent = (element: any): void => {
 			$(element).scroll(() => {
 				this.scroll(element);
 			});
-		}
+		};
 
 		modalFormEvent = (element: any): void => {
 			$(element).on("click",
@@ -33,7 +33,7 @@ export module StoreModule {
 					e.preventDefault();
 					this.modal.load(new modal.Options(1, 1));
 				});
-		}
+		};
 
 		submitEvent = (element: any): void => {
 			$(element).on("click",
@@ -44,7 +44,7 @@ export module StoreModule {
 							location.reload();
 						});
 				});
-		}
+		};
 
 		alertEvent = (element: any): void => {
 			$(element).on("click",
@@ -52,7 +52,7 @@ export module StoreModule {
 					e.preventDefault();
 					this.alert.load(new alert.Options(null, 1, "Ok"));
 				});
-		}
+		};
 
 		selectStorageEvent = (element: any): void => {
 			$(element).on("change",
@@ -61,11 +61,11 @@ export module StoreModule {
 					this.setStorage();
 					location.reload();
 				});
-		}
+		};
 
 		setStorage = (): void => {
 			this.http.postWithData("/api/setStorage", { id: localStorage.getItem("storage") }, () => { });
-		}
+		};
 
 		load = (): void => {
 			this.modalFormEvent("[ui-role=\"modal-form\"]");

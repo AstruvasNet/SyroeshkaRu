@@ -33,9 +33,7 @@ namespace SYR.Core.BusinessLogic.Service
 		public object GetUsers(string id = null)
 		{
 			if (string.IsNullOrEmpty(id))
-			{
 				return _mapper.Map<ICollection<Users>, ICollection<UsersViewModel>>(_db.Users.ToList());
-			}
 
 			return _mapper.Map<Users, UsersViewModel>(_db.Users.Find(id));
 		}
@@ -47,9 +45,7 @@ namespace SYR.Core.BusinessLogic.Service
 		public object GetStorages(Guid? storageId = null)
 		{
 			if (!string.IsNullOrEmpty(storageId.ToString()))
-			{
 				return _mapper.Map<Storages, StoragesViewModel>(_db.Storages.Find(storageId));
-			}
 
 			return _mapper.Map<ICollection<Storages>, ICollection<StoragesViewModel>>(_db.Storages
 				.Include(i => i.Products)
@@ -59,6 +55,24 @@ namespace SYR.Core.BusinessLogic.Service
 		}
 
 		#endregion GetStorages
+
+		#region GetRoles
+
+		public object GetRoles()
+		{
+			return _mapper.Map<ICollection<Roles>, ICollection<RolesViewModel>>(_db.Roles.ToList());
+		}
+
+		#endregion GetRoles
+
+		#region GetUserRoles
+
+		public object GetUserRoles(string id)
+		{
+			return _db.UserRoles.Where(i => i.UserId == id).Select(i => i.RoleId).ToList();
+		}
+
+		#endregion GetUserRoles
 
 		#region GetSequrityProfiles
 
@@ -84,32 +98,22 @@ namespace SYR.Core.BusinessLogic.Service
 
 		public object GetSequrityProfiles(Assembly assembly)
 		{
-			return assembly
+			var controllers = assembly
 				.GetTypes()
 				.AsEnumerable()
 				.Where(type => typeof(Controller).IsAssignableFrom(type))
 				.ToList();
+
+			var methods = assembly.GetTypes().Where(type => typeof(Action).IsAssignableFrom(type)).ToList();
+
+			return new SequrityViewModel
+			{
+				Controllers = controllers,
+				Methods = methods
+			};
 		}
 
 		#endregion GetSequrityProfiles
-
-		#region GetRoles
-
-		public object GetRoles()
-		{
-			return _mapper.Map<ICollection<Roles>, ICollection<RolesViewModel>>(_db.Roles.ToList());
-		}
-
-		#endregion GetRoles
-
-		#region GetUserRoles
-
-		public object GetUserRoles(string id)
-		{
-			return _db.UserRoles.Where(i => i.UserId == id).Select(i => i.RoleId).ToList();
-		}
-
-		#endregion GetUserRoles
 
 		#region GetPaginations
 
@@ -117,8 +121,9 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			return new PaginationViewModel
 			{
-				PageObject = new PageViewModel(((ICollection<UsersViewModel>)GetUsers()).Count, page, pageSize),
-				ModelObject = ((ICollection<UsersViewModel>)GetUsers()).Skip((page - 1) * pageSize).Take(pageSize).ToList()
+				PageObject = new PageViewModel(((ICollection<UsersViewModel>) GetUsers()).Count, page, pageSize),
+				ModelObject = ((ICollection<UsersViewModel>) GetUsers()).Skip((page - 1) * pageSize).Take(pageSize)
+					.ToList()
 			};
 		}
 
@@ -126,8 +131,9 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			return new PaginationViewModel
 			{
-				PageObject = new PageViewModel(((ICollection<StoragesViewModel>)GetStorages()).Count, page, pageSize),
-				ModelObject = ((ICollection<StoragesViewModel>)GetStorages()).Skip((page - 1) * pageSize).Take(pageSize).ToList()
+				PageObject = new PageViewModel(((ICollection<StoragesViewModel>) GetStorages()).Count, page, pageSize),
+				ModelObject = ((ICollection<StoragesViewModel>) GetStorages()).Skip((page - 1) * pageSize)
+					.Take(pageSize).ToList()
 			};
 		}
 
@@ -135,13 +141,13 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			var model = _mapper.Map<ICollection<History>, ICollection<HistoryViewModel>>(_db.History.ToList());
 			return (from h in _db.History
-					join s in _db.Storages on h.ItemId equals s.Id into g
-					from history in g.DefaultIfEmpty()
-					select new PaginationViewModel
-					{
-						PageObject = new PageViewModel(model.Count, page, pageSize),
-						ModelObject = model.Skip((page - 1) * pageSize).Take(pageSize).ToList()
-					}).FirstOrDefault();
+				join s in _db.Storages on h.ItemId equals s.Id into g
+				from history in g.DefaultIfEmpty()
+				select new PaginationViewModel
+				{
+					PageObject = new PageViewModel(model.Count, page, pageSize),
+					ModelObject = model.Skip((page - 1) * pageSize).Take(pageSize).ToList()
+				}).FirstOrDefault();
 		}
 
 		#endregion GetPaginations
@@ -151,7 +157,7 @@ namespace SYR.Core.BusinessLogic.Service
 		public object GetMainMenu()
 		{
 			return _mapper.Map<ICollection<Menu>, ICollection<MenuViewModel>>(_db.Menu
-				.Where(i => i.Type == (int)SiteType.Menu && i.ParentId == null)
+				.Where(i => i.Type == (int) SiteType.Menu && i.ParentId == null)
 				.OrderBy(i => i.Level)
 				.ToList());
 		}
@@ -159,7 +165,7 @@ namespace SYR.Core.BusinessLogic.Service
 		public object GetSecondMenu(string page)
 		{
 			page = page ?? "Index";
-			Guid? parentId = _db.Menu.FirstOrDefault(i => i.Name == page)?.Id;
+			var parentId = _db.Menu.FirstOrDefault(i => i.Name == page)?.Id;
 			return _mapper
 				.Map<ICollection<Menu>, ICollection<MenuViewModel>>(_db.Menu
 					.Where(i => i.ParentId == parentId && i.ParentId != null)

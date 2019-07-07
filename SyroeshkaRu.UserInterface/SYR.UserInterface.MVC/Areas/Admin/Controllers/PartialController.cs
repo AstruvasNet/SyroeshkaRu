@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.ViewModel;
 using System.Threading.Tasks;
@@ -31,6 +32,13 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 		public async Task<IActionResult> GetLoginForm()
 		{
 			return await Task.Run(PartialView);
+		}
+
+		[HttpPost("[controller]/[action]/{id?}")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> GetConfirmForm(Guid id, string type)
+		{
+			return await Task.Run(() => PartialView($"Id: {id}, Type: {type}"));
 		}
 	}
 }

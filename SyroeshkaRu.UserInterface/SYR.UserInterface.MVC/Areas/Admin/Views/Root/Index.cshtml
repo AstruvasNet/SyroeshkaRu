@@ -3,34 +3,33 @@
 	ViewData["Title"] = "Пользователи";
 }
 
-<div class="page-header">
-	<h4>@ViewData["Title"]</h4>
+<div class="header-p header-p-left">
+	<p>@ViewData["Title"]</p>
 </div>
-
-<div class="page-content">
-	<table class="table table-bordered table-striped table-responsive">
+<section class="page-content">
+	<table>
 		<thead>
-			<tr>
-				<th>E-mail</th>
-				<th>Логин</th>
-				<th>Роли</th>
-				<th></th>
-			</tr>
+		<tr>
+			<th class="btn-info">E-mail</th>
+			<th class="btn-info">Логин</th>
+			<th class="btn-info">Роли</th>
+			<th class="bg-info"></th>
+		</tr>
 		</thead>
 		<tbody>
-			@foreach (var user in (ICollection<UsersViewModel>)Model.ModelObject)
-			{
+		@foreach (var user in (ICollection<UsersViewModel>)Model.ModelObject)
+		{
 			<tr>
 				<td>@user.Email</td>
 				<td>@user.UserName</td>
 				<td>
 					@foreach (var roles in DisplayHelpers.RolesCollection())
+					{
+						if (DisplayHelpers.RoleId(user.Id).Contains(roles.Value))
 						{
-							if (DisplayHelpers.RoleId(user.Id).Contains(roles.Value))
-							{
-					<div class="label label-default">@roles.Text</div>
-							}
+							<b class="badge badge-info">@roles.Text</b>
 						}
+					}
 				</td>
 				<td>
 					<a asp-controller="root" asp-action="index" asp-route-id="@user.Id"
@@ -38,9 +37,19 @@
 					<a class="fa fa-times-circle-o text-danger"></a>
 				</td>
 			</tr>
-			}
+		}
 		</tbody>
 	</table>
-</div>
+</section>
 
 <page-link page-model="Model.PageObject" page-action="Index"></page-link>
+
+@*<div class="page-header">
+		<h4>@ViewData["Title"]</h4>
+	</div>
+
+	<div class="page-content">
+
+	</div>
+
+	<page-link page-model="Model.PageObject" page-action="Index"></page-link>*@

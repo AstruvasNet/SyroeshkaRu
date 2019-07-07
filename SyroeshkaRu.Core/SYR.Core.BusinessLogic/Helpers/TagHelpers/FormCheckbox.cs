@@ -4,15 +4,12 @@ using System.Linq;
 
 namespace SYR.Core.BusinessLogic.Helpers.TagHelpers
 {
+	/// <summary>
+	/// TagHelper для checkbox
+	/// </summary>
 	[HtmlTargetElement("form-checkbox", Attributes = "model, element")]
 	public class FormCheckboxTagHelpers : TagHelper
 	{
-		/// <summary>
-		/// TagHelper для checkbox
-		/// </summary>
-		/// <value>
-		/// The model.
-		/// </value>
 		[HtmlAttributeName("model")]
 		// ReSharper disable once MemberCanBePrivate.Global
 		// ReSharper disable once UnusedAutoPropertyAccessor.Global

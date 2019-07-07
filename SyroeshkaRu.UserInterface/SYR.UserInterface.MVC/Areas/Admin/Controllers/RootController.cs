@@ -27,7 +27,7 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 			if (!string.IsNullOrEmpty(id))
 				return await Task.Run(() => View("~/Areas/Admin/Views/Root/Users.cshtml", _db.GetUsers(id)));
 			if (page != null)
-				return await Task.Run(() => View(_db.GetUsers((int)page, 1)));
+				return await Task.Run(() => View(_db.GetUsers((int)page, 10)));
 			return await Task.Run(() => View(_db.GetUsers()));
 		}
 

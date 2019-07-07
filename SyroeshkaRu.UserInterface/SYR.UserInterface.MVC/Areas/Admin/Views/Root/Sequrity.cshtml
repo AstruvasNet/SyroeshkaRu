@@ -1,11 +1,14 @@
-﻿@model ICollection<System.Type>
+﻿@model SequrityViewModel
 @{
 	ViewData["Title"] = "Безопасность";
 }
 
-@foreach (var i in Model)
+@foreach (var i in Model.Controllers)
 {
-<div>@i.Name</div>
+	<div>$"{@i.Name} ({@i.BaseType})"</div>
+}
+@foreach(var i in Model.Methods){
+	<div>$"{@i.Name} ({@i.BaseType})"</div>
 }
 @*<div class="page-header">
 		<h4>@ViewData["Title"]</h4>

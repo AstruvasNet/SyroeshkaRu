@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SyroeshkaRu.Core\SYR.Core.DomainModel\SYR.Core.DomainModel.csproj" />
+    <ProjectReference Include="..\..\SyroeshkaRu.UserInterface\SYR.UserInterface.MVC\SYR.UserInterface.MVC.csproj" />
   </ItemGroup>
 
 </Project>

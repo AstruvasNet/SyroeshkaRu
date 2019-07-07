@@ -20,6 +20,7 @@ namespace SYR.Core.BusinessLogic.Service
 		private readonly IHttpContextAccessor _user;
 		private readonly ModelContext _db;
 		private SqlParameter _output;
+
 		private string _input;
 
 		public EditService(ModelContext db, IHttpContextAccessor user, UserManager<Users> userManager)

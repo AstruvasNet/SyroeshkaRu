@@ -1,5 +1,5 @@
-﻿import { ServiceModule as serviceModule } from "../services/service.module";
-import { AlertType } from "../../classes/enum.class";
+﻿import {ServiceModule as serviceModule} from "../services/service.module";
+import {AlertType} from "../../classes/enum.class";
 
 export module AlertModule {
 	export class Options {
@@ -24,7 +24,7 @@ export module AlertModule {
 			$("main").prepend("<div class=\"alert alert-" +
 				AlertType[options.type] +
 				" alert-dismissible fade hide rounded\" role=\"alert\" />");
-			var $this = $(".alert");
+			let $this = $(".alert");
 			$this.append("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Закрыть\" />");
 			$this.find(".close").append("<span aria-hidden=\"true\" />");
 			$this.find(".close").children("span").html("&times;");
@@ -42,10 +42,10 @@ export module AlertModule {
 					$this.removeClass("hide");
 					$this.addClass("show");
 				});
-		}
+		};
 
 		close = (): void => {
 			$(".alert").remove();
-		}
+		};
 	}
 }

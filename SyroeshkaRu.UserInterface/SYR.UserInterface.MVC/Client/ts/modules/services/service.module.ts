@@ -1,5 +1,4 @@
 ﻿import { ModalModule as modalModule } from "../libs/modal.module";
-import { AlertModule as alertModule } from "../libs/alert.module";
 
 export module ServiceModule {
 	let modal = modalModule;
@@ -60,6 +59,7 @@ export module ServiceModule {
 		}
 
 		postWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
+			console.log(data);
 			this.request(new Options(url, "post", data), successCallback, errorCallback);
 		}
 

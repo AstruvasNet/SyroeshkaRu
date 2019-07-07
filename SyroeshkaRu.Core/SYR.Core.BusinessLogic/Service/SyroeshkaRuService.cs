@@ -66,7 +66,8 @@ namespace SYR.Core.BusinessLogic.Service
 
 		public object GetComplete() =>
 			_mapper.Map<ICollection<StoragesCategories>, ICollection<StoragesCategoriesViewModel>>(
-				_db.StoragesCategories.Include(i => i.Category).GroupBy(i => i.StorageId).Select(i => i.First()).ToList());
+				_db.StoragesCategories.Include(i => i.Category).GroupBy(i => i.StorageId).Select(i => i.First())
+					.ToList());
 
 		#endregion Дерево Склады -> Продукты
 
@@ -74,7 +75,8 @@ namespace SYR.Core.BusinessLogic.Service
 
 		public object GetCategories(Guid storageId)
 		{
-			return _mapper.Map<ICollection<Categories>, ICollection<CategoriesViewModel>>(_db.StoragesCategories.Where(i => i.StorageId == storageId).Select(n => n.Category).ToList());
+			return _mapper.Map<ICollection<Categories>, ICollection<CategoriesViewModel>>(_db.StoragesCategories
+				.Where(i => i.StorageId == storageId).Select(n => n.Category).ToList());
 		}
 
 		#endregion Категории
@@ -121,7 +123,8 @@ namespace SYR.Core.BusinessLogic.Service
 
 		public object GetStorageProperties(Guid productId)
 		{
-			return _mapper.Map<StoragesProducts, StoragesProductsViewModel>(_db.StoragesProducts.FirstOrDefault(i => i.ProductId == productId));
+			return _mapper.Map<StoragesProducts, StoragesProductsViewModel>(
+				_db.StoragesProducts.FirstOrDefault(i => i.ProductId == productId));
 		}
 
 		#endregion Параметры склада

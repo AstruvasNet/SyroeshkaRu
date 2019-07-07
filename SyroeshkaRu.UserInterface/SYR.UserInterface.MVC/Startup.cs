@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using SYR.Core.BusinessLogic.Common;
@@ -12,13 +11,6 @@ namespace SYR.UserInterface.MVC
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
-
-		public IConfiguration Configuration { get; }
-
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.Configure<CookiePolicyOptions>(options =>
@@ -76,19 +68,19 @@ namespace SYR.UserInterface.MVC
 					template: "{controller=Home}/{action=Index}/{id?}");
 
 				routes.MapRoute("system", "{action}/{id?}",
-					new { Controller = "home", Action = "index", AreaAttribute = "" });
+					new {Controller = "home", Action = "index", AreaAttribute = ""});
 
 				routes.MapRoute("account", "{area:exists}/{action}",
-					new { Controller = "account", Action = "index" });
+					new {Controller = "account", Action = "index"});
 
 				routes.MapRoute("manage", "{area:exists}/{action}",
-					new { Controller = "manage", Action = "index" });
+					new {Controller = "manage", Action = "index"});
 
 				routes.MapRoute("admin", "cp/{controller}/{action}/{id?}",
-					new { Controller = "site", Action = "index", AreaAttribute = "admin" });
+					new {Controller = "site", Action = "index", AreaAttribute = "admin"});
 
-				routes.MapRoute("partial", "cp/{controller}/{action}/{type?}/{id?}",
-					new { Controller = "root", Action = "index", AreaAttribute = "admin" });
+				routes.MapRoute("partial", "{controller}/{action}/{id?}",
+					new {Controller = "partial", Action = "index", AreaAttribute = "admin"});
 			});
 		}
 	}

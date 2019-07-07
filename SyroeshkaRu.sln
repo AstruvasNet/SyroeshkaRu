@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYR.Utilites.Transfer", "Sy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYR.Utilites.Core", "SyroeshkaRu.Utilites\SYR.Utilites.Core\SYR.Utilites.Core.csproj", "{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYR.Tests.UnitTests", "SyroeshkaRu.Tests\SYR.Tests.UnitTests\SYR.Tests.UnitTests.csproj", "{C878E12B-FE6A-4CFB-B275-B3F7A3E46056}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SyroeshkaRu\SyroeshkaRu.projitems*{cb6791c2-f192-40e8-a309-ab007554661b}*SharedItemsImports = 13
@@ -58,6 +60,10 @@ Global
 		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C878E12B-FE6A-4CFB-B275-B3F7A3E46056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C878E12B-FE6A-4CFB-B275-B3F7A3E46056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C878E12B-FE6A-4CFB-B275-B3F7A3E46056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C878E12B-FE6A-4CFB-B275-B3F7A3E46056}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{E03B4438-12BA-4987-917D-3312116A5420} = {8017B6BB-3648-4165-93B0-58A28460A7A7}
 		{ED233CF9-DE05-4910-BFA0-64B0EE7DE447} = {2C55EDC6-53CD-46D6-B053-6769D1609BC9}
 		{9B9B5783-FD89-4AB5-A47D-17EBEAFBDEB8} = {2C55EDC6-53CD-46D6-B053-6769D1609BC9}
+		{C878E12B-FE6A-4CFB-B275-B3F7A3E46056} = {173CF2F2-AE6D-4602-A003-001ED8D9F9E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {835ACD51-7EA8-418C-9877-AE0A37CB4EBE}
