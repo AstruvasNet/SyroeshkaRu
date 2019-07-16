@@ -14,11 +14,9 @@ using SYR.Core.DomainModel;
 using SYR.Core.DomainModel.Client;
 using SYR.Core.DomainModel.System;
 
-namespace SYR.Core.BusinessLogic.Service
-{
+namespace SYR.Core.BusinessLogic.Service {
 	[Authorize]
-	public class AdminService : IAdmin
-	{
+	public class AdminService : IAdmin {
 		private readonly ModelContext _db;
 		private readonly IMapper _mapper;
 
@@ -121,8 +119,11 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			return new PaginationViewModel
 			{
-				PageObject = new PageViewModel(((ICollection<UsersViewModel>) GetUsers()).Count, page, pageSize),
-				ModelObject = ((ICollection<UsersViewModel>) GetUsers()).Skip((page - 1) * pageSize).Take(pageSize)
+				PageObject = new PageViewModel(((ICollection<UsersViewModel>) GetUsers())
+					.Count, page, pageSize),
+				ModelObject = ((ICollection<UsersViewModel>) GetUsers())
+					.Skip((page - 1) * pageSize)
+					.Take(pageSize)
 					.ToList()
 			};
 		}
@@ -131,8 +132,10 @@ namespace SYR.Core.BusinessLogic.Service
 		{
 			return new PaginationViewModel
 			{
-				PageObject = new PageViewModel(((ICollection<StoragesViewModel>) GetStorages()).Count, page, pageSize),
-				ModelObject = ((ICollection<StoragesViewModel>) GetStorages()).Skip((page - 1) * pageSize)
+				PageObject = new PageViewModel(((ICollection<StoragesViewModel>) GetStorages())
+					.Count, page, pageSize),
+				ModelObject = ((ICollection<StoragesViewModel>) GetStorages())
+					.Skip((page - 1) * pageSize)
 					.Take(pageSize).ToList()
 			};
 		}

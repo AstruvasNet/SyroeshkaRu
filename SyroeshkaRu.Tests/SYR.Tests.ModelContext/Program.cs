@@ -2,17 +2,17 @@
 
 namespace SYR.Tests.ModelContext
 {
-	internal class Program
+	internal static class Program
 	{
-		private static void Main(string[] args)
+		private static void Main()
 		{
 			try
 			{
-				using (var _db = new Core.DomainModel.ModelContext())
+				using (var db = new Core.DomainModel.ModelContext())
 				{
 					try
 					{
-						Console.WriteLine(_db.Database);
+						Console.WriteLine(db.Database.ProviderName);
 					}
 					catch (Exception ex)
 					{

@@ -47,7 +47,8 @@
 		<tfoot>
 			<tr>
 				<td colspan="6">
-					<a asp-controller="Root" asp-action="Storages" asp-route-id="@Guid.Empty" class="btn btn-success btn-sm">Добавить</a>
+					@* <a asp-controller="Root" asp-action="Storages" asp-route-id="@Guid.Empty" class="btn btn-success btn-sm">Добавить</a> *@
+					<a asp-controller="Root" asp-action="Storages" class="btn btn-success btn-sm" ui-role="edit">Добавить</a>
 				</td>
 			</tr>
 		</tfoot>

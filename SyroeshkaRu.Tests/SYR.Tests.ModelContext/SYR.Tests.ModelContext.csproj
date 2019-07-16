@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\SyroeshkaRu.UserInterface\SYR.UserInterface.MVC\SYR.UserInterface.MVC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Areas\Admin\Pages\Api\EditStorages.cshtml" />
+  </ItemGroup>
+
 </Project>

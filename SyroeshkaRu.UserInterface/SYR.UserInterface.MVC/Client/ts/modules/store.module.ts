@@ -22,7 +22,7 @@ export module StoreModule {
 		};
 
 		scrollEvent = (element: any): void => {
-			$(element).scroll(() => {
+			$(element).on("scroll",() => {
 				this.scroll(element);
 			});
 		};

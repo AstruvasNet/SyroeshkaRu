@@ -19,7 +19,8 @@ export module ServiceModule {
 
 	export class HttpService {
 		request = (options: Options, successCallback: Function, errorCallback?: Function): void => {
-			var that = this;
+			let that = this;
+			// noinspection JSIgnoredPromiseFromCall
 			$.ajax({
 				url: options.url,
 				method: options.method,
@@ -37,50 +38,50 @@ export module ServiceModule {
 						errorCallback(data);
 						return;
 					}
-					var errorTitle = "Ошибка";
-					var fullError = data;
+					let errorTitle = "Ошибка";
+					let fullError = data;
 					console.log(errorTitle);
 					console.log(fullError);
 					that.showJqueryDialog(fullError);
 				}
 			});
-		}
+		};
 
 		get = (url: string, successCallback: Function, errorCallback?: Function): void => {
 			this.request(new Options(url), successCallback, errorCallback);
-		}
+		};
 
-		getWithDataInput = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
-			this.request(new Options(url, "get", data), successCallback, errorCallback);
-		}
+		// getWithDataInput = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
+		// 	this.request(new Options(url, "get", data), successCallback, errorCallback);
+		// };
 
 		post = (url: string, successCallback: Function, errorCallback?: Function): void => {
 			this.request(new Options(url, "post"), successCallback, errorCallback);
-		}
+		};
 
 		postWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
 			console.log(data);
 			this.request(new Options(url, "post", data), successCallback, errorCallback);
-		}
+		};
 
-		putWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
-			this.request(new Options(url, "put", data), successCallback, errorCallback);
-		}
+		// putWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
+		// 	this.request(new Options(url, "put", data), successCallback, errorCallback);
+		// };
 
-		deleteWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
-			this.request(new Options(url, "delete", data), successCallback, errorCallback);
-		}
+		// deleteWithData = (url: string, data: Object, successCallback: Function, errorCallback?: Function): void => {
+		// 	this.request(new Options(url, "delete", data), successCallback, errorCallback);
+		// };
 
 		showJqueryDialog = (error: any): void => {
 			error = JSON.parse(error.responseText);
-			var message = "";
+			let message = "";
 			$.each(error,
 				(_index, item) => {
 					message += "<li>" + item + "</li>";
 				});
 			//let alert = new alertModule.Body;
 			//alert.load(new alertModule.Options(null, 2, message));
-			var body = new modal.Body;
+			let body = new modal.Body;
 			body.load(new modal.Options(1, 0, message));
 		}
 	}

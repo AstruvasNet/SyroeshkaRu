@@ -10,7 +10,7 @@ b.fa {
 
 .form-control-sm,
 .btn-sm {
-	height     : calc(1.5em + 5px);
+	height: calc(1.5em + 5px);
 	padding-top: 1px;
 }
 
@@ -38,11 +38,11 @@ select.form-control-sm {
 	}
 
 	.close {
+		color: $brand-color-dark;
+
 		padding: {
 			top: 0.55rem;
 		}
-
-		color: $brand-color-dark;
 	}
 }
 
@@ -74,10 +74,10 @@ select.form-control-sm {
 	display: none;
 
 	img {
-		max-width    : 70px;
-		margin-right : 20px;
 		margin-bottom: -5px;
-		position     : relative;
+		margin-right: 20px;
+		max-width: 70px;
+		position: relative;
 	}
 
 	.dropdown-toggle::after {
@@ -95,11 +95,11 @@ select.form-control-sm {
 
 .modal-content {
 	background: $brand-color-orange-o;
-	color     : $brand-color-light;
+	color: $brand-color-light;
 
 	.modal-header {
 		.close {
-			color      : $brand-color-light;
+			color: $brand-color-light;
 			text-shadow: 0 1px 0 $brand-color-light;
 		}
 	}

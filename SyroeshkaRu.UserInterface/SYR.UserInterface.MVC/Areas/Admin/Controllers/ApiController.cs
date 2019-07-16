@@ -5,12 +5,11 @@ using SYR.Core.BusinessLogic.Interface;
 using SYR.Core.BusinessLogic.ViewModel;
 using System;
 using System.Threading.Tasks;
+using SYR.Core.BusinessLogic.Filters;
 
-namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
-{
+namespace SYR.UserInterface.MVC.Areas.Admin.Controllers {
 	[Route("api")]
-	public class ApiController : Controller
-	{
+	public class ApiController : Controller {
 		private readonly IEdit _edit;
 
 		public ApiController(IEdit edit)
@@ -28,19 +27,33 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 			return await Task.Run(() => HttpContext.Session.GetString("storage"));
 		}
 
+//		[
+//			HttpPut("[action]/{id?}"),
+//			ValidateAntiForgeryToken,
+//			DbMessage(nameof(EditStorages))
+//		]
+//		public async Task<IActionResult> EditStorages(StoragesViewModel model)
+//		{
+//			//var query = _edit.EditStorages(model);
+////			if (await ErrorHeplers.ModelState(ModelState, query))
+////			{
+////				return await Task.Run(() => Ok(query.ToString().Split("//")[1]));
+////			}
+////			if (ModelState.IsValid)
+////			{
+//				return await Task.Run(() => Ok(_edit.EditStorages(model)));
+////			}
+////
+////			return await Task.Run(() => BadRequest(ModelState));
+//		}
+
 		[
-			HttpPut("[action]/{id?}"),
+			HttpPost,
 			ValidateAntiForgeryToken
 		]
 		public async Task<IActionResult> EditStorages(StoragesViewModel model)
 		{
-			var query = _edit.EditStorages(model);
-			if (await ErrorHeplers.ModelState(ModelState, query))
-			{
-				return await Task.Run(() => Ok(query.ToString().Split("//")[1]));
-			}
-
-			return await Task.Run(() => BadRequest(ModelState));
+			return await Task.Run(() => Ok(_edit.EditStorages(model)));
 		}
 
 		[

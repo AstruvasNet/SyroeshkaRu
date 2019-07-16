@@ -20,7 +20,7 @@ AS
 					BEGIN
 						INSERT [dbo].[History]
 						(
-							[Id],	
+							[Id],
 							[OperationType],
 							[ItemType],
 							[DateIn],

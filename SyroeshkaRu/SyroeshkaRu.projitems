@@ -12,7 +12,6 @@
     <None Include="$(MSBuildThisFileDirectory)SyroeshkaRu.Database\StoredProcedures\Edit\dbo._root_sp_EDIT_History.sql" />
     <None Include="$(MSBuildThisFileDirectory)SyroeshkaRu.Database\StoredProcedures\Edit\dbo._root_sp_EDIT_Storages.sql" />
     <None Include="$(MSBuildThisFileDirectory)SyroeshkaRu.Database\StoredProcedures\Edit\dbo._root_sp_EDIT_Products.sql" />
-    <None Include="$(MSBuildThisFileDirectory)SyroeshkaRu.Database\StoredProcedures\Edit\dbo._sp_EDIT_StorageProducts.sql" />
     <None Include="$(MSBuildThisFileDirectory)SyroeshkaRu.Database\StoredProcedures\Install\dbo._sys_sp_INSTALL_Index.sql" />
     <None Include="$(MSBuildThisFileDirectory)SyroeshkaRu.Database\StoredProcedures\Install\dbo._sys_sp_INSTALL_MainMenu.sql" />
     <None Include="$(MSBuildThisFileDirectory)SyroeshkaRu.Database\StoredProcedures\Install\dbo._sys_sp_INSTALL_SecondMenu.sql" />

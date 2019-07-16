@@ -5,21 +5,21 @@
 .header-middle {
 	.navbar {
 		box-shadow: 0 2px 2px $brand-color-black-o;
-		position  : relative;
+		position: relative;
 
 		&.fixed {
 			position: fixed;
-			top     : 0;
-			width   : 100%;
-			z-index : 1000;
+			top: 0;
+			width: 100%;
+			z-index: 1000;
 		}
 	}
 }
 
 .navbar {
 	.collapse {
-		display    : flex;
 		align-items: flex-start;
+		display: flex;
 
 		.col:last-child {
 			text-align: left;
@@ -55,12 +55,12 @@
 	}
 
 	.form-inline {
-		width: 20%;
-
 		margin: {
-			top  : 8px;
 			right: 10px;
+			top: 8px;
 		}
+
+		width: 20%;
 	}
 
 	&.bg-light {
@@ -78,8 +78,8 @@
 			border: 0;
 
 			padding: {
-				top   : 0;
 				bottom: 10px;
+				top: 0;
 			}
 
 			a {
@@ -93,7 +93,7 @@
 			}
 
 			&:last-child {
-				ul>li {
+				ul > li {
 					padding: 5px;
 				}
 			}
@@ -122,7 +122,7 @@ main {
 form {
 	.modal-body {
 		padding: {
-			left : 60px;
+			left: 60px;
 			right: 60px;
 		}
 

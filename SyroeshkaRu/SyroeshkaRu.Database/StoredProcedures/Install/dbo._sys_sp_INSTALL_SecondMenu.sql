@@ -59,7 +59,7 @@ AS
 
 		SET @menuArrayCount = (SELECT COUNT(Id) FROM @menuArray)
 
-		SET @thisName = (SELECT TOP(1) [Name] FROM @menuArray WHERE [Level] = @i ORDER BY [Level] ASC)
+		SET @thisName = (SELECT TOP(1) [Name] FROM @menuArray WHERE [Level] = @i ORDER BY [Level])
 
 		SET @thisItem = (SELECT COUNT(Id) FROM [dbo].[Menu] WHERE [Name] = @thisName)
 
@@ -86,13 +86,13 @@ AS
 						)
 						VALUES
 						(
-							(SELECT TOP(1) [Id] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level] ASC),
-							(SELECT TOP(1) [Name] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level] ASC),
-							(SELECT TOP(1) [Title] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level] ASC),
-							(SELECT TOP(1) [Type] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level] ASC),
-							(SELECT TOP(1) [Id] FROM [dbo].[Menu] WHERE [Level] = (SELECT TOP(1) [ParentLevel] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level] ASC) AND ParentId IS NULL ORDER BY [Level] ASC),
-							(SELECT TOP(1) [Level] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level] ASC),
-							(SELECT TOP(1) [Id] FROM [dbo].[SequrityProfiles] WHERE [Name] = 'root' ORDER BY [Id] ASC),
+							(SELECT TOP(1) [Id] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level]),
+							(SELECT TOP(1) [Name] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level]),
+							(SELECT TOP(1) [Title] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level]),
+							(SELECT TOP(1) [Type] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level]),
+							(SELECT TOP(1) [Id]FROM [dbo].[Menu]WHERE [Level] = (SELECT TOP(1) [ParentLevel] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level])AND ParentId IS NULL ORDER BY [Level]),
+							(SELECT TOP(1) [Level] FROM @menuArray WHERE [ProcessLevel] = @i ORDER BY [Level]),
+							(SELECT TOP(1) [Id] FROM [dbo].[SequrityProfiles] WHERE [Name] = 'root' ORDER BY [Id]),
 							0
 						)
 

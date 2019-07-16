@@ -23,12 +23,6 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers
 		}
 
 		[HttpPost("[controller]/[action]")]
-		public async Task<IActionResult> GetModal(int type)
-		{
-			return await Task.Run(() => PartialView(type));
-		}
-
-		[HttpPost("[controller]/[action]")]
 		public async Task<IActionResult> GetLoginForm()
 		{
 			return await Task.Run(PartialView);

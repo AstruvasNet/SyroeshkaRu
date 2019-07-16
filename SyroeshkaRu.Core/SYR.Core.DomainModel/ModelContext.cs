@@ -1,33 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System;
+using System.IO;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SYR.Core.DomainModel.Client;
 using SYR.Core.DomainModel.System;
-using System;
-using System.IO;
 
-namespace SYR.Core.DomainModel
-{
-	public sealed class ModelContext : IdentityDbContext<Users>
-	{
-		#region DbSet
-		public DbSet<Products> Products { get; set; }
-		public DbSet<Storages> Storages { get; set; }
-		public DbSet<Categories> Categories { get; set; }
-		public DbSet<StoragesProducts> StoragesProducts { get; set; }
-		public DbSet<StoragesCategories> StoragesCategories { get; set; }
-		public DbSet<CategoriesProducts> CategoriesProducts { get; set; }
-		public DbSet<Menu> Menu { get; set; }
-		public DbSet<History> History { get; set; }
-
-		public new DbSet<Users> Users { get; set; }
-		public new DbSet<Roles> Roles { get; set; }
-
-		public DbSet<SequrityProfiles> SequrityProfiles { get; set; }
-		public DbSet<SequrityRoles> SequrityRoles { get; set; }
-
-		#endregion
-
+namespace SYR.Core.DomainModel {
+	public sealed class ModelContext : IdentityDbContext<Users> {
 		public ModelContext()
 		{
 			Database.EnsureCreated();
@@ -45,15 +25,17 @@ namespace SYR.Core.DomainModel
 			}
 			catch (Exception)
 			{
-				optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=SYRDB;Trusted_Connection=True;MultipleActiveResultSets=true");
+				optionsBuilder.UseSqlServer(
+					"Server=.\\SQLEXPRESS;Database=SYRDB;Trusted_Connection=True;MultipleActiveResultSets=true");
 			}
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			#region StoragesProducts
+			
 			modelBuilder.Entity<StoragesProducts>()
-				.HasKey(s => new { s.ProductId, s.StorageId });
+				.HasKey(s => new {s.ProductId, s.StorageId});
 
 			modelBuilder.Entity<StoragesProducts>()
 				.HasOne(sp => sp.Product)
@@ -70,7 +52,7 @@ namespace SYR.Core.DomainModel
 			#region StoragesCategories
 
 			modelBuilder.Entity<StoragesCategories>()
-				.HasKey(s => new { s.StorageId, s.CategoryId });
+				.HasKey(s => new {s.StorageId, s.CategoryId});
 
 			modelBuilder.Entity<StoragesCategories>()
 				.HasOne(sc => sc.Category)
@@ -87,7 +69,7 @@ namespace SYR.Core.DomainModel
 			#region SequrityRoles
 
 			modelBuilder.Entity<SequrityRoles>()
-				.HasKey(c => new { c.SequrityProfileId, c.RoleId });
+				.HasKey(c => new {c.SequrityProfileId, c.RoleId});
 
 			modelBuilder.Entity<SequrityRoles>()
 				.HasOne(rr => rr.SequrityProfile)
@@ -103,5 +85,41 @@ namespace SYR.Core.DomainModel
 
 			base.OnModelCreating(modelBuilder);
 		}
+
+		#region DbSet
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public DbSet<Products> Products { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public DbSet<Storages> Storages { get; set; }
+		public DbSet<Categories> Categories { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public DbSet<StoragesProducts> StoragesProducts { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public DbSet<StoragesCategories> StoragesCategories { get; set; }
+		public DbSet<CategoriesProducts> CategoriesProducts { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public DbSet<Menu> Menu { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public DbSet<History> History { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public new DbSet<Users> Users { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public new DbSet<Roles> Roles { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public DbSet<SequrityProfiles> SequrityProfiles { get; set; }
+
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public DbSet<SequrityRoles> SequrityRoles { get; set; }
+
+		#endregion
 	}
 }

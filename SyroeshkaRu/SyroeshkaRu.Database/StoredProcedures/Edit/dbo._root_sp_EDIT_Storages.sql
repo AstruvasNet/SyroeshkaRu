@@ -10,7 +10,7 @@
 	@output NVARCHAR(MAX) OUTPUT
 
 AS
-	
+
 DECLARE @storage INT,
 	@distinct INT,
 	@thisStorage UNIQUEIDENTIFIER,
@@ -22,10 +22,10 @@ DECLARE @tmp TABLE(Id UNIQUEIDENTIFIER NOT NULL)
 
 SET @storage = (SELECT COUNT(*) FROM [dbo].[Storages] WHERE [Id] = @id)
 SET @distinct = (SELECT COUNT(*) FROM [dbo].[Storages] WHERE [Title] = @title)
-SET @thisStorage = (SELECT TOP(1) [Id] FROM [dbo].[Storages] WHERE [Id] = @id AND [Title] = @title ORDER BY [Title] ASC)
+SET @thisStorage = (SELECT TOP(1) [Id] FROM [dbo].[Storages] WHERE [Id] = @id AND [Title] = @title ORDER BY [Title])
 
 IF @isDefault IS NULL
-	SET @isDefault = (SELECT TOP(1) [IsDefault] FROM [dbo].[Storages] WHERE [Id] = @id ORDER BY [IsDefault] ASC)
+	SET @isDefault = (SELECT TOP(1) [IsDefault] FROM [dbo].[Storages] WHERE [Id] = @id ORDER BY [IsDefault])
 
 BEGIN TRY
 	BEGIN
@@ -41,7 +41,7 @@ BEGIN TRY
 			BEGIN
 				INSERT @tmp (Id) VALUES (NEWID())
 
-				SET @newId = (SELECT TOP(1) Id FROM @tmp ORDER BY Id ASC)
+				SET @newId = (SELECT TOP(1) Id FROM @tmp ORDER BY Id)
 
 				INSERT [dbo].[Storages]
 				(

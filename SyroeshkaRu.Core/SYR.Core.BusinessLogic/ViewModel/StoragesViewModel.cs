@@ -19,6 +19,9 @@ namespace SYR.Core.BusinessLogic.ViewModel
 		[Display(Name = "По умолчанию", Prompt = "По умолчанию")]
 		public bool IsDefault { get; set; }
 
+		// ReSharper disable once UnusedAutoPropertyAccessor.Global
+		public int DateTime { get; set; }
+
 		public string ShortName => $"{Title} ({Description})";
 
 		//public ICollection<ProductsViewModel> Products { get; set; }
