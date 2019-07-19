@@ -28,12 +28,11 @@ namespace SYR.Core.BusinessLogic.Service {
 
 		#region GetUsers
 
-		public object GetUsers(string id = null)
+		public object GetUsers(Guid? id = null)
 		{
-			if (string.IsNullOrEmpty(id))
-				return _mapper.Map<ICollection<Users>, ICollection<UsersViewModel>>(_db.Users.ToList());
-
-			return _mapper.Map<Users, UsersViewModel>(_db.Users.Find(id));
+			if (!string.IsNullOrEmpty(id.ToString()))
+				return _mapper.Map<Users, UsersViewModel>(_db.Users.Find(id.ToString()));
+			return _mapper.Map<ICollection<Users>, ICollection<UsersViewModel>>(_db.Users.ToList());
 		}
 
 		#endregion GetUsers

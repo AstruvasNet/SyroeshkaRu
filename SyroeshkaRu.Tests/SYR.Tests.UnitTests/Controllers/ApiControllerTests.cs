@@ -39,7 +39,7 @@ namespace SYR.Tests.UnitTests.Controllers {
 			var okResult = Assert.IsType<OkObjectResult>(result);
 
 			Assert.NotNull(okResult);
-			_edit.Verify(e => e.EditStorages(storage));
+			_edit.Verify(i => i.EditStorages(storage));
 		}
 
 		#endregion

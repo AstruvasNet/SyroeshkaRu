@@ -11,36 +11,36 @@ namespace SYR.Core.BusinessLogic.Helpers
 {
 	public static class DisplayHelpers
 	{
-		private static readonly IAdmin _dbAdmin = new AdminService();
+		private static readonly IAdmin DbAdmin = new AdminService();
 
 		public static IEnumerable<SelectListItem> RolesCollection()
 		{
-			return ((ICollection<RolesViewModel>)_dbAdmin.GetRoles()).Select(i => new SelectListItem
+			return ((ICollection<RolesViewModel>)DbAdmin.GetRoles()).Select(i => new SelectListItem
 			{
 				Text = i.Name,
 				Value = i.Id
 			}).OrderBy(m => m.Value);
 		}
 
-		public static IEnumerable<SelectListItem> StoragesCollection(ISession _session)
+		public static IEnumerable<SelectListItem> StoragesCollection(ISession session)
 		{
-			return ((ICollection<StoragesViewModel>)_dbAdmin.GetStorages()).Select(i => new SelectListItem
+			return ((ICollection<StoragesViewModel>)DbAdmin.GetStorages()).Select(i => new SelectListItem
 			{
 				Text = i.Title,
 				Value = i.Id.ToString(),
-				Selected = string.IsNullOrEmpty(_session.GetString("storage"))
-					? i.IsDefault : i.Id.ToString() == _session.GetString("storage")
+				Selected = string.IsNullOrEmpty(session.GetString("storage"))
+					? i.IsDefault : i.Id.ToString() == session.GetString("storage")
 			}).OrderBy(m => m.Value);
 		}
 
 		public static ICollection<string> RoleId(string user)
 		{
-			return (ICollection<string>)_dbAdmin.GetUserRoles(user);
+			return (ICollection<string>)DbAdmin.GetUserRoles(user);
 		}
 
 		public static string SequrityProfileName(Guid id)
 		{
-			return ((SequrityProfilesViewModel)_dbAdmin.GetSequrityProfiles(id)).Name;
+			return ((SequrityProfilesViewModel)DbAdmin.GetSequrityProfiles(id)).Name;
 		}
 	}
 }

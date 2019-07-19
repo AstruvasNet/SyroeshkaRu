@@ -19,7 +19,6 @@ namespace SYR.Core.BusinessLogic.Filters {
 	[AttributeUsage(AttributeTargets.All)]
 	public class Sequrity : ActionFilterAttribute {
 		private readonly IAdmin _db = new AdminService();
-
 		public override void OnActionExecuting(ActionExecutingContext context)
 		{
 			var profiles = (ICollection<SequrityProfilesViewModel>) _db.GetSequrityProfiles();
@@ -41,17 +40,15 @@ namespace SYR.Core.BusinessLogic.Filters {
 
 				context.Result = controllerSequrity.Count != 0 ? context.Result : new NotFoundResult();
 
-				if (profiles.Count(i => i.Name.Contains(action.ToString().ToLower())) != 0)
-				{
-					ICollection<string> actionSequrity =
-						(from profile in ((SequrityProfilesViewModel) _db.GetSequrityProfiles(action.ToString()))
-								.SequrityRoles
-							from role in context.HttpContext.User.FindAll(ClaimTypes.Role)
-							where role.Value == profile.Roles.Name
-							select role.Value).ToList();
+				if (profiles.Count(i => i.Name.Contains(action.ToString().ToLower())) == 0) return;
+				ICollection<string> actionSequrity =
+					(from profile in ((SequrityProfilesViewModel) _db.GetSequrityProfiles(action.ToString()))
+							.SequrityRoles
+						from role in context.HttpContext.User.FindAll(ClaimTypes.Role)
+						where role.Value == profile.Roles.Name
+						select role.Value).ToList();
 
-					context.Result = actionSequrity.Count == 0 ? context.Result : new NotFoundResult();
-				}
+				context.Result = actionSequrity.Count == 0 ? context.Result : new NotFoundResult();
 			}
 			else
 			{

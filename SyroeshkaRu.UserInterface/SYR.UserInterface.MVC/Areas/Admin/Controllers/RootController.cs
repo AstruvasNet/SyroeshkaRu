@@ -20,9 +20,9 @@ namespace SYR.UserInterface.MVC.Areas.Admin.Controllers {
 		}
 
 		[Route("users/{id?}")]
-		public async Task<IActionResult> Index(string id, int? page = 1)
+		public async Task<IActionResult> Index(Guid? id = null, int? page = 1)
 		{
-			if (!string.IsNullOrEmpty(id))
+			if (!string.IsNullOrEmpty(id.ToString()))
 				return await Task.Run(() =>
 					View("~/Areas/Admin/Views/Root/Users.cshtml", _db.GetUsers(id)));
 			if (page != null)

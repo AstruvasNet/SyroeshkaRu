@@ -10,8 +10,8 @@ namespace SYR.Core.BusinessLogic.Interface
 		/// </summary>
 		/// <param name="id">Id пользователя</param>
 		/// <returns>GetUsers(), GetUsers(Id)</returns>
-		/// <see cref="GetUsers(string)"/>
-		object GetUsers(string id = null);
+		/// <see cref="GetUsers(Guid or null)"/>
+		object GetUsers(Guid? id = null);
 
 		object GetUsers(int page, int pageSize);
 
